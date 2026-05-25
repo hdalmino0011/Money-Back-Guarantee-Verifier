@@ -19,26 +19,34 @@ function calculate() {
   let color = "";
 
   if (remaining >= 0) {
-    statusText = "✅ Refund is STILL AVAILABLE";
+    statusText = "Refund is STILL AVAILABLE";
     color = "green";
   } else {
-    statusText = "❌ Refund is NOT AVAILABLE";
+    statusText = "Refund is NOT AVAILABLE";
     color = "red";
   }
 
-  // ✅ NEW WINDOW DISPLAY
-  const newWindow = window.open("", "_blank");
+  // ✅ OPEN RESULT WINDOW (CENTERED)
+  const width = 500;
+  const height = 600;
+  const left = (screen.width - width) / 2;
+  const top = (screen.height - height) / 2;
+
+  const newWindow = window.open(
+    "",
+    "_blank",
+    `width=${width},height=${height},left=${left},top=${top}`
+  );
 
   newWindow.document.write(`
     <html>
     <head>
-      <title>Refund Result</title>
-      <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+      <title>Refund Breakdown</title>
       <style>
         body {
-          font-family: 'Press Start 2P', cursive;
+          font-family: "Times New Roman", serif;
           background: linear-gradient(to bottom right, #7ec8ff, #2d8cff);
-          color: black;
+          margin: 0;
           padding: 20px;
         }
 
@@ -46,20 +54,19 @@ function calculate() {
           background: white;
           padding: 25px;
           border-radius: 20px;
-          max-width: 500px;
+          max-width: 450px;
           margin: auto;
           box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         h2 {
           text-align: center;
-          font-size: 14px;
           margin-bottom: 20px;
         }
 
         .line {
-          margin: 12px 0;
-          font-size: 10px;
+          margin: 10px 0;
+          font-size: 16px;
         }
 
         .status {
@@ -67,9 +74,16 @@ function calculate() {
           padding: 15px;
           border-radius: 12px;
           text-align: center;
-          font-size: 10px;
+          font-size: 18px;
+          font-weight: bold;
           color: ${color};
           border: 2px solid ${color};
+        }
+
+        footer {
+          margin-top: 20px;
+          text-align: center;
+          font-size: 12px;
         }
       </style>
     </head>
@@ -78,13 +92,15 @@ function calculate() {
       <div class="card">
         <h2>Refund Breakdown</h2>
 
-        <div class="line">Order Date: ${orderDate}</div>
-        <div class="line">Today's Date: ${todayDate}</div>
-        <div class="line">Guarantee Days: ${days}</div>
-        <div class="line">Days Used: ${usedDays}</div>
-        <div class="line">Days Remaining: ${remaining}</div>
+        <div class="line"><strong>Order Date:</strong> ${orderDate}</div>
+        <div class="line"><strong>Today's Date:</strong> ${todayDate}</div>
+        <div class="line"><strong>Guarantee Days:</strong> ${days}</div>
+        <div class="line"><strong>Days Used:</strong> ${usedDays}</div>
+        <div class="line"><strong>Days Remaining:</strong> ${remaining}</div>
 
         <div class="status">${statusText}</div>
+
+        <footer>All Rights Reserved 2026</footer>
       </div>
 
     </body>
