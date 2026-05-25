@@ -8,32 +8,34 @@ body {
   min-height: 100vh;
 }
 
-/* MAIN CARD */
+/* HIDE SECTIONS */
+.hidden {
+  display: none;
+}
+
+/* CARD */
 .container {
-  background: #ffffff;
+  background: white;
   padding: 30px;
   border-radius: 20px;
   width: 90%;
   max-width: 420px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  text-align: center;
 }
 
-/* TITLE */
+/* HEADER */
 h1 {
-  text-align: center;
-  font-size: 22px;
-  margin-bottom: 25px;
-  color: black;
+  margin-bottom: 20px;
 }
 
 /* FORM */
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 15px;
+  text-align: left;
 }
 
 label {
-  display: block;
-  margin-bottom: 5px;
   font-size: 14px;
 }
 
@@ -42,32 +44,51 @@ input {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
-  font-size: 14px;
-  font-family: "Times New Roman", serif;
+  margin-top: 5px;
 }
 
-/* BUTTON */
+/* BUTTONS */
 button {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
   background: #1a73e8;
   color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
-  margin-top: 10px;
-  font-family: "Times New Roman", serif;
 }
 
 button:hover {
   background: #125dc1;
 }
 
+.back {
+  background: gray;
+}
+
+.back:hover {
+  background: #555;
+}
+
+/* RESULTS */
+#refundResult, #discountResult {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.active {
+  background: #ccffcc;
+}
+
+.expired {
+  background: #ffcccc;
+}
+
 /* FOOTER */
 footer {
   margin-top: 20px;
-  text-align: center;
   font-size: 12px;
-  color: #333;
 }
