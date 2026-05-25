@@ -8,12 +8,10 @@ body {
   min-height: 100vh;
 }
 
-/* HIDE SECTIONS */
 .hidden {
   display: none;
 }
 
-/* CARD */
 .container {
   background: white;
   padding: 30px;
@@ -24,19 +22,13 @@ body {
   text-align: center;
 }
 
-/* HEADER */
 h1 {
   margin-bottom: 20px;
 }
 
-/* FORM */
 .form-group {
   margin-bottom: 15px;
   text-align: left;
-}
-
-label {
-  font-size: 14px;
 }
 
 input {
@@ -47,7 +39,6 @@ input {
   margin-top: 5px;
 }
 
-/* BUTTONS */
 button {
   width: 100%;
   padding: 12px;
@@ -72,11 +63,12 @@ button:hover {
   background: #555;
 }
 
-/* RESULTS */
 #refundResult, #discountResult {
   margin-top: 20px;
   padding: 15px;
   border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .active {
@@ -87,7 +79,10 @@ button:hover {
   background: #ffcccc;
 }
 
-/* FOOTER */
+.highlight {
+  font-weight: bold;
+}
+
 footer {
   margin-top: 20px;
   font-size: 12px;
