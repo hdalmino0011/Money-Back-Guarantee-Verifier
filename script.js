@@ -1,6 +1,10 @@
-// ==========================
-// NAVIGATION FUNCTIONS
-// ==========================
+// AUTO SET TODAY'S DATE
+window.onload = function () {
+  const today = new Date().toISOString().split("T")[0];
+  document.getElementById("todayDate").value = today;
+};
+
+// NAVIGATION
 function showGuarantee() {
   document.getElementById("home").classList.add("hidden");
   document.getElementById("guarantee").classList.remove("hidden");
@@ -16,14 +20,11 @@ function goHome() {
   document.getElementById("guarantee").classList.add("hidden");
   document.getElementById("discount").classList.add("hidden");
 
-  // Clear results when going back
   document.getElementById("refundResult").innerHTML = "";
   document.getElementById("discountResult").innerHTML = "";
 }
 
-// ==========================
 // REFUND CALCULATOR
-// ==========================
 function calculateRefund() {
   const orderDate = document.getElementById("orderDate").value;
   const todayDate = document.getElementById("todayDate").value;
@@ -42,25 +43,41 @@ function calculateRefund() {
   const diffDays = Math.floor((today - start) / (1000 * 60 * 60 * 24));
   const remaining = days - diffDays;
 
+  const expirationDate = new Date(start);
+  expirationDate.setDate(expirationDate.getDate() + days);
+
+  const formattedExpiration = expirationDate.toLocaleDateString();
+
+  let output = `
+    <strong>📋 Breakdown</strong><br><br>
+
+    Order Date: <span class="highlight">${orderDate}</span><br>
+    Today's Date: <span class="highlight">${todayDate}</span><br>
+    Guarantee Period: <span class="highlight">${days} days</span><br>
+    Expiration Date: <span class="highlight">${formattedExpiration}</span><br><br>
+
+    Days Used: ${diffDays}<br>
+    Days Remaining: ${remaining}<br><br>
+  `;
+
   if (remaining >= 0) {
     result.className = "active";
-    result.innerHTML = `
-      ✅ <strong>Refund Available</strong><br><br>
-      Days Used: ${diffDays}<br>
-      Days Remaining: ${remaining}
+    output += `
+      ✅ <strong style="color:green;">Refund STILL AVAILABLE</strong><br>
+      ⏳ Days left before expiration: <strong>${remaining}</strong>
     `;
   } else {
     result.className = "expired";
-    result.innerHTML = `
-      ❌ <strong>Refund Not Available</strong><br><br>
-      Expired by: ${Math.abs(remaining)} day(s)
+    output += `
+      ❌ <strong style="color:red;">Refund NOT AVAILABLE</strong><br>
+      ⚠️ Expired by: <strong>${Math.abs(remaining)}</strong> day(s)
     `;
   }
+
+  result.innerHTML = output;
 }
 
-// ==========================
-// DISCOUNT CALCULATOR (FIXED)
-// ==========================
+// DISCOUNT CALCULATOR
 function calculateDiscount() {
   const amount = parseFloat(document.getElementById("amount").value);
   const result = document.getElementById("discountResult");
@@ -73,23 +90,19 @@ function calculateDiscount() {
   const discounts = [10, 35, 50, 70, 75];
 
   let output = `
-    <strong>Original Price: ${amount.toFixed(2)}</strong>
-    <br><br>
-    <strong>Discount Breakdown:</strong><br><br>
+    <strong>Original Price: ${amount.toFixed(2)}</strong><br><br>
+    <strong>💸 Discount Breakdown</strong><br><br>
   `;
 
   discounts.forEach(d => {
-    // Calculate discount value
-    const rawDiscount = amount * d / 100;
-    const discountValue = parseFloat(rawDiscount.toFixed(2));
-
-    // Calculate final price
-    const finalPrice = parseFloat((amount - rawDiscount).toFixed(2));
+    const raw = amount * d / 100;
+    const discountValue = parseFloat(raw.toFixed(2));
+    const finalPrice = parseFloat((amount - raw).toFixed(2));
 
     output += `
       <strong>${d}% Discount</strong><br>
       ${d}% of ${amount.toFixed(2)} = ${discountValue.toFixed(2)}<br>
-      Final Price: ${finalPrice.toFixed(2)}<br><br>
+      Final Price: <span class="highlight">${finalPrice.toFixed(2)}</span><br><br>
     `;
   });
 
