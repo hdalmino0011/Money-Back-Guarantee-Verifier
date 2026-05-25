@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  background: linear-gradient(to bottom right, #b3e0ff, #3399ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+h1 {
+  color: black;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  font-size: 10px;
+  color: black;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  font-family: Arial;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+}
+
+button:hover {
+  background: #004d99;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 10px;
+}
+
+.active {
+  background-color: #ccffcc;
+  color: black;
+}
+
+.expired {
+  background-color: #ffcccc;
+  color: black;
+}
