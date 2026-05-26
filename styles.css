@@ -56,22 +56,41 @@ body.dark footer {
   color: #aaa;
 }
 
-/* TOGGLE BUTTON TOP RIGHT */
+/* TOGGLE CONTAINER - FLEX ROW */
 .toggle-container {
   position: fixed;
   top: 15px;
   right: 15px;
   z-index: 1000;
+  display: flex;
+  gap: 10px;
 }
 
-.dark-toggle {
+.refresh-btn, .dark-toggle {
   width: auto;
   padding: 10px 18px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
   border-radius: 25px;
   font-size: 14px;
   font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.refresh-btn {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+.refresh-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.05);
+}
+
+.dark-toggle {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
   backdrop-filter: blur(5px);
 }
 
@@ -117,7 +136,7 @@ body.dark footer {
     font-size: 14px;
   }
   
-  .dark-toggle {
+  .refresh-btn, .dark-toggle {
     padding: 8px 14px;
     font-size: 12px;
   }
