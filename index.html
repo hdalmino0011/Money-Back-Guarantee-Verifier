@@ -9,6 +9,11 @@
 </head>
 <body>
 
+<!-- DARK MODE TOGGLE -->
+<div class="toggle">
+  <button onclick="toggleDark()">🌙 Toggle Dark Mode</button>
+</div>
+
 <!-- HOME -->
 <div class="container" id="home">
   <h1>Utility Tool</h1>
@@ -22,14 +27,17 @@
   <footer>All Rights Reserved 2026</footer>
 </div>
 
-<!-- REFUND CHECKER -->
+<!-- MBG -->
 <div class="container hidden" id="guarantee">
   <h1>Refund Checker</h1>
+
   <input type="date" id="orderDate">
   <input type="number" id="guaranteeDays" placeholder="Guarantee Days">
   <input type="date" id="todayDate">
+
   <button onclick="calculateRefund()">Calculate</button>
   <button class="back" onclick="goHome()">Back</button>
+
   <div id="refundResult"></div>
   <footer>All Rights Reserved 2026</footer>
 </div>
@@ -37,9 +45,11 @@
 <!-- DISCOUNT -->
 <div class="container hidden" id="discount">
   <h1>Discount Calculator</h1>
+
   <input type="number" id="amount" placeholder="Enter amount">
   <button onclick="calculateDiscount()">Calculate</button>
   <button class="back" onclick="goHome()">Back</button>
+
   <div id="discountResult"></div>
   <footer>All Rights Reserved 2026</footer>
 </div>
@@ -47,8 +57,8 @@
 <!-- TIMEFRAME -->
 <div class="container hidden" id="timeframe">
   <h1>Refund Timeframe</h1>
-  <input type="date" id="refundDate">
 
+  <input type="date" id="refundDate">
   <select id="range">
     <option value="3-5">3-5 Business Days</option>
     <option value="7-14">7-14 Business Days</option>
@@ -64,9 +74,11 @@
 <!-- AHT -->
 <div class="container hidden" id="aht">
   <h1>AHT Converter</h1>
+
   <input type="number" id="seconds" placeholder="Enter seconds">
   <button onclick="convertAHT()">Convert</button>
   <button class="back" onclick="goHome()">Back</button>
+
   <div id="ahtResult"></div>
   <footer>All Rights Reserved 2026</footer>
 </div>
