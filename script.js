@@ -198,22 +198,22 @@ function convertAHT() {
 }
 
 // ===================
-// NOTES TEMPLATES (EXACT FORMATS - NO EMOJIS, NO DATES, NO EXTRA CHARACTERS)
+// NOTES TEMPLATES (NO "NOTATION TYPE" LINES, JUST THE FIELDS)
 // ===================
 function loadNotes(num) {
   if (num === 1) {
-    document.getElementById("notesBox").value = "NOTATION TYPE 1\nAgent Name: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
+    document.getElementById("notesBox").value = "Agent Name: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
   } else if (num === 2) {
-    document.getElementById("notesBox").value = "NOTATION TYPE 2\nAGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\nname: \nphone number: \nemail address: \norder id: \nproduct name:";
+    document.getElementById("notesBox").value = "AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\nname: \nphone number: \nemail address: \norder id: \nproduct name:";
   } else if (num === 3) {
-    document.getElementById("notesBox").value = "NOTATION TYPE 3\nFOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
+    document.getElementById("notesBox").value = "FOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
   }
 }
 
 function copyNotes() {
   const notesBox = document.getElementById("notesBox");
   notesBox.select();
-  notesBox.setSelectionRange(0, 99999); // For mobile devices
+  notesBox.setSelectionRange(0, 99999);
   
   try {
     document.execCommand("copy");
