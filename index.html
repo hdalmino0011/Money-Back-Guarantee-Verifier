@@ -8,40 +8,48 @@
 </head>
 <body>
 
-<!-- DARK MODE TOGGLE + REFRESH BUTTON - TOP RIGHT -->
+<!-- PHILIPPINE TIME (TOP LEFT) -->
+<div class="time-container">
+  <div class="ph-time-label">🇵🇭 Philippine Time</div>
+  <div class="ph-time" id="phTime">--:--:--</div>
+</div>
+
+<!-- DARK MODE TOGGLE + REFRESH BUTTON (TOP RIGHT) -->
 <div class="toggle-container">
-  <button class="refresh-btn" onclick="refreshPage()">🔄 Refresh</button>
-  <button class="dark-toggle" onclick="toggleDark()">🌙 Dark Mode</button>
+  <button class="refresh-btn" onclick="refreshPage()">Refresh</button>
+  <button class="dark-toggle" onclick="toggleDark()">Dark Mode</button>
 </div>
 
 <!-- HOME -->
 <div class="container" id="home">
-  <h1>🛠️ Utility Tool</h1>
+  <h1>Utility Tool</h1>
 
-  <button onclick="showSection('guarantee')">💰 Money Back Guarantee Checker</button>
-  <button onclick="showSection('discount')">🏷️ Discount Calculator</button>
-  <button onclick="showSection('timeframe')">📅 Refund Timeframe Tracker</button>
-  <button onclick="showSection('aht')">⏱️ AHT Time Converter</button>
-  <button onclick="showSection('notes')">📝 Notations Format</button>
+  <button onclick="showSection('guarantee')">Money Back Guarantee Checker</button>
+  <button onclick="showSection('discount')">Discount Calculator</button>
+  <button onclick="showSection('timeframe')">Refund Timeframe Tracker</button>
+  <button onclick="showSection('aht')">AHT Time Converter</button>
+  <button onclick="showSection('notes')">Notations Format</button>
+  <button onclick="showSection('timezone')">US & Canada Time Zones</button>
+  <button onclick="showSection('currency')">Currency Abbreviations</button>
 
   <footer>All Rights Reserved 2026</footer>
 </div>
 
-<!-- MBG - MONEY BACK GUARANTEE -->
+<!-- MBG -->
 <div class="container hidden" id="guarantee">
-  <h1>💰 Refund Checker</h1>
+  <h1>Refund Checker</h1>
 
-  <label>📅 Order Date:</label>
+  <label>Order Date:</label>
   <input type="date" id="orderDate">
 
-  <label>⏱️ Guarantee Days:</label>
+  <label>Guarantee Days:</label>
   <input type="number" id="guaranteeDays" placeholder="e.g., 30, 60, 90" min="0">
 
-  <label>📆 Today's Date:</label>
+  <label>Today's Date:</label>
   <input type="date" id="todayDate">
 
-  <button onclick="calculateRefund()">✅ Calculate</button>
-  <button class="back" onclick="goHome()">🏠 Back to Home</button>
+  <button onclick="calculateRefund()">Calculate</button>
+  <button class="back" onclick="goHome()">Back to Home</button>
 
   <div id="refundResult"></div>
   <footer>All Rights Reserved 2026</footer>
@@ -49,13 +57,13 @@
 
 <!-- DISCOUNT -->
 <div class="container hidden" id="discount">
-  <h1>🏷️ Discount Calculator</h1>
+  <h1>Discount Calculator</h1>
 
-  <label>💰 Enter Amount:</label>
+  <label>Enter Amount:</label>
   <input type="number" id="amount" placeholder="Enter amount" step="0.01">
 
-  <button onclick="calculateDiscount()">✅ Calculate</button>
-  <button class="back" onclick="goHome()">🏠 Back to Home</button>
+  <button onclick="calculateDiscount()">Calculate</button>
+  <button class="back" onclick="goHome()">Back to Home</button>
 
   <div id="discountResult"></div>
   <footer>All Rights Reserved 2026</footer>
@@ -63,19 +71,19 @@
 
 <!-- TIMEFRAME -->
 <div class="container hidden" id="timeframe">
-  <h1>📅 Refund Timeframe</h1>
+  <h1>Refund Timeframe</h1>
 
-  <label>📆 Refund Request Date:</label>
+  <label>Refund Request Date:</label>
   <input type="date" id="refundDate">
 
-  <label>⏱️ Expected Processing Range:</label>
+  <label>Expected Processing Range:</label>
   <select id="range">
     <option value="3-5">3-5 Business Days</option>
     <option value="7-14">7-14 Business Days</option>
   </select>
 
-  <button onclick="calculateTimeframe()">✅ Calculate</button>
-  <button class="back" onclick="goHome()">🏠 Back to Home</button>
+  <button onclick="calculateTimeframe()">Calculate</button>
+  <button class="back" onclick="goHome()">Back to Home</button>
 
   <div id="timeframeResult"></div>
   <footer>All Rights Reserved 2026</footer>
@@ -83,13 +91,13 @@
 
 <!-- AHT -->
 <div class="container hidden" id="aht">
-  <h1>⏱️ AHT Converter</h1>
+  <h1>AHT Converter</h1>
 
-  <label>⏱️ Enter Seconds:</label>
+  <label>Enter Seconds:</label>
   <input type="number" id="seconds" placeholder="Enter seconds" min="0">
 
-  <button onclick="convertAHT()">✅ Convert</button>
-  <button class="back" onclick="goHome()">🏠 Back to Home</button>
+  <button onclick="convertAHT()">Convert</button>
+  <button class="back" onclick="goHome()">Back to Home</button>
 
   <div id="ahtResult"></div>
   <footer>All Rights Reserved 2026</footer>
@@ -97,19 +105,36 @@
 
 <!-- NOTES -->
 <div class="container hidden" id="notes">
-  <h1>📝 Notations</h1>
+  <h1>Notations</h1>
 
   <textarea id="notesBox" rows="12" placeholder="Your notes will appear here..."></textarea>
 
   <div class="note-buttons">
-    <button onclick="loadNotes(1)">📋 Type 1</button>
-    <button onclick="loadNotes(2)">📋 Type 2</button>
-    <button onclick="loadNotes(3)">📋 Type 3</button>
-    <button onclick="copyNotes()">📋 Copy</button>
+    <button onclick="loadNotes(1)">Type 1</button>
+    <button onclick="loadNotes(2)">Type 2</button>
+    <button onclick="loadNotes(3)">Type 3</button>
+    <button onclick="copyNotes()">Copy</button>
   </div>
 
-  <button class="back" onclick="goHome()">🏠 Back to Home</button>
+  <button class="back" onclick="goHome()">Back to Home</button>
 
+  <footer>All Rights Reserved 2026</footer>
+</div>
+
+<!-- US & CANADA TIME ZONES -->
+<div class="container hidden" id="timezone">
+  <h1>US & Canada - Current Times</h1>
+  <div id="timezoneList" class="timezone-grid"></div>
+  <button class="back" onclick="goHome()">Back to Home</button>
+  <footer>All Rights Reserved 2026</footer>
+</div>
+
+<!-- CURRENCY ABBREVIATIONS -->
+<div class="container hidden" id="currency">
+  <h1>Currency Abbreviations</h1>
+  <input type="text" id="currencySearch" placeholder="Search (e.g., ZAR, USD, EUR)" onkeyup="filterCurrencies()">
+  <div id="currencyList" class="currency-grid"></div>
+  <button class="back" onclick="goHome()">Back to Home</button>
   <footer>All Rights Reserved 2026</footer>
 </div>
 
