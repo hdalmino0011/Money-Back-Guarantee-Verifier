@@ -9,60 +9,84 @@
 </head>
 <body>
 
-  <!-- HOME -->
-  <div class="container" id="home">
-    <h1>Utility Tool</h1>
+<!-- HOME -->
+<div class="container" id="home">
+  <h1>Utility Tool</h1>
 
-    <button onclick="showGuarantee()">Money Back Guarantee Checker</button>
-    <button onclick="showDiscount()">Discount Price Calculator</button>
+  <button onclick="showSection('guarantee')">Money Back Guarantee Checker</button>
+  <button onclick="showSection('discount')">Discount Calculator</button>
+  <button onclick="showSection('timeframe')">Refund Timeframe Tracker</button>
+  <button onclick="showSection('aht')">AHT Time Converter</button>
+  <button onclick="showSection('notes')">Notations Format</button>
 
-    <footer>All Rights Reserved 2026</footer>
-  </div>
+  <footer>All Rights Reserved 2026</footer>
+</div>
 
-  <!-- REFUND CHECKER -->
-  <div class="container hidden" id="guarantee">
-    <h1>Refund Checker</h1>
+<!-- REFUND CHECKER -->
+<div class="container hidden" id="guarantee">
+  <h1>Refund Checker</h1>
+  <input type="date" id="orderDate">
+  <input type="number" id="guaranteeDays" placeholder="Guarantee Days">
+  <input type="date" id="todayDate">
+  <button onclick="calculateRefund()">Calculate</button>
+  <button class="back" onclick="goHome()">Back</button>
+  <div id="refundResult"></div>
+  <footer>All Rights Reserved 2026</footer>
+</div>
 
-    <div class="form-group">
-      <label>Order Date</label>
-      <input type="date" id="orderDate">
-    </div>
+<!-- DISCOUNT -->
+<div class="container hidden" id="discount">
+  <h1>Discount Calculator</h1>
+  <input type="number" id="amount" placeholder="Enter amount">
+  <button onclick="calculateDiscount()">Calculate</button>
+  <button class="back" onclick="goHome()">Back</button>
+  <div id="discountResult"></div>
+  <footer>All Rights Reserved 2026</footer>
+</div>
 
-    <div class="form-group">
-      <label>Guarantee Days</label>
-      <input type="number" id="guaranteeDays">
-    </div>
+<!-- TIMEFRAME -->
+<div class="container hidden" id="timeframe">
+  <h1>Refund Timeframe</h1>
+  <input type="date" id="refundDate">
 
-    <div class="form-group">
-      <label>Today's Date</label>
-      <input type="date" id="todayDate">
-    </div>
+  <select id="range">
+    <option value="3-5">3-5 Business Days</option>
+    <option value="7-14">7-14 Business Days</option>
+  </select>
 
-    <button onclick="calculateRefund()">Calculate</button>
-    <button class="back" onclick="goHome()">Back</button>
+  <button onclick="calculateTimeframe()">Calculate</button>
+  <button class="back" onclick="goHome()">Back</button>
 
-    <div id="refundResult"></div>
+  <div id="timeframeResult"></div>
+  <footer>All Rights Reserved 2026</footer>
+</div>
 
-    <footer>All Rights Reserved 2026</footer>
-  </div>
+<!-- AHT -->
+<div class="container hidden" id="aht">
+  <h1>AHT Converter</h1>
+  <input type="number" id="seconds" placeholder="Enter seconds">
+  <button onclick="convertAHT()">Convert</button>
+  <button class="back" onclick="goHome()">Back</button>
+  <div id="ahtResult"></div>
+  <footer>All Rights Reserved 2026</footer>
+</div>
 
-  <!-- DISCOUNT -->
-  <div class="container hidden" id="discount">
-    <h1>Discount Calculator</h1>
+<!-- NOTES -->
+<div class="container hidden" id="notes">
+  <h1>Notations</h1>
 
-    <div class="form-group">
-      <label>Total Amount</label>
-      <input type="number" id="amount" placeholder="Enter amount">
-    </div>
+  <textarea id="notesBox" rows="12"></textarea>
 
-    <button onclick="calculateDiscount()">Calculate</button>
-    <button class="back" onclick="goHome()">Back</button>
+  <button onclick="loadNotes(1)">Type 1</button>
+  <button onclick="loadNotes(2)">Type 2</button>
+  <button onclick="loadNotes(3)">Type 3</button>
+  <button onclick="copyNotes()">Copy</button>
 
-    <div id="discountResult"></div>
+  <button class="back" onclick="goHome()">Back</button>
 
-    <footer>All Rights Reserved 2026</footer>
-  </div>
+  <footer>All Rights Reserved 2026</footer>
+</div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
