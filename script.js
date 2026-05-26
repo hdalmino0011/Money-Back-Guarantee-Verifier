@@ -19,13 +19,9 @@ function showSection(id) {
   document.querySelectorAll('.container').forEach(el => el.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
   
-  // Load timezone data when that section is opened
+  // When timezone section is shown, ensure display is updated immediately
   if (id === 'timezone') {
-    loadTimezones();
-  }
-  // Load currency data when that section is opened
-  if (id === 'currency') {
-    loadCurrencies();
+    updateAllTimezones();
   }
 }
 
@@ -60,7 +56,106 @@ window.onload = () => {
   const todayFormatted = `${yyyy}-${mm}-${dd}`;
   
   document.getElementById("todayDate").value = todayFormatted;
+  
+  // Start real-time updates for US/Canada times (only when section is visible)
+  setInterval(() => {
+    const tzSection = document.getElementById('timezone');
+    if (tzSection && !tzSection.classList.contains('hidden')) {
+      updateAllTimezones();
+    }
+  }, 1000);
 };
+
+// ===================
+// COMPLETE US STATES & CANADIAN PROVINCES/TERRITORIES WITH TIME ZONES
+// ===================
+const allLocations = [
+  // US STATES (50 + DC)
+  { name: "Alabama (Central)", tz: "America/Chicago" },
+  { name: "Alaska", tz: "America/Anchorage" },
+  { name: "Arizona (Mountain - no DST)", tz: "America/Phoenix" },
+  { name: "Arkansas (Central)", tz: "America/Chicago" },
+  { name: "California (Pacific)", tz: "America/Los_Angeles" },
+  { name: "Colorado (Mountain)", tz: "America/Denver" },
+  { name: "Connecticut (Eastern)", tz: "America/New_York" },
+  { name: "Delaware (Eastern)", tz: "America/New_York" },
+  { name: "Florida (Eastern)", tz: "America/New_York" },
+  { name: "Georgia (Eastern)", tz: "America/New_York" },
+  { name: "Hawaii", tz: "Pacific/Honolulu" },
+  { name: "Idaho (Mountain/Pacific)", tz: "America/Denver" }, // most of state uses Mountain
+  { name: "Illinois (Central)", tz: "America/Chicago" },
+  { name: "Indiana (Eastern)", tz: "America/Indiana/Indianapolis" },
+  { name: "Iowa (Central)", tz: "America/Chicago" },
+  { name: "Kansas (Central/Mountain)", tz: "America/Chicago" }, // majority Central
+  { name: "Kentucky (Eastern)", tz: "America/New_York" },
+  { name: "Louisiana (Central)", tz: "America/Chicago" },
+  { name: "Maine (Eastern)", tz: "America/New_York" },
+  { name: "Maryland (Eastern)", tz: "America/New_York" },
+  { name: "Massachusetts (Eastern)", tz: "America/New_York" },
+  { name: "Michigan (Eastern)", tz: "America/Detroit" },
+  { name: "Minnesota (Central)", tz: "America/Chicago" },
+  { name: "Mississippi (Central)", tz: "America/Chicago" },
+  { name: "Missouri (Central)", tz: "America/Chicago" },
+  { name: "Montana (Mountain)", tz: "America/Denver" },
+  { name: "Nebraska (Central/Mountain)", tz: "America/Chicago" },
+  { name: "Nevada (Pacific)", tz: "America/Los_Angeles" },
+  { name: "New Hampshire (Eastern)", tz: "America/New_York" },
+  { name: "New Jersey (Eastern)", tz: "America/New_York" },
+  { name: "New Mexico (Mountain)", tz: "America/Denver" },
+  { name: "New York (Eastern)", tz: "America/New_York" },
+  { name: "North Carolina (Eastern)", tz: "America/New_York" },
+  { name: "North Dakota (Central)", tz: "America/Chicago" },
+  { name: "Ohio (Eastern)", tz: "America/New_York" },
+  { name: "Oklahoma (Central)", tz: "America/Chicago" },
+  { name: "Oregon (Pacific)", tz: "America/Los_Angeles" },
+  { name: "Pennsylvania (Eastern)", tz: "America/New_York" },
+  { name: "Rhode Island (Eastern)", tz: "America/New_York" },
+  { name: "South Carolina (Eastern)", tz: "America/New_York" },
+  { name: "South Dakota (Central/Mountain)", tz: "America/Chicago" },
+  { name: "Tennessee (Central/Eastern)", tz: "America/Chicago" }, // majority Central
+  { name: "Texas (Central/Mountain)", tz: "America/Chicago" }, // majority Central
+  { name: "Utah (Mountain)", tz: "America/Denver" },
+  { name: "Vermont (Eastern)", tz: "America/New_York" },
+  { name: "Virginia (Eastern)", tz: "America/New_York" },
+  { name: "Washington (Pacific)", tz: "America/Los_Angeles" },
+  { name: "West Virginia (Eastern)", tz: "America/New_York" },
+  { name: "Wisconsin (Central)", tz: "America/Chicago" },
+  { name: "Wyoming (Mountain)", tz: "America/Denver" },
+  { name: "Washington, D.C. (Eastern)", tz: "America/New_York" },
+  
+  // CANADIAN PROVINCES AND TERRITORIES
+  { name: "Alberta (Mountain)", tz: "America/Edmonton" },
+  { name: "British Columbia (Pacific)", tz: "America/Vancouver" },
+  { name: "Manitoba (Central)", tz: "America/Winnipeg" },
+  { name: "New Brunswick (Atlantic)", tz: "America/Moncton" },
+  { name: "Newfoundland and Labrador", tz: "America/St_Johns" },
+  { name: "Nova Scotia (Atlantic)", tz: "America/Halifax" },
+  { name: "Ontario (Eastern)", tz: "America/Toronto" },
+  { name: "Prince Edward Island (Atlantic)", tz: "America/Halifax" },
+  { name: "Quebec (Eastern)", tz: "America/Montreal" },
+  { name: "Saskatchewan (Central - no DST)", tz: "America/Regina" },
+  { name: "Northwest Territories (Mountain)", tz: "America/Yellowknife" },
+  { name: "Nunavut (Eastern/Central/Mountain)", tz: "America/Iqaluit" }, // using Iqaluit (Eastern)
+  { name: "Yukon (Mountain)", tz: "America/Whitehorse" }
+];
+
+function updateAllTimezones() {
+  const container = document.getElementById("timezoneList");
+  if (!container) return;
+  
+  const now = new Date();
+  let html = "";
+  
+  for (let loc of allLocations) {
+    try {
+      const timeString = now.toLocaleTimeString('en-US', { timeZone: loc.tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+      html += `<div class="timezone-item"><strong>${loc.name}</strong><br>${timeString}</div>`;
+    } catch(e) {
+      html += `<div class="timezone-item"><strong>${loc.name}</strong><br>Time unavailable</div>`;
+    }
+  }
+  container.innerHTML = html;
+}
 
 // ===================
 // MBG CHECKER
@@ -234,43 +329,6 @@ function copyNotes() {
   } catch(err) {
     alert("Failed to copy. Please manually copy the text.");
   }
-}
-
-// ===================
-// US & CANADA TIME ZONES
-// ===================
-const timezoneData = [
-  { region: "New York (Eastern)", tz: "America/New_York" },
-  { region: "Chicago (Central)", tz: "America/Chicago" },
-  { region: "Denver (Mountain)", tz: "America/Denver" },
-  { region: "Phoenix (Mountain - no DST)", tz: "America/Phoenix" },
-  { region: "Los Angeles (Pacific)", tz: "America/Los_Angeles" },
-  { region: "Anchorage (Alaska)", tz: "America/Anchorage" },
-  { region: "Honolulu (Hawaii)", tz: "Pacific/Honolulu" },
-  { region: "Toronto (Eastern - Canada)", tz: "America/Toronto" },
-  { region: "Winnipeg (Central - Canada)", tz: "America/Winnipeg" },
-  { region: "Edmonton (Mountain - Canada)", tz: "America/Edmonton" },
-  { region: "Vancouver (Pacific - Canada)", tz: "America/Vancouver" },
-  { region: "Halifax (Atlantic - Canada)", tz: "America/Halifax" },
-  { region: "St. John's (Newfoundland - Canada)", tz: "America/St_Johns" }
-];
-
-function loadTimezones() {
-  const container = document.getElementById("timezoneList");
-  if (!container) return;
-  
-  let html = "";
-  const now = new Date();
-  
-  for (let loc of timezoneData) {
-    try {
-      const timeString = now.toLocaleTimeString('en-US', { timeZone: loc.tz, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      html += `<div class="timezone-item"><strong>${loc.region}</strong><br>${timeString}</div>`;
-    } catch(e) {
-      html += `<div class="timezone-item"><strong>${loc.region}</strong><br>Error loading time</div>`;
-    }
-  }
-  container.innerHTML = html;
 }
 
 // ===================
