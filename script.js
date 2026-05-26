@@ -1,130 +1,140 @@
+// DARK MODE
+function toggleDark() {
+  document.body.classList.toggle("dark");
+}
+
 // NAVIGATION
 function showSection(id) {
-  document.querySelectorAll('.container').forEach(c => c.classList.add('hidden'));
+  document.querySelectorAll('.container').forEach(el => el.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
 }
 
 function goHome() {
   showSection('home');
+
+  document.getElementById("refundResult").innerHTML = "";
+  document.getElementById("discountResult").innerHTML = "";
 }
 
 // AUTO TODAY
 window.onload = () => {
-  const today = new Date().toISOString().split("T")[0];
-  if (document.getElementById("todayDate"))
-    document.getElementById("todayDate").value = today;
+  document.getElementById("todayDate").value =
+    new Date().toISOString().split("T")[0];
 };
 
-// =====================
-// REFUND CHECKER
-// =====================
+// ===================
+// MBG CHECKER
+// ===================
 function calculateRefund() {
-  const orderDate = document.getElementById("orderDate").value;
-  const todayDate = document.getElementById("todayDate").value;
+  const orderDate = new Date(document.getElementById("orderDate").value);
+  const todayDate = new Date(document.getElementById("todayDate").value);
   const days = parseInt(document.getElementById("guaranteeDays").value);
 
-  const start = new Date(orderDate);
-  const today = new Date(todayDate);
-
-  const used = Math.floor((today - start) / (1000*60*60*24));
+  const used = Math.floor((todayDate - orderDate) / (1000*60*60*24));
   const remaining = days - used;
 
-  const exp = new Date(start);
+  const exp = new Date(orderDate);
   exp.setDate(exp.getDate() + days);
 
-  document.getElementById("refundResult").innerHTML = `
-    Expiration: ${exp.toDateString()}<br>
-    Days Used: ${used}<br>
-    Days Remaining: ${remaining}<br><br>
-    ${remaining >= 0 ? "✅ Refund Available" : "❌ Refund Not Available"}
+  const result = `
+  <strong>📋 Breakdown</strong><br><br>
+  Order Date: ${orderDate.toDateString()}<br>
+  Today's Date: ${todayDate.toDateString()}<br>
+  Guarantee: ${days} days<br>
+  Expiration: <strong>${exp.toDateString()}</strong><br><br>
+
+  Days Used: ${used}<br>
+  Days Remaining: ${remaining}<br><br>
+
+  ${remaining >= 0
+    ? "<span style='color:green'><strong>✅ Refund Available</strong></span>"
+    : "<span style='color:red'><strong>❌ Refund Not Available</strong></span>"}
   `;
+
+  document.getElementById("refundResult").innerHTML = result;
 }
 
-// =====================
-// DISCOUNT
-// =====================
+// ===================
+// DISCOUNT (FIXED)
+// ===================
 function calculateDiscount() {
   const amount = parseFloat(document.getElementById("amount").value);
   const discounts = [10,35,50,70,75];
 
-  let html = "";
+  let output = `<strong>Original: ${amount.toFixed(2)}</strong><br><br>`;
 
   discounts.forEach(d => {
-    const disc = (amount*d/100).toFixed(2);
-    const final = (amount - disc).toFixed(2);
+    const discountVal = amount * d / 100;
+    const final = amount - discountVal;
 
-    html += `${d}% → ${disc} | Final: ${final}<br>`;
+    output += `
+    <strong>${d}% Discount</strong><br>
+    ${d}% of ${amount.toFixed(2)} = ${discountVal.toFixed(2)}<br>
+    Final Price: ${final.toFixed(2)}<br><br>
+    `;
   });
 
-  document.getElementById("discountResult").innerHTML = html;
+  document.getElementById("discountResult").innerHTML = output;
 }
 
-// =====================
-// BUSINESS DAY ADDER
-// =====================
+// ===================
+// BUSINESS TIMEFRAME
+// ===================
 function addBusinessDays(date, days) {
   let result = new Date(date);
-  let added = 0;
+  let count = 0;
 
-  while (added < days) {
+  while (count < days) {
     result.setDate(result.getDate() + 1);
     if (result.getDay() !== 0 && result.getDay() !== 6) {
-      added++;
+      count++;
     }
   }
   return result;
 }
 
-// =====================
-// TIMEFRAME
-// =====================
 function calculateTimeframe() {
   const date = new Date(document.getElementById("refundDate").value);
-  const range = document.getElementById("range").value;
-
-  const [min,max] = range.split("-").map(Number);
+  const [min,max] = document.getElementById("range").value.split("-").map(Number);
 
   const start = addBusinessDays(date, min);
   const end = addBusinessDays(date, max);
 
   document.getElementById("timeframeResult").innerHTML = `
-    Expected Between:<br>
-    ${start.toDateString()}<br>
-    and<br>
-    ${end.toDateString()}
+  Expected Processing Window:<br><br>
+  ${start.toDateString()}<br>
+  to<br>
+  ${end.toDateString()}
   `;
 }
 
-// =====================
+// ===================
 // AHT
-// =====================
+// ===================
 function convertAHT() {
   const sec = parseInt(document.getElementById("seconds").value);
 
-  const h = Math.floor(sec / 3600);
-  const m = Math.floor((sec % 3600)/60);
-  const s = sec % 60;
+  const h = Math.floor(sec/3600);
+  const m = Math.floor((sec%3600)/60);
+  const s = sec%60;
 
   document.getElementById("ahtResult").innerHTML =
-    `${h}h ${m}m ${s}s`;
+    `Time: ${h}h ${m}m ${s}s`;
 }
 
-// =====================
+// ===================
 // NOTES
-// =====================
-function loadNotes(type) {
-  let text = "";
-
-  if (type === 1) {
-text = `Agent Name:
+// ===================
+function loadNotes(num) {
+  const text = {
+    1: `Agent Name:
 REASON FOR CALLING:
 OFFER SAVE:
 THREAT:
 RESOLUTION:
-ACCOUNT STATUS:`; }
+ACCOUNT STATUS:`,
 
-  if (type === 2) {
-text = `AGENT:
+    2: `AGENT:
 REASON FOR CALLING:
 THREAT:
 SAVE OFFER:
@@ -136,10 +146,9 @@ name:
 phone number:
 email address:
 order id:
-product name:`; }
+product name:`,
 
-  if (type === 3) {
-text = `FOR NO ACCOUNT FOUND
+    3: `FOR NO ACCOUNT FOUND
 
 Campaign:
 Order Date:
@@ -148,9 +157,10 @@ Name:
 Phone Number:
 Product Name:
 Tracking Number:
-Order ID:`; }
+Order ID:`
+  };
 
-  document.getElementById("notesBox").value = text;
+  document.getElementById("notesBox").value = text[num];
 }
 
 function copyNotes() {
