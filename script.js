@@ -18,6 +18,15 @@ function toggleDark() {
 function showSection(id) {
   document.querySelectorAll('.container').forEach(el => el.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
+  
+  // Load timezone data when that section is opened
+  if (id === 'timezone') {
+    loadTimezones();
+  }
+  // Load currency data when that section is opened
+  if (id === 'currency') {
+    loadCurrencies();
+  }
 }
 
 function goHome() {
@@ -30,6 +39,17 @@ function goHome() {
   document.getElementById("ahtResult").innerHTML = "";
   document.getElementById("notesBox").value = "";
 }
+
+// ===================
+// LIVE PHILIPPINE TIME (UPDATES EVERY SECOND)
+// ===================
+function updatePhilippineTime() {
+  const options = { timeZone: 'Asia/Manila', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  const timeString = new Date().toLocaleTimeString('en-PH', options);
+  document.getElementById('phTime').innerText = timeString;
+}
+setInterval(updatePhilippineTime, 1000);
+updatePhilippineTime();
 
 // Set today's date automatically on page load
 window.onload = () => {
@@ -50,7 +70,6 @@ function calculateRefund() {
   const todayDateStr = document.getElementById("todayDate").value;
   const guaranteeDays = parseInt(document.getElementById("guaranteeDays").value);
   
-  // Validation
   if (!orderDateStr || !todayDateStr || isNaN(guaranteeDays) || guaranteeDays < 0) {
     document.getElementById("refundResult").innerHTML = `
       <span style='color:red'><strong>Error:</strong> Please fill in all fields correctly.</span>
@@ -58,29 +77,19 @@ function calculateRefund() {
     return;
   }
   
-  // Create date objects (normalized to avoid timezone issues)
   const orderDate = new Date(orderDateStr + "T12:00:00");
   const todayDate = new Date(todayDateStr + "T12:00:00");
   
-  // Calculate days difference
   const timeDiff = todayDate - orderDate;
   const daysUsed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
   const daysRemaining = guaranteeDays - daysUsed;
   
-  // Calculate expiration date
   const expirationDate = new Date(orderDate);
   expirationDate.setDate(expirationDate.getDate() + guaranteeDays);
   
-  // Determine status
   let daysBeyond = 0;
+  if (daysRemaining < 0) daysBeyond = Math.abs(daysRemaining);
   
-  if (daysRemaining >= 0) {
-    daysBeyond = 0;
-  } else {
-    daysBeyond = Math.abs(daysRemaining);
-  }
-  
-  // Build result HTML
   let result = `
     <strong>REFUND BREAKDOWN</strong><br><br>
     <strong>Order Date:</strong> ${orderDate.toDateString()}<br>
@@ -142,7 +151,6 @@ function addBusinessDays(date, days) {
   
   while (daysAdded < days) {
     result.setDate(result.getDate() + 1);
-    // Skip Saturdays (6) and Sundays (0)
     if (result.getDay() !== 0 && result.getDay() !== 6) {
       daysAdded++;
     }
@@ -203,7 +211,7 @@ function convertAHT() {
 }
 
 // ===================
-// NOTES TEMPLATES (NO "NOTATION TYPE" LINES)
+// NOTES TEMPLATES (EXACT)
 // ===================
 function loadNotes(num) {
   if (num === 1) {
@@ -226,4 +234,101 @@ function copyNotes() {
   } catch(err) {
     alert("Failed to copy. Please manually copy the text.");
   }
+}
+
+// ===================
+// US & CANADA TIME ZONES
+// ===================
+const timezoneData = [
+  { region: "New York (Eastern)", tz: "America/New_York" },
+  { region: "Chicago (Central)", tz: "America/Chicago" },
+  { region: "Denver (Mountain)", tz: "America/Denver" },
+  { region: "Phoenix (Mountain - no DST)", tz: "America/Phoenix" },
+  { region: "Los Angeles (Pacific)", tz: "America/Los_Angeles" },
+  { region: "Anchorage (Alaska)", tz: "America/Anchorage" },
+  { region: "Honolulu (Hawaii)", tz: "Pacific/Honolulu" },
+  { region: "Toronto (Eastern - Canada)", tz: "America/Toronto" },
+  { region: "Winnipeg (Central - Canada)", tz: "America/Winnipeg" },
+  { region: "Edmonton (Mountain - Canada)", tz: "America/Edmonton" },
+  { region: "Vancouver (Pacific - Canada)", tz: "America/Vancouver" },
+  { region: "Halifax (Atlantic - Canada)", tz: "America/Halifax" },
+  { region: "St. John's (Newfoundland - Canada)", tz: "America/St_Johns" }
+];
+
+function loadTimezones() {
+  const container = document.getElementById("timezoneList");
+  if (!container) return;
+  
+  let html = "";
+  const now = new Date();
+  
+  for (let loc of timezoneData) {
+    try {
+      const timeString = now.toLocaleTimeString('en-US', { timeZone: loc.tz, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      html += `<div class="timezone-item"><strong>${loc.region}</strong><br>${timeString}</div>`;
+    } catch(e) {
+      html += `<div class="timezone-item"><strong>${loc.region}</strong><br>Error loading time</div>`;
+    }
+  }
+  container.innerHTML = html;
+}
+
+// ===================
+// CURRENCY ABBREVIATIONS (WITH SEARCH)
+// ===================
+const currencyListFull = [
+  { code: "USD", name: "US Dollar" },
+  { code: "EUR", name: "Euro" },
+  { code: "GBP", name: "British Pound Sterling" },
+  { code: "JPY", name: "Japanese Yen" },
+  { code: "CAD", name: "Canadian Dollar" },
+  { code: "AUD", name: "Australian Dollar" },
+  { code: "CHF", name: "Swiss Franc" },
+  { code: "CNY", name: "Chinese Yuan" },
+  { code: "INR", name: "Indian Rupee" },
+  { code: "ZAR", name: "South African Rand" },
+  { code: "BRL", name: "Brazilian Real" },
+  { code: "MXN", name: "Mexican Peso" },
+  { code: "SGD", name: "Singapore Dollar" },
+  { code: "NZD", name: "New Zealand Dollar" },
+  { code: "HKD", name: "Hong Kong Dollar" },
+  { code: "KRW", name: "South Korean Won" },
+  { code: "RUB", name: "Russian Ruble" },
+  { code: "TRY", name: "Turkish Lira" },
+  { code: "SEK", name: "Swedish Krona" },
+  { code: "NOK", name: "Norwegian Krone" },
+  { code: "DKK", name: "Danish Krone" },
+  { code: "PLN", name: "Polish Zloty" },
+  { code: "THB", name: "Thai Baht" },
+  { code: "IDR", name: "Indonesian Rupiah" },
+  { code: "MYR", name: "Malaysian Ringgit" },
+  { code: "PHP", name: "Philippine Peso" },
+  { code: "VND", name: "Vietnamese Dong" },
+  { code: "AED", name: "UAE Dirham" },
+  { code: "SAR", name: "Saudi Riyal" },
+  { code: "ILS", name: "Israeli Shekel" }
+];
+
+function loadCurrencies() {
+  renderCurrencies(currencyListFull);
+}
+
+function renderCurrencies(filteredList) {
+  const container = document.getElementById("currencyList");
+  if (!container) return;
+  
+  let html = "";
+  for (let curr of filteredList) {
+    html += `<div class="currency-item"><strong>${curr.code}</strong> — ${curr.name}</div>`;
+  }
+  container.innerHTML = html || "<div>No matching currencies found.</div>";
+}
+
+function filterCurrencies() {
+  const searchTerm = document.getElementById("currencySearch").value.toLowerCase();
+  const filtered = currencyListFull.filter(curr => 
+    curr.code.toLowerCase().includes(searchTerm) || 
+    curr.name.toLowerCase().includes(searchTerm)
+  );
+  renderCurrencies(filtered);
 }
