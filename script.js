@@ -1,3 +1,8 @@
+// REFRESH PAGE FUNCTION
+function refreshPage() {
+  location.reload();
+}
+
 // DARK MODE TOGGLE
 function toggleDark() {
   document.body.classList.toggle("dark");
@@ -198,7 +203,7 @@ function convertAHT() {
 }
 
 // ===================
-// NOTES TEMPLATES (NO "NOTATION TYPE" LINES, JUST THE FIELDS)
+// NOTES TEMPLATES (NO "NOTATION TYPE" LINES)
 // ===================
 function loadNotes(num) {
   if (num === 1) {
