@@ -3,9 +3,9 @@ function toggleDark() {
   document.body.classList.toggle("dark");
   const btn = document.querySelector(".dark-toggle");
   if (document.body.classList.contains("dark")) {
-    btn.textContent = "☀️ Light Mode";
+    btn.textContent = "Light Mode";
   } else {
-    btn.textContent = "🌙 Dark Mode";
+    btn.textContent = "Dark Mode";
   }
 }
 
@@ -48,7 +48,7 @@ function calculateRefund() {
   // Validation
   if (!orderDateStr || !todayDateStr || isNaN(guaranteeDays) || guaranteeDays < 0) {
     document.getElementById("refundResult").innerHTML = `
-      <span style='color:red'><strong>⚠️ Error:</strong> Please fill in all fields correctly.</span>
+      <span style='color:red'><strong>Error:</strong> Please fill in all fields correctly.</span>
     `;
     return;
   }
@@ -67,36 +67,31 @@ function calculateRefund() {
   expirationDate.setDate(expirationDate.getDate() + guaranteeDays);
   
   // Determine status
-  let statusMessage = "";
-  let statusColor = "";
   let daysBeyond = 0;
   
   if (daysRemaining >= 0) {
-    statusMessage = `✅ REFUND AVAILABLE`;
-    statusColor = "green";
+    daysBeyond = 0;
   } else {
     daysBeyond = Math.abs(daysRemaining);
-    statusMessage = `❌ REFUND EXPIRED`;
-    statusColor = "red";
   }
   
   // Build result HTML
   let result = `
-    <strong>📋 REFUND BREAKDOWN</strong><br><br>
-    <strong>📅 Order Date:</strong> ${orderDate.toDateString()}<br>
-    <strong>📆 Today's Date:</strong> ${todayDate.toDateString()}<br>
-    <strong>⏱️ Guarantee Period:</strong> ${guaranteeDays} days<br>
-    <strong>📅 Expiration Date:</strong> <strong>${expirationDate.toDateString()}</strong><br><br>
-    <strong>📊 Days Used:</strong> ${daysUsed} days<br>
+    <strong>REFUND BREAKDOWN</strong><br><br>
+    <strong>Order Date:</strong> ${orderDate.toDateString()}<br>
+    <strong>Today's Date:</strong> ${todayDate.toDateString()}<br>
+    <strong>Guarantee Period:</strong> ${guaranteeDays} days<br>
+    <strong>Expiration Date:</strong> <strong>${expirationDate.toDateString()}</strong><br><br>
+    <strong>Days Used:</strong> ${daysUsed} days<br>
   `;
   
   if (daysRemaining >= 0) {
-    result += `<strong>✅ Days Remaining:</strong> ${daysRemaining} days<br><br>`;
-    result += `<span style='color:green; font-size:18px;'><strong>✅ Eligible for Refund</strong></span><br>`;
+    result += `<strong>Days Remaining:</strong> ${daysRemaining} days<br><br>`;
+    result += `<span style='color:green; font-size:18px;'><strong>Eligible for Refund</strong></span><br>`;
     result += `<span style='color:green;'>You have ${daysRemaining} day(s) left to request a refund.</span>`;
   } else {
-    result += `<strong>❌ Days Expired:</strong> ${daysBeyond} days beyond guarantee<br><br>`;
-    result += `<span style='color:red; font-size:18px;'><strong>❌ NOT Eligible for Refund</strong></span><br>`;
+    result += `<strong>Days Expired:</strong> ${daysBeyond} days beyond guarantee<br><br>`;
+    result += `<span style='color:red; font-size:18px;'><strong>NOT Eligible for Refund</strong></span><br>`;
     result += `<span style='color:red;'>Your refund guarantee expired ${daysBeyond} day(s) ago.</span>`;
   }
   
@@ -111,22 +106,22 @@ function calculateDiscount() {
   
   if (isNaN(amount) || amount <= 0) {
     document.getElementById("discountResult").innerHTML = `
-      <span style='color:red'><strong>⚠️ Error:</strong> Please enter a valid amount.</span>
+      <span style='color:red'><strong>Error:</strong> Please enter a valid amount.</span>
     `;
     return;
   }
   
   const discounts = [10, 35, 50, 70, 75];
-  let output = `<strong>💰 Original Amount: $${amount.toFixed(2)}</strong><br><br>`;
+  let output = `<strong>Original Amount: $${amount.toFixed(2)}</strong><br><br>`;
   
   discounts.forEach(d => {
     const discountAmount = amount * d / 100;
     const finalPrice = amount - discountAmount;
     
     output += `
-      <strong>🎯 ${d}% Discount</strong><br>
-      💸 Discount Amount: $${discountAmount.toFixed(2)}<br>
-      💵 Final Price: <strong>$${finalPrice.toFixed(2)}</strong><br><br>
+      <strong>${d}% Discount</strong><br>
+      Discount Amount: $${discountAmount.toFixed(2)}<br>
+      Final Price: <strong>$${finalPrice.toFixed(2)}</strong><br><br>
     `;
   });
   
@@ -155,7 +150,7 @@ function calculateTimeframe() {
   
   if (!refundDateStr) {
     document.getElementById("timeframeResult").innerHTML = `
-      <span style='color:red'><strong>⚠️ Error:</strong> Please select a refund request date.</span>
+      <span style='color:red'><strong>Error:</strong> Please select a refund request date.</span>
     `;
     return;
   }
@@ -168,10 +163,10 @@ function calculateTimeframe() {
   const endDate = addBusinessDays(refundDate, maxDays);
   
   document.getElementById("timeframeResult").innerHTML = `
-    <strong>📅 Expected Refund Processing Window:</strong><br><br>
-    🟢 From: <strong>${startDate.toDateString()}</strong><br>
-    🔴 To: <strong>${endDate.toDateString()}</strong><br><br>
-    <span style='font-size:13px;'>⚠️ Excludes weekends (Saturday & Sunday)</span>
+    <strong>Expected Refund Processing Window:</strong><br><br>
+    From: <strong>${startDate.toDateString()}</strong><br>
+    To: <strong>${endDate.toDateString()}</strong><br><br>
+    <span style='font-size:13px;'>Note: Excludes weekends (Saturday & Sunday)</span>
   `;
 }
 
@@ -183,7 +178,7 @@ function convertAHT() {
   
   if (isNaN(seconds) || seconds < 0) {
     document.getElementById("ahtResult").innerHTML = `
-      <span style='color:red'><strong>⚠️ Error:</strong> Please enter valid seconds.</span>
+      <span style='color:red'><strong>Error:</strong> Please enter valid seconds.</span>
     `;
     return;
   }
@@ -192,7 +187,7 @@ function convertAHT() {
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = seconds % 60;
   
-  let result = `<strong>⏱️ AHT Conversion:</strong><br><br>`;
+  let result = `<strong>AHT Conversion:</strong><br><br>`;
   result += `<strong>${seconds}</strong> seconds = <br>`;
   
   if (hours > 0) result += `<strong>${hours}</strong> hour(s) `;
@@ -203,44 +198,15 @@ function convertAHT() {
 }
 
 // ===================
-// NOTES TEMPLATES (EXACT FORMATS)
+// NOTES TEMPLATES (EXACT FORMATS - NO EMOJIS, NO DATES, NO EXTRA CHARACTERS)
 // ===================
 function loadNotes(num) {
   if (num === 1) {
-    document.getElementById("notesBox").value = `NOTATION TYPE 1
-Agent Name: 
-REASON FOR CALLING: 
-OFFER SAVE: 
-THREAT: 
-RESOLUTION: 
-ACCOUNT STATUS: `;
+    document.getElementById("notesBox").value = "NOTATION TYPE 1\nAgent Name: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
   } else if (num === 2) {
-    document.getElementById("notesBox").value = `NOTATION TYPE 2
-AGENT:
-REASON FOR CALLING:
-THREAT: 
-SAVE OFFER:
-RESOLUTION:
-STATUS: 
-
-campaign:
-name: 
-phone number: 
-email address: 
-order id: 
-product name:`;
+    document.getElementById("notesBox").value = "NOTATION TYPE 2\nAGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\nname: \nphone number: \nemail address: \norder id: \nproduct name:";
   } else if (num === 3) {
-    document.getElementById("notesBox").value = `NOTATION TYPE 3
-FOR NO ACCOUNT FOUND
- 
-Campaign: 
-Order Date: 
-Email: 
-Name: 
-Phone Number: 
-Product Name: 
-Tracking Number: 
-Order ID:`;
+    document.getElementById("notesBox").value = "NOTATION TYPE 3\nFOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
   }
 }
 
@@ -251,8 +217,8 @@ function copyNotes() {
   
   try {
     document.execCommand("copy");
-    alert("✅ Notes copied to clipboard!");
+    alert("Notes copied to clipboard!");
   } catch(err) {
-    alert("❌ Failed to copy. Please manually copy the text.");
+    alert("Failed to copy. Please manually copy the text.");
   }
 }
