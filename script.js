@@ -38,7 +38,7 @@ window.onload = () => {
 };
 
 // ===================
-// MBG CHECKER (FIXED LOGIC)
+// MBG CHECKER
 // ===================
 function calculateRefund() {
   const orderDateStr = document.getElementById("orderDate").value;
@@ -203,50 +203,36 @@ function convertAHT() {
 }
 
 // ===================
-// NOTES TEMPLATES
+// NOTES TEMPLATES (EXACT FORMATS)
 // ===================
 function loadNotes(num) {
-  const templates = {
-    1: `📋 NOTATION TYPE 1
-━━━━━━━━━━━━━━━━━━━━━━
-
+  if (num === 1) {
+    document.getElementById("notesBox").value = `NOTATION TYPE 1
 Agent Name: 
 REASON FOR CALLING: 
 OFFER SAVE: 
 THREAT: 
 RESOLUTION: 
-ACCOUNT STATUS: 
-
-━━━━━━━━━━━━━━━━━━━━━━
-Date: ${new Date().toLocaleDateString()}`,
-
-    2: `📋 NOTATION TYPE 2
-━━━━━━━━━━━━━━━━━━━━━━
-
-AGENT: 
-REASON FOR CALLING: 
+ACCOUNT STATUS: `;
+  } else if (num === 2) {
+    document.getElementById("notesBox").value = `NOTATION TYPE 2
+AGENT:
+REASON FOR CALLING:
 THREAT: 
-SAVE OFFER: 
-RESOLUTION: 
+SAVE OFFER:
+RESOLUTION:
 STATUS: 
 
-━━━━━━━━━━━━━━━━━━━━━━
-CUSTOMER DETAILS:
-Campaign: 
-Name: 
-Phone Number: 
-Email Address: 
-Order ID: 
-Product Name: 
-
-━━━━━━━━━━━━━━━━━━━━━━
-Date: ${new Date().toLocaleDateString()}`,
-
-    3: `📋 NOTATION TYPE 3
-━━━━━━━━━━━━━━━━━━━━━━
-
-⚠️ FOR NO ACCOUNT FOUND ⚠️
-
+campaign:
+name: 
+phone number: 
+email address: 
+order id: 
+product name:`;
+  } else if (num === 3) {
+    document.getElementById("notesBox").value = `NOTATION TYPE 3
+FOR NO ACCOUNT FOUND
+ 
 Campaign: 
 Order Date: 
 Email: 
@@ -254,13 +240,8 @@ Name:
 Phone Number: 
 Product Name: 
 Tracking Number: 
-Order ID: 
-
-━━━━━━━━━━━━━━━━━━━━━━
-Date: ${new Date().toLocaleDateString()}`
-  };
-  
-  document.getElementById("notesBox").value = templates[num] || "";
+Order ID:`;
+  }
 }
 
 function copyNotes() {
