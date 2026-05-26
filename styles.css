@@ -5,7 +5,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   min-height: 100vh;
+}
+
+/* DARK MODE */
+body.dark {
+  background: #1e1e1e;
+  color: white;
+}
+
+body.dark .container {
+  background: #2c2c2c;
+  color: white;
 }
 
 .hidden { display: none; }
@@ -17,8 +29,10 @@ body {
   width: 90%;
   max-width: 420px;
   text-align: center;
+  margin-top: 10px;
 }
 
+/* INPUTS */
 input, select, textarea {
   width: 100%;
   padding: 10px;
@@ -26,27 +40,40 @@ input, select, textarea {
   border-radius: 10px;
 }
 
+/* BUTTONS */
 button {
   width: 100%;
   padding: 12px;
   margin-top: 8px;
+  border-radius: 10px;
   background: #1a73e8;
   color: white;
   border: none;
-  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #125dc1;
 }
 
 .back {
   background: gray;
 }
 
+/* RESULTS */
 #refundResult, #discountResult, #timeframeResult, #ahtResult {
-  margin-top: 15px;
-  padding: 10px;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  line-height: 1.6;
+  text-align: left;
 }
 
 footer {
   margin-top: 15px;
   font-size: 12px;
 }
-``
+
+.toggle {
+  margin-bottom: 10px;
+}
