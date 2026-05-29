@@ -3,6 +3,20 @@ function refreshPage() {
   location.reload();
 }
 
+// RESET SESSION FUNCTION (clears cache, storage, then hard reload)
+function resetSession() {
+  // Clear localStorage
+  localStorage.clear();
+  // Clear sessionStorage
+  sessionStorage.clear();
+  // Clear all cookies
+  document.cookie.split(";").forEach(function(c) {
+    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+  });
+  // Force hard reload (bypass cache)
+  location.reload(true);
+}
+
 // DARK MODE TOGGLE
 function toggleDark() {
   document.body.classList.toggle("dark");
@@ -82,11 +96,11 @@ const allLocations = [
   { name: "Florida (Eastern)", tz: "America/New_York" },
   { name: "Georgia (Eastern)", tz: "America/New_York" },
   { name: "Hawaii", tz: "Pacific/Honolulu" },
-  { name: "Idaho (Mountain/Pacific)", tz: "America/Denver" }, // most of state uses Mountain
+  { name: "Idaho (Mountain/Pacific)", tz: "America/Denver" },
   { name: "Illinois (Central)", tz: "America/Chicago" },
   { name: "Indiana (Eastern)", tz: "America/Indiana/Indianapolis" },
   { name: "Iowa (Central)", tz: "America/Chicago" },
-  { name: "Kansas (Central/Mountain)", tz: "America/Chicago" }, // majority Central
+  { name: "Kansas (Central/Mountain)", tz: "America/Chicago" },
   { name: "Kentucky (Eastern)", tz: "America/New_York" },
   { name: "Louisiana (Central)", tz: "America/Chicago" },
   { name: "Maine (Eastern)", tz: "America/New_York" },
@@ -112,8 +126,8 @@ const allLocations = [
   { name: "Rhode Island (Eastern)", tz: "America/New_York" },
   { name: "South Carolina (Eastern)", tz: "America/New_York" },
   { name: "South Dakota (Central/Mountain)", tz: "America/Chicago" },
-  { name: "Tennessee (Central/Eastern)", tz: "America/Chicago" }, // majority Central
-  { name: "Texas (Central/Mountain)", tz: "America/Chicago" }, // majority Central
+  { name: "Tennessee (Central/Eastern)", tz: "America/Chicago" },
+  { name: "Texas (Central/Mountain)", tz: "America/Chicago" },
   { name: "Utah (Mountain)", tz: "America/Denver" },
   { name: "Vermont (Eastern)", tz: "America/New_York" },
   { name: "Virginia (Eastern)", tz: "America/New_York" },
@@ -135,7 +149,7 @@ const allLocations = [
   { name: "Quebec (Eastern)", tz: "America/Montreal" },
   { name: "Saskatchewan (Central - no DST)", tz: "America/Regina" },
   { name: "Northwest Territories (Mountain)", tz: "America/Yellowknife" },
-  { name: "Nunavut (Eastern/Central/Mountain)", tz: "America/Iqaluit" }, // using Iqaluit (Eastern)
+  { name: "Nunavut (Eastern/Central/Mountain)", tz: "America/Iqaluit" },
   { name: "Yukon (Mountain)", tz: "America/Whitehorse" }
 ];
 
@@ -208,7 +222,7 @@ function calculateRefund() {
 }
 
 // ===================
-// DISCOUNT CALCULATOR
+// DISCOUNT CALCULATOR (UPDATED WITH MORE PERCENTAGES)
 // ===================
 function calculateDiscount() {
   const amount = parseFloat(document.getElementById("amount").value);
@@ -220,7 +234,7 @@ function calculateDiscount() {
     return;
   }
   
-  const discounts = [10, 35, 50, 70, 75];
+  const discounts = [10, 15, 20, 25, 30, 35, 50, 70, 75];
   let output = `<strong>Original Amount: $${amount.toFixed(2)}</strong><br><br>`;
   
   discounts.forEach(d => {
