@@ -114,6 +114,41 @@ body.dark .time-container {
   transform: scale(1.05);
 }
 
+/* BOTTOM LEFT RESET BUTTON */
+.reset-container {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  z-index: 1000;
+}
+
+.reset-btn {
+  width: auto;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  background: rgba(220, 53, 69, 0.85);
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+.reset-btn:hover {
+  background: rgba(200, 35, 51, 1);
+  transform: scale(1.05);
+}
+
+body.dark .reset-btn {
+  background: rgba(180, 30, 40, 0.9);
+}
+
+body.dark .reset-btn:hover {
+  background: rgba(200, 40, 50, 1);
+}
+
 .hidden {
   display: none;
 }
@@ -151,7 +186,7 @@ body.dark .time-container {
     font-size: 14px;
   }
   
-  .refresh-btn, .dark-toggle {
+  .refresh-btn, .dark-toggle, .reset-btn {
     padding: 6px 12px;
     font-size: 11px;
   }
@@ -273,7 +308,7 @@ footer {
   margin-top: 0;
 }
 
-/* NEW: Timezone grid and currency grid */
+/* Timezone and currency grids */
 .timezone-grid, .currency-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
