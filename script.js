@@ -570,3 +570,25 @@ function createParticles() {
     particlesContainer.appendChild(particle);
   }
 }
+
+// ===================
+// CREATE COMETS
+// ===================
+function createComets() {
+  const cometsContainer = document.getElementById('comets');
+  if (!cometsContainer) return;
+  
+  // Create 8 comets that shoot at different intervals
+  for (let i = 0; i < 8; i++) {
+    const comet = document.createElement('div');
+    comet.classList.add('comet');
+    comet.style.top = Math.random() * 60 + 10 + '%';
+    comet.style.animationDelay = Math.random() * 20 + 's';
+    comet.style.animationDuration = Math.random() * 4 + 3 + 's';
+    comet.style.width = Math.random() * 80 + 60 + 'px';
+    cometsContainer.appendChild(comet);
+  }
+}
+
+// Add this line inside your window.onload function:
+// createComets();
