@@ -128,15 +128,16 @@ body.theme-light textarea {
   color: #1a1a2e;
   border: 1px solid #dee2e6;
 }
-body.theme-light button:not(.theme-option-btn):not(.modal-close) {
+body.theme-light button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
 }
-body.theme-light button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-light button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #5a67d8, #6b46a0);
 }
 body.theme-light .back {
   background: #6c757d;
+  color: white;
 }
 body.theme-light .back:hover {
   background: #5a6268;
@@ -195,11 +196,11 @@ body.theme-dark textarea {
   color: #e0e0e0;
   border: 1px solid #3a3a4a;
 }
-body.theme-dark button:not(.theme-option-btn):not(.modal-close) {
+body.theme-dark button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #4a4ae6, #6b46e6);
   color: white;
 }
-body.theme-dark button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-dark button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #5a5af0, #7b56f0);
 }
 body.theme-dark .back {
@@ -263,11 +264,11 @@ body.theme-crimson textarea {
   color: #ffe0e0;
   border: 1px solid #ff6b6b;
 }
-body.theme-crimson button:not(.theme-option-btn):not(.modal-close) {
+body.theme-crimson button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #ff416c, #ff4b2b);
   color: white;
 }
-body.theme-crimson button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-crimson button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #ff5a7a, #ff6040);
 }
 body.theme-crimson .back {
@@ -330,11 +331,11 @@ body.theme-royalblue textarea {
   color: #e8f0fe;
   border: 1px solid #4a7aaa;
 }
-body.theme-royalblue button:not(.theme-option-btn):not(.modal-close) {
+body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #3b8dff, #2b6fff);
   color: white;
 }
-body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #4a9aff, #3a7aff);
 }
 body.theme-royalblue .back {
@@ -397,11 +398,11 @@ body.theme-emerald textarea {
   color: #e8fff0;
   border: 1px solid #4aaa7a;
 }
-body.theme-emerald button:not(.theme-option-btn):not(.modal-close) {
+body.theme-emerald button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #00b4db, #0083b0);
   color: white;
 }
-body.theme-emerald button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-emerald button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #10c4eb, #1093c0);
 }
 body.theme-emerald .back {
@@ -464,11 +465,11 @@ body.theme-amber textarea {
   color: #2a1e0a;
   border: 1px solid #ccaa60;
 }
-body.theme-amber button:not(.theme-option-btn):not(.modal-close) {
+body.theme-amber button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #ff7e5f, #feb47b);
   color: #2a1e0a;
 }
-body.theme-amber button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-amber button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #ff8e6f, #fec48b);
 }
 body.theme-amber .back {
@@ -531,11 +532,11 @@ body.theme-purple textarea {
   color: #f0e8ff;
   border: 1px solid #7a5aaa;
 }
-body.theme-purple button:not(.theme-option-btn):not(.modal-close) {
+body.theme-purple button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #a855f7, #7c3aed);
   color: white;
 }
-body.theme-purple button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-purple button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #b865ff, #8c4afd);
 }
 body.theme-purple .back {
@@ -598,11 +599,11 @@ body.theme-teal textarea {
   color: #e8faff;
   border: 1px solid #4aaaaa;
 }
-body.theme-teal button:not(.theme-option-btn):not(.modal-close) {
+body.theme-teal button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #00d2ff, #3a7bd5);
   color: white;
 }
-body.theme-teal button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-teal button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #10e2ff, #4a8be5);
 }
 body.theme-teal .back {
@@ -665,11 +666,11 @@ body.theme-pink textarea {
   color: #4a1a2e;
   border: 1px solid #ffaacc;
 }
-body.theme-pink button:not(.theme-option-btn):not(.modal-close) {
+body.theme-pink button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
   color: white;
 }
-body.theme-pink button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-pink button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #ff859c, #ff8ec3);
 }
 body.theme-pink .back {
@@ -732,11 +733,11 @@ body.theme-navy textarea {
   color: #e8f0ff;
   border: 1px solid #4a6aaa;
 }
-body.theme-navy button:not(.theme-option-btn):not(.modal-close) {
+body.theme-navy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #2b5876, #4e4376);
   color: white;
 }
-body.theme-navy button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-navy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #3b6886, #5e5386);
 }
 body.theme-navy .back {
@@ -799,11 +800,11 @@ body.theme-olive textarea {
   color: #f0f8e8;
   border: 1px solid #6aaa6a;
 }
-body.theme-olive button:not(.theme-option-btn):not(.modal-close) {
+body.theme-olive button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #6b8a5a, #4a6a3a);
   color: white;
 }
-body.theme-olive button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-olive button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #7b9a6a, #5a7a4a);
 }
 body.theme-olive .back {
@@ -866,11 +867,11 @@ body.theme-slate textarea {
   color: #e2e8f0;
   border: 1px solid #7a8aaa;
 }
-body.theme-slate button:not(.theme-option-btn):not(.modal-close) {
+body.theme-slate button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #6b7a8a, #5a6a7a);
   color: white;
 }
-body.theme-slate button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-slate button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #7b8a9a, #6a7a8a);
 }
 body.theme-slate .back {
@@ -955,7 +956,18 @@ body.theme-slate .reset-btn:hover {
   gap: 10px;
 }
 
-.refresh-btn, .dark-toggle {
+.refresh-btn {
+  width: auto;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.dark-toggle {
   width: auto;
   padding: 8px 16px;
   border-radius: 25px;
@@ -1084,8 +1096,8 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(26,115,232,0.2);
 }
 
-/* General Buttons */
-button {
+/* General Buttons - DOES NOT affect Refresh, Themes, Reset, Back */
+button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.back):not(.theme-option-btn):not(.modal-close) {
   width: 100%;
   padding: 12px;
   margin-top: 12px;
@@ -1098,12 +1110,35 @@ button {
   color: white;
 }
 
-button:hover {
+button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.back):not(.theme-option-btn):not(.modal-close):hover {
   transform: translateY(-2px);
 }
 
-button:active {
+button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.back):not(.theme-option-btn):not(.modal-close):active {
   transform: translateY(0);
+}
+
+/* Back button specific */
+.back {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  color: white;
+}
+
+.back:hover {
+  transform: translateY(-2px);
+}
+
+/* Refresh, Themes, Reset hover effects */
+.refresh-btn:hover, .dark-toggle:hover, .reset-btn:hover {
+  transform: scale(1.05);
 }
 
 /* Results Box */
