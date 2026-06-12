@@ -94,6 +94,13 @@ body {
   background: #6c757d;
   margin-top: 10px;
   width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
 }
 
 .modal-close:hover {
@@ -121,14 +128,17 @@ body.theme-light textarea {
   color: #1a1a2e;
   border: 1px solid #dee2e6;
 }
-body.theme-light button:not(.theme-option-btn):not(.modal-close) {
+body.theme-light button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #667eea, #764ba2);
 }
-body.theme-light button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-light button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #5a67d8, #6b46a0);
 }
 body.theme-light .back {
   background: #6c757d;
+}
+body.theme-light .back:hover {
+  background: #5a6268;
 }
 body.theme-light .timezone-item,
 body.theme-light .currency-item {
@@ -144,9 +154,6 @@ body.theme-light #ahtResult {
 }
 body.theme-light .time-container {
   background: rgba(0, 0, 0, 0.6);
-}
-body.theme-light .reset-btn {
-  background: rgba(220, 53, 69, 0.85);
 }
 
 /* 2. DARK THEME */
@@ -166,14 +173,17 @@ body.theme-dark textarea {
   color: #e0e0e0;
   border: 1px solid #3a3a4a;
 }
-body.theme-dark button:not(.theme-option-btn):not(.modal-close) {
+body.theme-dark button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #4a4ae6, #6b46e6);
 }
-body.theme-dark button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-dark button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #5a5af0, #7b56f0);
 }
 body.theme-dark .back {
   background: #4a4a5a;
+}
+body.theme-dark .back:hover {
+  background: #5a5a6a;
 }
 body.theme-dark .timezone-item,
 body.theme-dark .currency-item {
@@ -189,9 +199,6 @@ body.theme-dark #ahtResult {
 }
 body.theme-dark .time-container {
   background: rgba(0, 0, 0, 0.8);
-}
-body.theme-dark .reset-btn {
-  background: rgba(200, 50, 60, 0.9);
 }
 
 /* 3. CRIMSON THEME - Modern */
@@ -211,14 +218,17 @@ body.theme-crimson textarea {
   color: #ffe0e0;
   border: 1px solid #ff6b6b;
 }
-body.theme-crimson button:not(.theme-option-btn):not(.modal-close) {
+body.theme-crimson button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #ff416c, #ff4b2b);
 }
-body.theme-crimson button:not(.theme-option-btn):not(.modal-close):hover {
+body.theme-crimson button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
   background: linear-gradient(135deg, #ff5a7a, #ff6040);
 }
 body.theme-crimson .back {
   background: #8b3a4a;
+}
+body.theme-crimson .back:hover {
+  background: #9a4a5a;
 }
 body.theme-crimson .timezone-item,
 body.theme-crimson .currency-item {
@@ -252,11 +262,17 @@ body.theme-royalblue textarea {
   color: #e8f0fe;
   border: 1px solid #4a7aaa;
 }
-body.theme-royalblue button:not(.theme-option-btn):not(.modal-close) {
+body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #3b8dff, #2b6fff);
+}
+body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+  background: linear-gradient(135deg, #4a9aff, #3a7aff);
 }
 body.theme-royalblue .back {
   background: #3a5a8a;
+}
+body.theme-royalblue .back:hover {
+  background: #4a6a9a;
 }
 body.theme-royalblue .timezone-item,
 body.theme-royalblue .currency-item {
@@ -287,11 +303,17 @@ body.theme-emerald textarea {
   color: #e8fff0;
   border: 1px solid #4aaa7a;
 }
-body.theme-emerald button:not(.theme-option-btn):not(.modal-close) {
+body.theme-emerald button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #00b4db, #0083b0);
+}
+body.theme-emerald button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+  background: linear-gradient(135deg, #10c4eb, #1093c0);
 }
 body.theme-emerald .back {
   background: #3a7a60;
+}
+body.theme-emerald .back:hover {
+  background: #4a8a70;
 }
 body.theme-emerald .timezone-item,
 body.theme-emerald .currency-item {
@@ -322,11 +344,17 @@ body.theme-amber textarea {
   color: #2a1e0a;
   border: 1px solid #ccaa60;
 }
-body.theme-amber button:not(.theme-option-btn):not(.modal-close) {
+body.theme-amber button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #ff7e5f, #feb47b);
+}
+body.theme-amber button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+  background: linear-gradient(135deg, #ff8e6f, #fec48b);
 }
 body.theme-amber .back {
   background: #c4a05a;
+}
+body.theme-amber .back:hover {
+  background: #d4b06a;
 }
 body.theme-amber .timezone-item,
 body.theme-amber .currency-item {
@@ -357,11 +385,17 @@ body.theme-purple textarea {
   color: #f0e8ff;
   border: 1px solid #7a5aaa;
 }
-body.theme-purple button:not(.theme-option-btn):not(.modal-close) {
+body.theme-purple button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #a855f7, #7c3aed);
+}
+body.theme-purple button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+  background: linear-gradient(135deg, #b865ff, #8c4afd);
 }
 body.theme-purple .back {
   background: #5a4a8a;
+}
+body.theme-purple .back:hover {
+  background: #6a5a9a;
 }
 body.theme-purple .timezone-item,
 body.theme-purple .currency-item {
@@ -392,11 +426,17 @@ body.theme-teal textarea {
   color: #e8faff;
   border: 1px solid #4aaaaa;
 }
-body.theme-teal button:not(.theme-option-btn):not(.modal-close) {
+body.theme-teal button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+}
+body.theme-teal button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+  background: linear-gradient(135deg, #10e2ff, #4a8be5);
 }
 body.theme-teal .back {
   background: #3a7a8a;
+}
+body.theme-teal .back:hover {
+  background: #4a8a9a;
 }
 body.theme-teal .timezone-item,
 body.theme-teal .currency-item {
@@ -427,11 +467,17 @@ body.theme-pink textarea {
   color: #4a1a2e;
   border: 1px solid #ffaacc;
 }
-body.theme-pink button:not(.theme-option-btn):not(.modal-close) {
+body.theme-pink button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
+}
+body.theme-pink button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+  background: linear-gradient(135deg, #ff859c, #ff8ec3);
 }
 body.theme-pink .back {
   background: #cc88aa;
+}
+body.theme-pink .back:hover {
+  background: #dc98ba;
 }
 body.theme-pink .timezone-item,
 body.theme-pink .currency-item {
@@ -462,11 +508,17 @@ body.theme-navy textarea {
   color: #e8f0ff;
   border: 1px solid #4a6aaa;
 }
-body.theme-navy button:not(.theme-option-btn):not(.modal-close) {
+body.theme-navy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #2b5876, #4e4376);
+}
+body.theme-navy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+  background: linear-gradient(135deg, #3b6886, #5e5386);
 }
 body.theme-navy .back {
   background: #3a4a6a;
+}
+body.theme-navy .back:hover {
+  background: #4a5a7a;
 }
 body.theme-navy .timezone-item,
 body.theme-navy .currency-item {
@@ -497,11 +549,17 @@ body.theme-olive textarea {
   color: #f0f8e8;
   border: 1px solid #6aaa6a;
 }
-body.theme-olive button:not(.theme-option-btn):not(.modal-close) {
+body.theme-olive button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #6b8a5a, #4a6a3a);
+}
+body.theme-olive button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+  background: linear-gradient(135deg, #7b9a6a, #5a7a4a);
 }
 body.theme-olive .back {
   background: #5a7a4a;
+}
+body.theme-olive .back:hover {
+  background: #6a8a5a;
 }
 body.theme-olive .timezone-item,
 body.theme-olive .currency-item {
@@ -532,11 +590,17 @@ body.theme-slate textarea {
   color: #e2e8f0;
   border: 1px solid #7a8aaa;
 }
-body.theme-slate button:not(.theme-option-btn):not(.modal-close) {
+body.theme-slate button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #6b7a8a, #5a6a7a);
+}
+body.theme-slate button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+  background: linear-gradient(135deg, #7b8a9a, #6a7a8a);
 }
 body.theme-slate .back {
   background: #5a6a7a;
+}
+body.theme-slate .back:hover {
+  background: #6a7a8a;
 }
 body.theme-slate .timezone-item,
 body.theme-slate .currency-item {
@@ -579,7 +643,7 @@ body.theme-slate #ahtResult {
   font-weight: bold;
 }
 
-/* TOP RIGHT BUTTONS */
+/* TOP RIGHT BUTTONS - IMPROVED COLORS */
 .toggle-container {
   position: fixed;
   top: 15px;
@@ -589,7 +653,7 @@ body.theme-slate #ahtResult {
   gap: 10px;
 }
 
-.refresh-btn, .dark-toggle {
+.refresh-btn {
   width: auto;
   padding: 8px 16px;
   border-radius: 25px;
@@ -598,17 +662,34 @@ body.theme-slate #ahtResult {
   cursor: pointer;
   border: none;
   transition: all 0.2s ease;
-  background: rgba(0, 0, 0, 0.7);
+  background: #28a745;
   color: white;
-  backdrop-filter: blur(5px);
 }
 
-.refresh-btn:hover, .dark-toggle:hover {
-  background: rgba(0, 0, 0, 0.9);
+.refresh-btn:hover {
+  background: #218838;
   transform: scale(1.05);
 }
 
-/* BOTTOM LEFT RESET BUTTON */
+.dark-toggle {
+  width: auto;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  background: #17a2b8;
+  color: white;
+}
+
+.dark-toggle:hover {
+  background: #138496;
+  transform: scale(1.05);
+}
+
+/* BOTTOM LEFT RESET BUTTON - IMPROVED COLOR */
 .reset-container {
   position: fixed;
   bottom: 15px;
@@ -625,14 +706,38 @@ body.theme-slate #ahtResult {
   cursor: pointer;
   border: none;
   transition: all 0.2s ease;
-  background: rgba(220, 53, 69, 0.85);
+  background: #dc3545;
   color: white;
-  backdrop-filter: blur(5px);
 }
 
 .reset-btn:hover {
-  background: rgba(200, 35, 51, 1);
+  background: #c82333;
   transform: scale(1.05);
+}
+
+/* Dark theme overrides for top buttons */
+body.theme-dark .refresh-btn {
+  background: #28a745;
+}
+
+body.theme-dark .refresh-btn:hover {
+  background: #218838;
+}
+
+body.theme-dark .dark-toggle {
+  background: #17a2b8;
+}
+
+body.theme-dark .dark-toggle:hover {
+  background: #138496;
+}
+
+body.theme-dark .reset-btn {
+  background: #dc3545;
+}
+
+body.theme-dark .reset-btn:hover {
+  background: #c82333;
 }
 
 .hidden {
@@ -758,6 +863,11 @@ button:active {
 
 .back {
   background: #6c757d;
+  color: white;
+}
+
+.back:hover {
+  background: #5a6268;
 }
 
 /* Results Box */
