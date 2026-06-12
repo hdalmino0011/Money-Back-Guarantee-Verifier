@@ -17,84 +17,115 @@ body {
 }
 
 /* ==================== */
-/* 12 THEMES */
+/* MODAL / POPUP STYLES */
+/* ==================== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 25px;
+  padding: 30px 25px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.theme-option-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.theme-option-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.modal-close {
+  background: #6c757d;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.modal-close:hover {
+  background: #5a6268;
+}
+
+/* ==================== */
+/* 12 MODERN THEMES */
 /* ==================== */
 
-/* 1. DARK THEME */
-body.theme-dark {
-  background: #1e1e1e;
-  color: #ffffff;
-}
-body.theme-dark .container {
-  background: #2c2c2c;
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-body.theme-dark input,
-body.theme-dark select,
-body.theme-dark textarea {
-  background: #3a3a3a;
-  color: #ffffff;
-  border: 1px solid #555;
-}
-body.theme-dark button:not(.theme-btn) {
-  background: #0d47a1;
-}
-body.theme-dark button:not(.theme-btn):hover {
-  background: #1565c0;
-}
-body.theme-dark .back {
-  background: #555;
-}
-body.theme-dark .back:hover {
-  background: #666;
-}
-body.theme-dark footer {
-  color: #aaa;
-}
-body.theme-dark .timezone-item,
-body.theme-dark .currency-item {
-  background: #3a3a3a;
-  color: white;
-}
-body.theme-dark #refundResult,
-body.theme-dark #discountResult,
-body.theme-dark #timeframeResult,
-body.theme-dark #ahtResult {
-  background: #3a3a3a;
-  border-left-color: #42a5f5;
-}
-body.theme-dark .time-container {
-  background: rgba(0, 0, 0, 0.8);
-}
-body.theme-dark .reset-btn {
-  background: rgba(180, 30, 40, 0.9);
-}
-body.theme-dark .reset-btn:hover {
-  background: rgba(200, 40, 50, 1);
-}
-
-/* 2. LIGHT THEME (default) */
+/* 1. LIGHT THEME (default) */
 body.theme-light {
-  background: linear-gradient(to bottom right, #7ec8ff, #2d8cff);
-  color: #000000;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #1a1a2e;
 }
 body.theme-light .container {
-  background: white;
-  color: #000000;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a2e;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 body.theme-light input,
 body.theme-light select,
 body.theme-light textarea {
-  background: white;
-  color: #000000;
-  border: 1px solid #ccc;
+  background: #f8f9fa;
+  color: #1a1a2e;
+  border: 1px solid #dee2e6;
 }
-body.theme-light button:not(.theme-btn) {
-  background: #1a73e8;
+body.theme-light button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #667eea, #764ba2);
 }
-body.theme-light button:not(.theme-btn):hover {
-  background: #125dc1;
+body.theme-light button:not(.theme-option-btn):not(.modal-close):hover {
+  background: linear-gradient(135deg, #5a67d8, #6b46a0);
 }
 body.theme-light .back {
   background: #6c757d;
@@ -102,14 +133,14 @@ body.theme-light .back {
 body.theme-light .timezone-item,
 body.theme-light .currency-item {
   background: #f0f0f0;
-  color: #000000;
+  color: #1a1a2e;
 }
 body.theme-light #refundResult,
 body.theme-light #discountResult,
 body.theme-light #timeframeResult,
 body.theme-light #ahtResult {
   background: #f8f9fa;
-  border-left-color: #1a73e8;
+  border-left-color: #667eea;
 }
 body.theme-light .time-container {
   background: rgba(0, 0, 0, 0.6);
@@ -117,371 +148,407 @@ body.theme-light .time-container {
 body.theme-light .reset-btn {
   background: rgba(220, 53, 69, 0.85);
 }
-body.theme-light .reset-btn:hover {
-  background: rgba(200, 35, 51, 1);
+
+/* 2. DARK THEME */
+body.theme-dark {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #e0e0e0;
+}
+body.theme-dark .container {
+  background: rgba(30, 30, 46, 0.95);
+  color: #e0e0e0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+body.theme-dark input,
+body.theme-dark select,
+body.theme-dark textarea {
+  background: #1e1e2e;
+  color: #e0e0e0;
+  border: 1px solid #3a3a4a;
+}
+body.theme-dark button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #4a4ae6, #6b46e6);
+}
+body.theme-dark button:not(.theme-option-btn):not(.modal-close):hover {
+  background: linear-gradient(135deg, #5a5af0, #7b56f0);
+}
+body.theme-dark .back {
+  background: #4a4a5a;
+}
+body.theme-dark .timezone-item,
+body.theme-dark .currency-item {
+  background: #2a2a3a;
+  color: #e0e0e0;
+}
+body.theme-dark #refundResult,
+body.theme-dark #discountResult,
+body.theme-dark #timeframeResult,
+body.theme-dark #ahtResult {
+  background: #2a2a3a;
+  border-left-color: #6b46e6;
+}
+body.theme-dark .time-container {
+  background: rgba(0, 0, 0, 0.8);
+}
+body.theme-dark .reset-btn {
+  background: rgba(200, 50, 60, 0.9);
 }
 
-/* 3. CRIMSON THEME */
+/* 3. CRIMSON THEME - Modern */
 body.theme-crimson {
-  background: linear-gradient(to bottom right, #dc143c, #8b0000);
-  color: #fff5f5;
+  background: linear-gradient(135deg, #ff0844, #ffb199);
+  color: #ffffff;
 }
 body.theme-crimson .container {
-  background: #a01030;
-  color: #fff5f5;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  background: rgba(30, 10, 15, 0.92);
+  color: #fff0f0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 body.theme-crimson input,
 body.theme-crimson select,
 body.theme-crimson textarea {
-  background: #ff6b6b;
-  color: #2d0000;
-  border: 1px solid #ffaaaa;
+  background: #4a1525;
+  color: #ffe0e0;
+  border: 1px solid #ff6b6b;
 }
-body.theme-crimson button:not(.theme-btn) {
-  background: #ff4444;
+body.theme-crimson button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
 }
-body.theme-crimson button:not(.theme-btn):hover {
-  background: #cc0000;
+body.theme-crimson button:not(.theme-option-btn):not(.modal-close):hover {
+  background: linear-gradient(135deg, #ff5a7a, #ff6040);
 }
 body.theme-crimson .back {
-  background: #660000;
+  background: #8b3a4a;
 }
 body.theme-crimson .timezone-item,
 body.theme-crimson .currency-item {
-  background: #cc3355;
-  color: white;
+  background: #5a2030;
+  color: #ffe0e0;
 }
 body.theme-crimson #refundResult,
 body.theme-crimson #discountResult,
 body.theme-crimson #timeframeResult,
 body.theme-crimson #ahtResult {
-  background: #cc3355;
-  border-left-color: #ff8888;
+  background: #5a2030;
+  border-left-color: #ff6b6b;
 }
 body.theme-crimson .time-container {
-  background: rgba(100, 0, 0, 0.8);
-}
-body.theme-crimson .reset-btn {
-  background: rgba(255, 100, 100, 0.9);
-}
-body.theme-crimson .reset-btn:hover {
-  background: rgba(255, 50, 50, 1);
+  background: rgba(80, 20, 30, 0.85);
 }
 
-/* 4. ROYAL BLUE THEME */
+/* 4. ROYAL BLUE THEME - Modern */
 body.theme-royalblue {
-  background: linear-gradient(to bottom right, #4169e1, #1e3a8a);
-  color: #f0f4ff;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #e8f0fe;
 }
 body.theme-royalblue .container {
-  background: #2a4ac0;
-  color: #f0f4ff;
+  background: rgba(20, 40, 70, 0.95);
+  color: #e8f0fe;
 }
 body.theme-royalblue input,
 body.theme-royalblue select,
 body.theme-royalblue textarea {
-  background: #6b8cff;
-  color: #0a1a4a;
-  border: 1px solid #aac0ff;
+  background: #1a3a60;
+  color: #e8f0fe;
+  border: 1px solid #4a7aaa;
 }
-body.theme-royalblue button:not(.theme-btn) {
-  background: #3b5fd9;
+body.theme-royalblue button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #3b8dff, #2b6fff);
+}
+body.theme-royalblue .back {
+  background: #3a5a8a;
 }
 body.theme-royalblue .timezone-item,
 body.theme-royalblue .currency-item {
-  background: #3a5fd0;
-  color: white;
+  background: #2a4a70;
+  color: #e8f0fe;
 }
 body.theme-royalblue #refundResult,
 body.theme-royalblue #discountResult,
 body.theme-royalblue #timeframeResult,
 body.theme-royalblue #ahtResult {
-  background: #3a5fd0;
-  border-left-color: #88aaff;
-}
-body.theme-royalblue .time-container {
-  background: rgba(30, 50, 120, 0.8);
+  background: #2a4a70;
+  border-left-color: #5a9aff;
 }
 
-/* 5. EMERALD GREEN THEME */
+/* 5. EMERALD GREEN THEME - Modern */
 body.theme-emerald {
-  background: linear-gradient(to bottom right, #50c878, #006400);
-  color: #f0fff0;
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+  color: #e8fff0;
 }
 body.theme-emerald .container {
-  background: #2d8c4a;
-  color: #f0fff0;
+  background: rgba(10, 50, 40, 0.95);
+  color: #e8fff0;
 }
 body.theme-emerald input,
 body.theme-emerald select,
 body.theme-emerald textarea {
-  background: #80e0a0;
-  color: #003300;
-  border: 1px solid #b0ffcc;
+  background: #1a6048;
+  color: #e8fff0;
+  border: 1px solid #4aaa7a;
 }
-body.theme-emerald button:not(.theme-btn) {
-  background: #3da05e;
+body.theme-emerald button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #00b4db, #0083b0);
+}
+body.theme-emerald .back {
+  background: #3a7a60;
 }
 body.theme-emerald .timezone-item,
 body.theme-emerald .currency-item {
-  background: #3a9a5a;
-  color: white;
+  background: #2a6a50;
+  color: #e8fff0;
 }
 body.theme-emerald #refundResult,
 body.theme-emerald #discountResult,
 body.theme-emerald #timeframeResult,
 body.theme-emerald #ahtResult {
-  background: #3a9a5a;
-  border-left-color: #88ffaa;
-}
-body.theme-emerald .time-container {
-  background: rgba(0, 80, 0, 0.8);
+  background: #2a6a50;
+  border-left-color: #4aff9a;
 }
 
-/* 6. AMBER THEME */
+/* 6. AMBER THEME - Modern */
 body.theme-amber {
-  background: linear-gradient(to bottom right, #ffbf00, #cc7a00);
-  color: #2a1e00;
+  background: linear-gradient(135deg, #f2994a, #f2c94c);
+  color: #2a1e0a;
 }
 body.theme-amber .container {
-  background: #e0a800;
-  color: #2a1e00;
+  background: rgba(240, 220, 180, 0.95);
+  color: #2a1e0a;
 }
 body.theme-amber input,
 body.theme-amber select,
 body.theme-amber textarea {
-  background: #ffdd88;
-  color: #442200;
-  border: 1px solid #ffeeaa;
+  background: #fff0d0;
+  color: #2a1e0a;
+  border: 1px solid #ccaa60;
 }
-body.theme-amber button:not(.theme-btn) {
-  background: #dd9900;
+body.theme-amber button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+}
+body.theme-amber .back {
+  background: #c4a05a;
 }
 body.theme-amber .timezone-item,
 body.theme-amber .currency-item {
-  background: #ccaa44;
-  color: #2a1e00;
+  background: #f0d8a0;
+  color: #2a1e0a;
 }
 body.theme-amber #refundResult,
 body.theme-amber #discountResult,
 body.theme-amber #timeframeResult,
 body.theme-amber #ahtResult {
-  background: #ccaa44;
-  border-left-color: #ffcc66;
-}
-body.theme-amber .time-container {
-  background: rgba(150, 80, 0, 0.8);
+  background: #f0d8a0;
+  border-left-color: #ffaa44;
 }
 
-/* 7. PURPLE THEME */
+/* 7. PURPLE THEME - Modern */
 body.theme-purple {
-  background: linear-gradient(to bottom right, #9b59b6, #6c3483);
-  color: #f5eef8;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  color: #f0e8ff;
 }
 body.theme-purple .container {
-  background: #7d3c98;
-  color: #f5eef8;
+  background: rgba(40, 20, 70, 0.95);
+  color: #f0e8ff;
 }
 body.theme-purple input,
 body.theme-purple select,
 body.theme-purple textarea {
-  background: #c39bd3;
-  color: #2c0b3a;
-  border: 1px solid #ddbbee;
+  background: #3a2a6a;
+  color: #f0e8ff;
+  border: 1px solid #7a5aaa;
 }
-body.theme-purple button:not(.theme-btn) {
-  background: #8e44ad;
+body.theme-purple button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+}
+body.theme-purple .back {
+  background: #5a4a8a;
 }
 body.theme-purple .timezone-item,
 body.theme-purple .currency-item {
-  background: #8e5aa0;
-  color: white;
+  background: #4a3a7a;
+  color: #f0e8ff;
 }
 body.theme-purple #refundResult,
 body.theme-purple #discountResult,
 body.theme-purple #timeframeResult,
 body.theme-purple #ahtResult {
-  background: #8e5aa0;
-  border-left-color: #cc99ff;
-}
-body.theme-purple .time-container {
-  background: rgba(80, 30, 120, 0.8);
+  background: #4a3a7a;
+  border-left-color: #aa77ff;
 }
 
-/* 8. TEAL THEME */
+/* 8. TEAL THEME - Modern */
 body.theme-teal {
-  background: linear-gradient(to bottom right, #20b2aa, #006d5f);
-  color: #e0fffc;
+  background: linear-gradient(135deg, #00c6fb, #005bea);
+  color: #e8faff;
 }
 body.theme-teal .container {
-  background: #1f9a8e;
-  color: #e0fffc;
+  background: rgba(10, 50, 70, 0.95);
+  color: #e8faff;
 }
 body.theme-teal input,
 body.theme-teal select,
 body.theme-teal textarea {
-  background: #70d0c8;
-  color: #003d35;
-  border: 1px solid #aafff0;
+  background: #1a5a7a;
+  color: #e8faff;
+  border: 1px solid #4aaaaa;
 }
-body.theme-teal button:not(.theme-btn) {
-  background: #3aa89c;
+body.theme-teal button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+}
+body.theme-teal .back {
+  background: #3a7a8a;
 }
 body.theme-teal .timezone-item,
 body.theme-teal .currency-item {
-  background: #409a90;
-  color: white;
+  background: #2a6a8a;
+  color: #e8faff;
 }
 body.theme-teal #refundResult,
 body.theme-teal #discountResult,
 body.theme-teal #timeframeResult,
 body.theme-teal #ahtResult {
-  background: #409a90;
-  border-left-color: #88ffdd;
-}
-body.theme-teal .time-container {
-  background: rgba(0, 80, 70, 0.8);
+  background: #2a6a8a;
+  border-left-color: #55ddff;
 }
 
-/* 9. PINK THEME */
+/* 9. PINK THEME - Modern */
 body.theme-pink {
-  background: linear-gradient(to bottom right, #ff69b4, #c71585);
-  color: #fff0f5;
+  background: linear-gradient(135deg, #ff9a9e, #fecfef);
+  color: #4a1a2e;
 }
 body.theme-pink .container {
-  background: #d85c9e;
-  color: #fff0f5;
+  background: rgba(255, 240, 245, 0.95);
+  color: #4a1a2e;
 }
 body.theme-pink input,
 body.theme-pink select,
 body.theme-pink textarea {
-  background: #ffaad4;
-  color: #55003a;
-  border: 1px solid #ffccdd;
+  background: #ffe0e8;
+  color: #4a1a2e;
+  border: 1px solid #ffaacc;
 }
-body.theme-pink button:not(.theme-btn) {
-  background: #e65c9e;
+body.theme-pink button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+}
+body.theme-pink .back {
+  background: #cc88aa;
 }
 body.theme-pink .timezone-item,
 body.theme-pink .currency-item {
-  background: #cc6e9a;
-  color: white;
+  background: #f0d0e0;
+  color: #4a1a2e;
 }
 body.theme-pink #refundResult,
 body.theme-pink #discountResult,
 body.theme-pink #timeframeResult,
 body.theme-pink #ahtResult {
-  background: #cc6e9a;
-  border-left-color: #ffbbdd;
-}
-body.theme-pink .time-container {
-  background: rgba(150, 30, 80, 0.8);
+  background: #f0d0e0;
+  border-left-color: #ff88bb;
 }
 
-/* 10. NAVY BLUE THEME */
+/* 10. NAVY BLUE THEME - Modern */
 body.theme-navy {
-  background: linear-gradient(to bottom right, #2c3e50, #1a252f);
-  color: #e8f0f8;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: #e8f0ff;
 }
 body.theme-navy .container {
-  background: #1e3a5f;
-  color: #e8f0f8;
+  background: rgba(20, 30, 50, 0.95);
+  color: #e8f0ff;
 }
 body.theme-navy input,
 body.theme-navy select,
 body.theme-navy textarea {
-  background: #4a6a8a;
-  color: #e8f0f8;
-  border: 1px solid #7a9aba;
+  background: #1a2a4a;
+  color: #e8f0ff;
+  border: 1px solid #4a6aaa;
 }
-body.theme-navy button:not(.theme-btn) {
-  background: #2e5a8a;
+body.theme-navy button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #2b5876, #4e4376);
+}
+body.theme-navy .back {
+  background: #3a4a6a;
 }
 body.theme-navy .timezone-item,
 body.theme-navy .currency-item {
-  background: #3a5a7a;
-  color: white;
+  background: #2a3a5a;
+  color: #e8f0ff;
 }
 body.theme-navy #refundResult,
 body.theme-navy #discountResult,
 body.theme-navy #timeframeResult,
 body.theme-navy #ahtResult {
-  background: #3a5a7a;
-  border-left-color: #6a9ac0;
-}
-body.theme-navy .time-container {
-  background: rgba(20, 30, 50, 0.8);
+  background: #2a3a5a;
+  border-left-color: #6a8acc;
 }
 
-/* 11. OLIVE GREEN THEME */
+/* 11. OLIVE GREEN THEME - Modern */
 body.theme-olive {
-  background: linear-gradient(to bottom right, #808000, #4a4a00);
-  color: #f5f5dc;
+  background: linear-gradient(135deg, #3a7b5a, #2a5a4a);
+  color: #f0f8e8;
 }
 body.theme-olive .container {
-  background: #6a6a1a;
-  color: #f5f5dc;
+  background: rgba(40, 60, 35, 0.95);
+  color: #f0f8e8;
 }
 body.theme-olive input,
 body.theme-olive select,
 body.theme-olive textarea {
-  background: #aaaa55;
-  color: #2a2a00;
-  border: 1px solid #cccc88;
+  background: #3a6a4a;
+  color: #f0f8e8;
+  border: 1px solid #6aaa6a;
 }
-body.theme-olive button:not(.theme-btn) {
-  background: #7a7a30;
+body.theme-olive button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #6b8a5a, #4a6a3a);
+}
+body.theme-olive .back {
+  background: #5a7a4a;
 }
 body.theme-olive .timezone-item,
 body.theme-olive .currency-item {
-  background: #7a7a40;
-  color: #f5f5dc;
+  background: #4a7a4a;
+  color: #f0f8e8;
 }
 body.theme-olive #refundResult,
 body.theme-olive #discountResult,
 body.theme-olive #timeframeResult,
 body.theme-olive #ahtResult {
-  background: #7a7a40;
-  border-left-color: #aaaa70;
-}
-body.theme-olive .time-container {
-  background: rgba(60, 60, 0, 0.8);
+  background: #4a7a4a;
+  border-left-color: #8acc6a;
 }
 
-/* 12. SLATE GRAY THEME */
+/* 12. SLATE GRAY THEME - Modern */
 body.theme-slate {
-  background: linear-gradient(to bottom right, #708090, #4a5568);
-  color: #f0f4f8;
+  background: linear-gradient(135deg, #4a5568, #2d3748);
+  color: #e2e8f0;
 }
 body.theme-slate .container {
-  background: #5a6a7a;
-  color: #f0f4f8;
+  background: rgba(45, 55, 72, 0.95);
+  color: #e2e8f0;
 }
 body.theme-slate input,
 body.theme-slate select,
 body.theme-slate textarea {
-  background: #8a9aaa;
-  color: #1a2a3a;
-  border: 1px solid #aabbcc;
+  background: #3a4a60;
+  color: #e2e8f0;
+  border: 1px solid #7a8aaa;
 }
-body.theme-slate button:not(.theme-btn) {
-  background: #6a7a8a;
+body.theme-slate button:not(.theme-option-btn):not(.modal-close) {
+  background: linear-gradient(135deg, #6b7a8a, #5a6a7a);
+}
+body.theme-slate .back {
+  background: #5a6a7a;
 }
 body.theme-slate .timezone-item,
 body.theme-slate .currency-item {
-  background: #6a7a8a;
-  color: white;
+  background: #4a5a6a;
+  color: #e2e8f0;
 }
 body.theme-slate #refundResult,
 body.theme-slate #discountResult,
 body.theme-slate #timeframeResult,
 body.theme-slate #ahtResult {
-  background: #6a7a8a;
+  background: #4a5a6a;
   border-left-color: #9ab0c0;
-}
-body.theme-slate .time-container {
-  background: rgba(50, 60, 70, 0.8);
 }
 
 /* ==================== */
@@ -628,6 +695,15 @@ body.theme-slate .time-container {
     flex: 1;
     min-width: 70px;
   }
+  
+  .theme-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+  
+  .theme-option-btn {
+    padding: 8px;
+    font-size: 12px;
+  }
 }
 
 /* Labels */
@@ -664,13 +740,12 @@ button {
   padding: 12px;
   margin-top: 12px;
   border-radius: 12px;
-  background: #1a73e8;
-  color: white;
   border: none;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
   transition: all 0.2s ease;
+  color: white;
 }
 
 button:hover {
@@ -692,7 +767,6 @@ button:active {
   border-radius: 15px;
   line-height: 1.6;
   text-align: left;
-  border-left: 5px solid #1a73e8;
   font-size: 15px;
 }
 
