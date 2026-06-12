@@ -18,7 +18,7 @@ function resetSession() {
 }
 
 // ===================
-// THEME CYCLE (12 THEMES)
+// THEME MODAL FUNCTIONS (NEW)
 // ===================
 const themes = [
   "light",
@@ -35,38 +35,44 @@ const themes = [
   "slate"
 ];
 
-let currentThemeIndex = 0;
+function openThemeModal() {
+  const modal = document.getElementById("themeModal");
+  if (modal) {
+    modal.classList.add("show");
+  }
+}
 
-function toggleTheme() {
+function closeThemeModal() {
+  const modal = document.getElementById("themeModal");
+  if (modal) {
+    modal.classList.remove("show");
+  }
+}
+
+function setTheme(themeName) {
   // Remove all theme classes from body
   themes.forEach(theme => {
     document.body.classList.remove(`theme-${theme}`);
   });
   
-  // Move to next theme
-  currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-  const newTheme = themes[currentThemeIndex];
-  document.body.classList.add(`theme-${newTheme}`);
+  // Add the selected theme
+  document.body.classList.add(`theme-${themeName}`);
   
-  // Update button text to show current theme
-  const btn = document.querySelector(".dark-toggle");
-  let themeDisplayName = "";
-  switch(newTheme) {
-    case "light": themeDisplayName = "Light"; break;
-    case "dark": themeDisplayName = "Dark"; break;
-    case "crimson": themeDisplayName = "Crimson"; break;
-    case "royalblue": themeDisplayName = "Royal Blue"; break;
-    case "emerald": themeDisplayName = "Emerald"; break;
-    case "amber": themeDisplayName = "Amber"; break;
-    case "purple": themeDisplayName = "Purple"; break;
-    case "teal": themeDisplayName = "Teal"; break;
-    case "pink": themeDisplayName = "Pink"; break;
-    case "navy": themeDisplayName = "Navy"; break;
-    case "olive": themeDisplayName = "Olive"; break;
-    case "slate": themeDisplayName = "Slate"; break;
-    default: themeDisplayName = "Theme";
+  // Save to localStorage
+  localStorage.setItem("selectedTheme", themeName);
+  
+  // Close the modal
+  closeThemeModal();
+}
+
+// Load saved theme on page load
+function loadSavedTheme() {
+  const savedTheme = localStorage.getItem("selectedTheme");
+  if (savedTheme && themes.includes(savedTheme)) {
+    document.body.classList.add(`theme-${savedTheme}`);
+  } else {
+    document.body.classList.add("theme-light");
   }
-  btn.textContent = `${themeDisplayName}`;
 }
 
 // NAVIGATION
@@ -110,35 +116,12 @@ window.onload = () => {
   const dd = String(today.getDate()).padStart(2, '0');
   const todayFormatted = `${yyyy}-${mm}-${dd}`;
   
-  document.getElementById("todayDate").value = todayFormatted;
-  
-  // Set default theme to light (or load saved theme from localStorage)
-  const savedTheme = localStorage.getItem("selectedTheme");
-  if (savedTheme && themes.includes(savedTheme)) {
-    const themeIndex = themes.indexOf(savedTheme);
-    currentThemeIndex = themeIndex;
-    document.body.classList.add(`theme-${savedTheme}`);
-    const btn = document.querySelector(".dark-toggle");
-    let themeDisplayName = "";
-    switch(savedTheme) {
-      case "light": themeDisplayName = "Light"; break;
-      case "dark": themeDisplayName = "Dark"; break;
-      case "crimson": themeDisplayName = "Crimson"; break;
-      case "royalblue": themeDisplayName = "Royal Blue"; break;
-      case "emerald": themeDisplayName = "Emerald"; break;
-      case "amber": themeDisplayName = "Amber"; break;
-      case "purple": themeDisplayName = "Purple"; break;
-      case "teal": themeDisplayName = "Teal"; break;
-      case "pink": themeDisplayName = "Pink"; break;
-      case "navy": themeDisplayName = "Navy"; break;
-      case "olive": themeDisplayName = "Olive"; break;
-      case "slate": themeDisplayName = "Slate"; break;
-      default: themeDisplayName = "Theme";
-    }
-    btn.textContent = themeDisplayName;
-  } else {
-    document.body.classList.add("theme-light");
+  if (document.getElementById("todayDate")) {
+    document.getElementById("todayDate").value = todayFormatted;
   }
+  
+  // Load saved theme
+  loadSavedTheme();
   
   // Start real-time updates for US/Canada times (only when section is visible)
   setInterval(() => {
@@ -149,41 +132,16 @@ window.onload = () => {
   }, 1000);
 };
 
-// Save theme preference when changing
-function toggleTheme() {
-  // Remove all theme classes from body
-  themes.forEach(theme => {
-    document.body.classList.remove(`theme-${theme}`);
-  });
-  
-  // Move to next theme
-  currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-  const newTheme = themes[currentThemeIndex];
-  document.body.classList.add(`theme-${newTheme}`);
-  
-  // Save to localStorage
-  localStorage.setItem("selectedTheme", newTheme);
-  
-  // Update button text to show current theme
-  const btn = document.querySelector(".dark-toggle");
-  let themeDisplayName = "";
-  switch(newTheme) {
-    case "light": themeDisplayName = "Light"; break;
-    case "dark": themeDisplayName = "Dark"; break;
-    case "crimson": themeDisplayName = "Crimson"; break;
-    case "royalblue": themeDisplayName = "Royal Blue"; break;
-    case "emerald": themeDisplayName = "Emerald"; break;
-    case "amber": themeDisplayName = "Amber"; break;
-    case "purple": themeDisplayName = "Purple"; break;
-    case "teal": themeDisplayName = "Teal"; break;
-    case "pink": themeDisplayName = "Pink"; break;
-    case "navy": themeDisplayName = "Navy"; break;
-    case "olive": themeDisplayName = "Olive"; break;
-    case "slate": themeDisplayName = "Slate"; break;
-    default: themeDisplayName = "Theme";
+// Close modal when clicking outside of it
+document.addEventListener('click', function(event) {
+  const modal = document.getElementById("themeModal");
+  if (modal && modal.classList.contains('show')) {
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent && !modalContent.contains(event.target) && !event.target.classList.contains('dark-toggle')) {
+      closeThemeModal();
+    }
   }
-  btn.textContent = themeDisplayName;
-}
+});
 
 // ===================
 // COMPLETE US STATES & CANADIAN PROVINCES/TERRITORIES WITH TIME ZONES
