@@ -19,156 +19,182 @@ body {
 }
 
 /* ==================== */
-/* COMET EFFECTS */
+/* GLOWING STARS EFFECTS (replaces comets) */
 /* ==================== */
-.comet {
+.glowing-star {
   position: fixed;
-  top: -50px;
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+  width: 4px;
+  height: 4px;
+  background: white;
   border-radius: 50%;
   pointer-events: none;
   z-index: -1;
-  animation: cometShoot linear infinite;
-  opacity: 0;
+  animation: glowPulse 3s ease-in-out infinite;
 }
 
-.comet::before {
+.glowing-star::before {
   content: "";
   position: absolute;
-  top: -3px;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.4));
+  top: -8px;
+  left: -8px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: glowExpand 3s ease-in-out infinite;
 }
 
-.comet::after {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 5px;
-  width: 30px;
-  height: 4px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
-  border-radius: 50%;
-}
-
-@keyframes cometShoot {
+@keyframes glowPulse {
   0% {
-    transform: translateX(-100px) translateY(0) rotate(25deg);
-    opacity: 0;
+    opacity: 0.3;
+    transform: scale(1);
   }
-  10% {
+  50% {
     opacity: 1;
-  }
-  90% {
-    opacity: 1;
+    transform: scale(1.5);
   }
   100% {
-    transform: translateX(calc(100vw + 200px)) translateY(300px) rotate(25deg);
-    opacity: 0;
+    opacity: 0.3;
+    transform: scale(1);
   }
 }
 
-/* Theme-specific comet colors */
-body.theme-light .comet {
-  background: linear-gradient(90deg, rgba(102, 126, 234, 0.8), rgba(102, 126, 234, 0));
-}
-body.theme-light .comet::before {
-  background: radial-gradient(circle, rgba(102, 126, 234, 1), rgba(102, 126, 234, 0.4));
-  box-shadow: 0 0 15px rgba(102, 126, 234, 0.8);
-}
-
-body.theme-dark .comet {
-  background: linear-gradient(90deg, rgba(100, 150, 255, 0.8), rgba(100, 150, 255, 0));
-}
-body.theme-dark .comet::before {
-  background: radial-gradient(circle, rgba(100, 150, 255, 1), rgba(100, 150, 255, 0.4));
-  box-shadow: 0 0 15px rgba(100, 150, 255, 0.8);
+@keyframes glowExpand {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
 }
 
-body.theme-crimson .comet {
-  background: linear-gradient(90deg, rgba(255, 100, 100, 0.8), rgba(255, 100, 100, 0));
-}
-body.theme-crimson .comet::before {
-  background: radial-gradient(circle, rgba(255, 100, 100, 1), rgba(255, 100, 100, 0.4));
-  box-shadow: 0 0 15px rgba(255, 100, 100, 0.8);
+/* Large glowing stars */
+.glowing-star.large {
+  width: 6px;
+  height: 6px;
 }
 
-body.theme-royalblue .comet {
-  background: linear-gradient(90deg, rgba(59, 141, 255, 0.8), rgba(59, 141, 255, 0));
-}
-body.theme-royalblue .comet::before {
-  background: radial-gradient(circle, rgba(59, 141, 255, 1), rgba(59, 141, 255, 0.4));
-  box-shadow: 0 0 15px rgba(59, 141, 255, 0.8);
-}
-
-body.theme-emerald .comet {
-  background: linear-gradient(90deg, rgba(0, 180, 219, 0.8), rgba(0, 180, 219, 0));
-}
-body.theme-emerald .comet::before {
-  background: radial-gradient(circle, rgba(0, 180, 219, 1), rgba(0, 180, 219, 0.4));
-  box-shadow: 0 0 15px rgba(0, 180, 219, 0.8);
+.glowing-star.large::before {
+  top: -12px;
+  left: -12px;
+  width: 30px;
+  height: 30px;
 }
 
-body.theme-amber .comet {
-  background: linear-gradient(90deg, rgba(255, 180, 50, 0.8), rgba(255, 180, 50, 0));
-}
-body.theme-amber .comet::before {
-  background: radial-gradient(circle, rgba(255, 180, 50, 1), rgba(255, 180, 50, 0.4));
-  box-shadow: 0 0 15px rgba(255, 180, 50, 0.8);
+/* Small glowing stars */
+.glowing-star.small {
+  width: 2px;
+  height: 2px;
 }
 
-body.theme-purple .comet {
-  background: linear-gradient(90deg, rgba(150, 80, 255, 0.8), rgba(150, 80, 255, 0));
-}
-body.theme-purple .comet::before {
-  background: radial-gradient(circle, rgba(150, 80, 255, 1), rgba(150, 80, 255, 0.4));
-  box-shadow: 0 0 15px rgba(150, 80, 255, 0.8);
-}
-
-body.theme-teal .comet {
-  background: linear-gradient(90deg, rgba(0, 210, 255, 0.8), rgba(0, 210, 255, 0));
-}
-body.theme-teal .comet::before {
-  background: radial-gradient(circle, rgba(0, 210, 255, 1), rgba(0, 210, 255, 0.4));
-  box-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
+.glowing-star.small::before {
+  top: -5px;
+  left: -5px;
+  width: 12px;
+  height: 12px;
 }
 
-body.theme-pink .comet {
-  background: linear-gradient(90deg, rgba(255, 120, 150, 0.8), rgba(255, 120, 150, 0));
+/* Theme-specific glowing star colors */
+body.theme-light .glowing-star {
+  background: #667eea;
+  box-shadow: 0 0 8px #667eea;
 }
-body.theme-pink .comet::before {
-  background: radial-gradient(circle, rgba(255, 120, 150, 1), rgba(255, 120, 150, 0.4));
-  box-shadow: 0 0 15px rgba(255, 120, 150, 0.8);
-}
-
-body.theme-navy .comet {
-  background: linear-gradient(90deg, rgba(50, 100, 180, 0.8), rgba(50, 100, 180, 0));
-}
-body.theme-navy .comet::before {
-  background: radial-gradient(circle, rgba(50, 100, 180, 1), rgba(50, 100, 180, 0.4));
-  box-shadow: 0 0 15px rgba(50, 100, 180, 0.8);
+body.theme-light .glowing-star::before {
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.5), transparent);
 }
 
-body.theme-olive .comet {
-  background: linear-gradient(90deg, rgba(80, 140, 80, 0.8), rgba(80, 140, 80, 0));
+body.theme-dark .glowing-star {
+  background: #a0b0ff;
+  box-shadow: 0 0 10px #a0b0ff;
 }
-body.theme-olive .comet::before {
-  background: radial-gradient(circle, rgba(80, 140, 80, 1), rgba(80, 140, 80, 0.4));
-  box-shadow: 0 0 15px rgba(80, 140, 80, 0.8);
+body.theme-dark .glowing-star::before {
+  background: radial-gradient(circle, rgba(160, 176, 255, 0.5), transparent);
 }
 
-body.theme-slate .comet {
-  background: linear-gradient(90deg, rgba(100, 130, 160, 0.8), rgba(100, 130, 160, 0));
+body.theme-crimson .glowing-star {
+  background: #ff6b6b;
+  box-shadow: 0 0 8px #ff6b6b;
 }
-body.theme-slate .comet::before {
-  background: radial-gradient(circle, rgba(100, 130, 160, 1), rgba(100, 130, 160, 0.4));
-  box-shadow: 0 0 15px rgba(100, 130, 160, 0.8);
+body.theme-crimson .glowing-star::before {
+  background: radial-gradient(circle, rgba(255, 107, 107, 0.5), transparent);
+}
+
+body.theme-royalblue .glowing-star {
+  background: #5a9aff;
+  box-shadow: 0 0 8px #5a9aff;
+}
+body.theme-royalblue .glowing-star::before {
+  background: radial-gradient(circle, rgba(90, 154, 255, 0.5), transparent);
+}
+
+body.theme-emerald .glowing-star {
+  background: #4aff9a;
+  box-shadow: 0 0 8px #4aff9a;
+}
+body.theme-emerald .glowing-star::before {
+  background: radial-gradient(circle, rgba(74, 255, 154, 0.5), transparent);
+}
+
+body.theme-amber .glowing-star {
+  background: #ffcc66;
+  box-shadow: 0 0 8px #ffcc66;
+}
+body.theme-amber .glowing-star::before {
+  background: radial-gradient(circle, rgba(255, 204, 102, 0.5), transparent);
+}
+
+body.theme-purple .glowing-star {
+  background: #c08aff;
+  box-shadow: 0 0 8px #c08aff;
+}
+body.theme-purple .glowing-star::before {
+  background: radial-gradient(circle, rgba(192, 138, 255, 0.5), transparent);
+}
+
+body.theme-teal .glowing-star {
+  background: #55ddff;
+  box-shadow: 0 0 8px #55ddff;
+}
+body.theme-teal .glowing-star::before {
+  background: radial-gradient(circle, rgba(85, 221, 255, 0.5), transparent);
+}
+
+body.theme-pink .glowing-star {
+  background: #ffaacc;
+  box-shadow: 0 0 8px #ffaacc;
+}
+body.theme-pink .glowing-star::before {
+  background: radial-gradient(circle, rgba(255, 170, 204, 0.5), transparent);
+}
+
+body.theme-navy .glowing-star {
+  background: #6a8acc;
+  box-shadow: 0 0 8px #6a8acc;
+}
+body.theme-navy .glowing-star::before {
+  background: radial-gradient(circle, rgba(106, 138, 204, 0.5), transparent);
+}
+
+body.theme-olive .glowing-star {
+  background: #8acc6a;
+  box-shadow: 0 0 8px #8acc6a;
+}
+body.theme-olive .glowing-star::before {
+  background: radial-gradient(circle, rgba(138, 204, 106, 0.5), transparent);
+}
+
+body.theme-slate .glowing-star {
+  background: #9ab0c0;
+  box-shadow: 0 0 8px #9ab0c0;
+}
+body.theme-slate .glowing-star::before {
+  background: radial-gradient(circle, rgba(154, 176, 192, 0.5), transparent);
 }
 
 /* ==================== */
@@ -185,7 +211,7 @@ body.theme-slate .comet::before {
   overflow: hidden;
 }
 
-/* Twinkling Stars */
+/* Twinkling Stars (original) */
 .star {
   position: absolute;
   background: white;
