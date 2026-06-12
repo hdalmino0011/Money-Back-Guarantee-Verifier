@@ -18,7 +18,7 @@ body {
 }
 
 /* ==================== */
-/* GLOWING MESH BACKGROUND (via pseudo-element) */
+/* FLOWING WAVE BACKGROUND */
 /* ==================== */
 body::before {
   content: "";
@@ -27,14 +27,24 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0px, rgba(255, 255, 255, 0.08) 1px, transparent 1px, transparent 60px),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0px, rgba(255, 255, 255, 0.08) 1px, transparent 1px, transparent 60px);
-  pointer-events: none;
-  z-index: 0;
+  z-index: -2;
+  animation: waveFlow 8s ease-in-out infinite;
+  background-size: 200% 200%;
 }
 
-/* Animated glowing orbs overlay */
+@keyframes waveFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Floating particles animation */
 body::after {
   content: "";
   position: fixed;
@@ -42,121 +52,121 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2;
-  animation: glowShift 20s ease infinite;
-  background-size: 200% 200%;
+  z-index: -1;
+  background-image: radial-gradient(circle at 20% 40%, rgba(255, 255, 255, 0.15) 2px, transparent 2px),
+                    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px),
+                    radial-gradient(circle at 40% 90%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                    radial-gradient(circle at 60% 20%, rgba(255, 255, 255, 0.08) 2.5px, transparent 2.5px);
+  background-size: 300px 300px, 250px 250px, 200px 200px, 350px 350px;
+  background-position: 0 0, 50px 100px, 100px 50px, 200px 150px;
+  animation: floatParticles 20s linear infinite;
+  pointer-events: none;
 }
 
-@keyframes glowShift {
+@keyframes floatParticles {
   0% {
-    background-position: 0% 0%;
-  }
-  25% {
-    background-position: 100% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  75% {
-    background-position: 0% 100%;
+    background-position: 0 0, 50px 100px, 100px 50px, 200px 150px;
   }
   100% {
-    background-position: 0% 0%;
+    background-position: 300px 300px, 350px 400px, 400px 350px, 500px 450px;
   }
 }
 
-/* Theme-specific glowing mesh backgrounds */
-body.theme-light::after {
-  background: radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.2), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(240, 147, 251, 0.25), rgba(245, 87, 108, 0.15), transparent 70%);
+/* ==================== */
+/* THEME-SPECIFIC WAVE GRADIENTS */
+/* ==================== */
+
+/* 1. LIGHT THEME */
+body.theme-light::before {
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c, #667eea);
 }
 body.theme-light {
   background: transparent;
 }
 
-body.theme-dark::after {
-  background: radial-gradient(circle at 20% 30%, rgba(74, 74, 230, 0.35), rgba(107, 70, 230, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(100, 100, 255, 0.3), rgba(60, 60, 200, 0.2), transparent 70%);
+/* 2. DARK THEME */
+body.theme-dark::before {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e, #1a1a2e, #0f0c29);
 }
 body.theme-dark {
   background: transparent;
 }
 
-body.theme-crimson::after {
-  background: radial-gradient(circle at 20% 30%, rgba(255, 65, 108, 0.35), rgba(255, 75, 43, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(255, 107, 107, 0.3), rgba(204, 51, 51, 0.2), transparent 70%);
+/* 3. CRIMSON THEME */
+body.theme-crimson::before {
+  background: linear-gradient(135deg, #ff0844, #ffb199, #ff6a6a, #cc3333, #ff0844);
 }
 body.theme-crimson {
   background: transparent;
 }
 
-body.theme-royalblue::after {
-  background: radial-gradient(circle at 20% 30%, rgba(59, 141, 255, 0.35), rgba(43, 111, 255, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(74, 122, 170, 0.3), rgba(42, 82, 152, 0.2), transparent 70%);
+/* 4. ROYAL BLUE THEME */
+body.theme-royalblue::before {
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #4a7aaa, #6a9acc, #1e3c72);
 }
 body.theme-royalblue {
   background: transparent;
 }
 
-body.theme-emerald::after {
-  background: radial-gradient(circle at 20% 30%, rgba(0, 180, 219, 0.35), rgba(0, 131, 176, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(74, 255, 154, 0.3), rgba(42, 138, 106, 0.2), transparent 70%);
+/* 5. EMERALD GREEN THEME */
+body.theme-emerald::before {
+  background: linear-gradient(135deg, #11998e, #38ef7d, #4aff9a, #2a8a6a, #11998e);
 }
 body.theme-emerald {
   background: transparent;
 }
 
-body.theme-amber::after {
-  background: radial-gradient(circle at 20% 30%, rgba(255, 126, 95, 0.35), rgba(254, 180, 123, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(255, 204, 102, 0.3), rgba(255, 170, 68, 0.2), transparent 70%);
+/* 6. AMBER THEME */
+body.theme-amber::before {
+  background: linear-gradient(135deg, #f2994a, #f2c94c, #ffcc66, #ffaa44, #f2994a);
 }
 body.theme-amber {
   background: transparent;
 }
 
-body.theme-purple::after {
-  background: radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.35), rgba(124, 58, 237, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(170, 119, 255, 0.3), rgba(100, 70, 200, 0.2), transparent 70%);
+/* 7. PURPLE THEME */
+body.theme-purple::before {
+  background: linear-gradient(135deg, #8e2de2, #4a00e0, #a855f7, #7c3aed, #8e2de2);
 }
 body.theme-purple {
   background: transparent;
 }
 
-body.theme-teal::after {
-  background: radial-gradient(circle at 20% 30%, rgba(0, 210, 255, 0.35), rgba(58, 123, 213, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(85, 221, 255, 0.3), rgba(0, 91, 234, 0.2), transparent 70%);
+/* 8. TEAL THEME */
+body.theme-teal::before {
+  background: linear-gradient(135deg, #00c6fb, #005bea, #00d2ff, #3a7bd5, #00c6fb);
 }
 body.theme-teal {
   background: transparent;
 }
 
-body.theme-pink::after {
-  background: radial-gradient(circle at 20% 30%, rgba(255, 117, 140, 0.35), rgba(255, 126, 179, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(255, 136, 187, 0.3), rgba(255, 154, 158, 0.2), transparent 70%);
+/* 9. PINK THEME */
+body.theme-pink::before {
+  background: linear-gradient(135deg, #ff9a9e, #fecfef, #ffb6c1, #ff88bb, #ff9a9e);
 }
 body.theme-pink {
   background: transparent;
 }
 
-body.theme-navy::after {
-  background: radial-gradient(circle at 20% 30%, rgba(43, 88, 118, 0.35), rgba(78, 67, 118, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(106, 138, 204, 0.3), rgba(42, 74, 106, 0.2), transparent 70%);
+/* 10. NAVY BLUE THEME */
+body.theme-navy::before {
+  background: linear-gradient(135deg, #141e30, #243b55, #2a4a6a, #3a6a8a, #141e30);
 }
 body.theme-navy {
   background: transparent;
 }
 
-body.theme-olive::after {
-  background: radial-gradient(circle at 20% 30%, rgba(107, 138, 90, 0.35), rgba(74, 106, 58, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(138, 204, 106, 0.3), rgba(74, 122, 74, 0.2), transparent 70%);
+/* 11. OLIVE GREEN THEME */
+body.theme-olive::before {
+  background: linear-gradient(135deg, #3a7b5a, #2a5a4a, #5a8a6a, #4a7a5a, #3a7b5a);
 }
 body.theme-olive {
   background: transparent;
 }
 
-body.theme-slate::after {
-  background: radial-gradient(circle at 20% 30%, rgba(107, 122, 138, 0.35), rgba(90, 106, 122, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(154, 176, 192, 0.3), rgba(74, 90, 106, 0.2), transparent 70%);
+/* 12. SLATE GRAY THEME */
+body.theme-slate::before {
+  background: linear-gradient(135deg, #4a5568, #2d3748, #6b7a8a, #5a6a7a, #4a5568);
 }
 body.theme-slate {
   background: transparent;
@@ -254,7 +264,7 @@ body.theme-slate {
 }
 
 /* ==================== */
-/* 12 MODERN THEMES */
+/* 12 MODERN THEMES - CONTAINER STYLES */
 /* ==================== */
 
 /* 1. LIGHT THEME */
