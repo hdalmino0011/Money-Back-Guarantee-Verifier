@@ -183,6 +183,7 @@ window.onload = () => {
   createStars();
   createRain();
   createParticles();
+  createComets();
 };
 
 // Close modal when clicking outside of it
@@ -589,6 +590,3 @@ function createComets() {
     cometsContainer.appendChild(comet);
   }
 }
-
-// Add this line inside your window.onload function:
-// createComets();
