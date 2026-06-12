@@ -111,7 +111,7 @@ body {
 /* 12 MODERN THEMES */
 /* ==================== */
 
-/* 1. LIGHT THEME (default) */
+/* 1. LIGHT THEME */
 body.theme-light {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #1a1a2e;
@@ -128,10 +128,11 @@ body.theme-light textarea {
   color: #1a1a2e;
   border: 1px solid #dee2e6;
 }
-body.theme-light button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-light button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
 }
-body.theme-light button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-light button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #5a67d8, #6b46a0);
 }
 body.theme-light .back {
@@ -155,6 +156,27 @@ body.theme-light #ahtResult {
 body.theme-light .time-container {
   background: rgba(0, 0, 0, 0.6);
 }
+body.theme-light .refresh-btn {
+  background: #28a745;
+  color: white;
+}
+body.theme-light .refresh-btn:hover {
+  background: #218838;
+}
+body.theme-light .dark-toggle {
+  background: #17a2b8;
+  color: white;
+}
+body.theme-light .dark-toggle:hover {
+  background: #138496;
+}
+body.theme-light .reset-btn {
+  background: #dc3545;
+  color: white;
+}
+body.theme-light .reset-btn:hover {
+  background: #c82333;
+}
 
 /* 2. DARK THEME */
 body.theme-dark {
@@ -173,14 +195,16 @@ body.theme-dark textarea {
   color: #e0e0e0;
   border: 1px solid #3a3a4a;
 }
-body.theme-dark button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-dark button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #4a4ae6, #6b46e6);
+  color: white;
 }
-body.theme-dark button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-dark button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #5a5af0, #7b56f0);
 }
 body.theme-dark .back {
   background: #4a4a5a;
+  color: white;
 }
 body.theme-dark .back:hover {
   background: #5a5a6a;
@@ -200,8 +224,29 @@ body.theme-dark #ahtResult {
 body.theme-dark .time-container {
   background: rgba(0, 0, 0, 0.8);
 }
+body.theme-dark .refresh-btn {
+  background: #34ce57;
+  color: white;
+}
+body.theme-dark .refresh-btn:hover {
+  background: #28a745;
+}
+body.theme-dark .dark-toggle {
+  background: #1dd4ec;
+  color: white;
+}
+body.theme-dark .dark-toggle:hover {
+  background: #17a2b8;
+}
+body.theme-dark .reset-btn {
+  background: #f54555;
+  color: white;
+}
+body.theme-dark .reset-btn:hover {
+  background: #dc3545;
+}
 
-/* 3. CRIMSON THEME - Modern */
+/* 3. CRIMSON THEME */
 body.theme-crimson {
   background: linear-gradient(135deg, #ff0844, #ffb199);
   color: #ffffff;
@@ -218,14 +263,16 @@ body.theme-crimson textarea {
   color: #ffe0e0;
   border: 1px solid #ff6b6b;
 }
-body.theme-crimson button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-crimson button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
 }
-body.theme-crimson button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-crimson button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #ff5a7a, #ff6040);
 }
 body.theme-crimson .back {
   background: #8b3a4a;
+  color: white;
 }
 body.theme-crimson .back:hover {
   background: #9a4a5a;
@@ -245,8 +292,29 @@ body.theme-crimson #ahtResult {
 body.theme-crimson .time-container {
   background: rgba(80, 20, 30, 0.85);
 }
+body.theme-crimson .refresh-btn {
+  background: #34ce57;
+  color: white;
+}
+body.theme-crimson .refresh-btn:hover {
+  background: #28a745;
+}
+body.theme-crimson .dark-toggle {
+  background: #1dd4ec;
+  color: white;
+}
+body.theme-crimson .dark-toggle:hover {
+  background: #17a2b8;
+}
+body.theme-crimson .reset-btn {
+  background: #f54555;
+  color: white;
+}
+body.theme-crimson .reset-btn:hover {
+  background: #dc3545;
+}
 
-/* 4. ROYAL BLUE THEME - Modern */
+/* 4. ROYAL BLUE THEME */
 body.theme-royalblue {
   background: linear-gradient(135deg, #1e3c72, #2a5298);
   color: #e8f0fe;
@@ -262,14 +330,16 @@ body.theme-royalblue textarea {
   color: #e8f0fe;
   border: 1px solid #4a7aaa;
 }
-body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-royalblue button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #3b8dff, #2b6fff);
+  color: white;
 }
-body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #4a9aff, #3a7aff);
 }
 body.theme-royalblue .back {
   background: #3a5a8a;
+  color: white;
 }
 body.theme-royalblue .back:hover {
   background: #4a6a9a;
@@ -286,8 +356,32 @@ body.theme-royalblue #ahtResult {
   background: #2a4a70;
   border-left-color: #5a9aff;
 }
+body.theme-royalblue .time-container {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.theme-royalblue .refresh-btn {
+  background: #34ce57;
+  color: white;
+}
+body.theme-royalblue .refresh-btn:hover {
+  background: #28a745;
+}
+body.theme-royalblue .dark-toggle {
+  background: #1dd4ec;
+  color: white;
+}
+body.theme-royalblue .dark-toggle:hover {
+  background: #17a2b8;
+}
+body.theme-royalblue .reset-btn {
+  background: #f54555;
+  color: white;
+}
+body.theme-royalblue .reset-btn:hover {
+  background: #dc3545;
+}
 
-/* 5. EMERALD GREEN THEME - Modern */
+/* 5. EMERALD GREEN THEME */
 body.theme-emerald {
   background: linear-gradient(135deg, #11998e, #38ef7d);
   color: #e8fff0;
@@ -303,14 +397,16 @@ body.theme-emerald textarea {
   color: #e8fff0;
   border: 1px solid #4aaa7a;
 }
-body.theme-emerald button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-emerald button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #00b4db, #0083b0);
+  color: white;
 }
-body.theme-emerald button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-emerald button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #10c4eb, #1093c0);
 }
 body.theme-emerald .back {
   background: #3a7a60;
+  color: white;
 }
 body.theme-emerald .back:hover {
   background: #4a8a70;
@@ -327,8 +423,32 @@ body.theme-emerald #ahtResult {
   background: #2a6a50;
   border-left-color: #4aff9a;
 }
+body.theme-emerald .time-container {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.theme-emerald .refresh-btn {
+  background: #28a745;
+  color: white;
+}
+body.theme-emerald .refresh-btn:hover {
+  background: #218838;
+}
+body.theme-emerald .dark-toggle {
+  background: #17a2b8;
+  color: white;
+}
+body.theme-emerald .dark-toggle:hover {
+  background: #138496;
+}
+body.theme-emerald .reset-btn {
+  background: #dc3545;
+  color: white;
+}
+body.theme-emerald .reset-btn:hover {
+  background: #c82333;
+}
 
-/* 6. AMBER THEME - Modern */
+/* 6. AMBER THEME */
 body.theme-amber {
   background: linear-gradient(135deg, #f2994a, #f2c94c);
   color: #2a1e0a;
@@ -344,14 +464,16 @@ body.theme-amber textarea {
   color: #2a1e0a;
   border: 1px solid #ccaa60;
 }
-body.theme-amber button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-amber button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: #2a1e0a;
 }
-body.theme-amber button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-amber button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #ff8e6f, #fec48b);
 }
 body.theme-amber .back {
   background: #c4a05a;
+  color: #2a1e0a;
 }
 body.theme-amber .back:hover {
   background: #d4b06a;
@@ -368,8 +490,32 @@ body.theme-amber #ahtResult {
   background: #f0d8a0;
   border-left-color: #ffaa44;
 }
+body.theme-amber .time-container {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.theme-amber .refresh-btn {
+  background: #28a745;
+  color: white;
+}
+body.theme-amber .refresh-btn:hover {
+  background: #218838;
+}
+body.theme-amber .dark-toggle {
+  background: #17a2b8;
+  color: white;
+}
+body.theme-amber .dark-toggle:hover {
+  background: #138496;
+}
+body.theme-amber .reset-btn {
+  background: #dc3545;
+  color: white;
+}
+body.theme-amber .reset-btn:hover {
+  background: #c82333;
+}
 
-/* 7. PURPLE THEME - Modern */
+/* 7. PURPLE THEME */
 body.theme-purple {
   background: linear-gradient(135deg, #8e2de2, #4a00e0);
   color: #f0e8ff;
@@ -385,14 +531,16 @@ body.theme-purple textarea {
   color: #f0e8ff;
   border: 1px solid #7a5aaa;
 }
-body.theme-purple button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-purple button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #a855f7, #7c3aed);
+  color: white;
 }
-body.theme-purple button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-purple button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #b865ff, #8c4afd);
 }
 body.theme-purple .back {
   background: #5a4a8a;
+  color: white;
 }
 body.theme-purple .back:hover {
   background: #6a5a9a;
@@ -409,8 +557,32 @@ body.theme-purple #ahtResult {
   background: #4a3a7a;
   border-left-color: #aa77ff;
 }
+body.theme-purple .time-container {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.theme-purple .refresh-btn {
+  background: #34ce57;
+  color: white;
+}
+body.theme-purple .refresh-btn:hover {
+  background: #28a745;
+}
+body.theme-purple .dark-toggle {
+  background: #1dd4ec;
+  color: white;
+}
+body.theme-purple .dark-toggle:hover {
+  background: #17a2b8;
+}
+body.theme-purple .reset-btn {
+  background: #f54555;
+  color: white;
+}
+body.theme-purple .reset-btn:hover {
+  background: #dc3545;
+}
 
-/* 8. TEAL THEME - Modern */
+/* 8. TEAL THEME */
 body.theme-teal {
   background: linear-gradient(135deg, #00c6fb, #005bea);
   color: #e8faff;
@@ -426,14 +598,16 @@ body.theme-teal textarea {
   color: #e8faff;
   border: 1px solid #4aaaaa;
 }
-body.theme-teal button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-teal button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+  color: white;
 }
-body.theme-teal button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-teal button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #10e2ff, #4a8be5);
 }
 body.theme-teal .back {
   background: #3a7a8a;
+  color: white;
 }
 body.theme-teal .back:hover {
   background: #4a8a9a;
@@ -450,8 +624,32 @@ body.theme-teal #ahtResult {
   background: #2a6a8a;
   border-left-color: #55ddff;
 }
+body.theme-teal .time-container {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.theme-teal .refresh-btn {
+  background: #28a745;
+  color: white;
+}
+body.theme-teal .refresh-btn:hover {
+  background: #218838;
+}
+body.theme-teal .dark-toggle {
+  background: #17a2b8;
+  color: white;
+}
+body.theme-teal .dark-toggle:hover {
+  background: #138496;
+}
+body.theme-teal .reset-btn {
+  background: #dc3545;
+  color: white;
+}
+body.theme-teal .reset-btn:hover {
+  background: #c82333;
+}
 
-/* 9. PINK THEME - Modern */
+/* 9. PINK THEME */
 body.theme-pink {
   background: linear-gradient(135deg, #ff9a9e, #fecfef);
   color: #4a1a2e;
@@ -467,14 +665,16 @@ body.theme-pink textarea {
   color: #4a1a2e;
   border: 1px solid #ffaacc;
 }
-body.theme-pink button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-pink button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
 }
-body.theme-pink button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-pink button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #ff859c, #ff8ec3);
 }
 body.theme-pink .back {
   background: #cc88aa;
+  color: #4a1a2e;
 }
 body.theme-pink .back:hover {
   background: #dc98ba;
@@ -491,8 +691,32 @@ body.theme-pink #ahtResult {
   background: #f0d0e0;
   border-left-color: #ff88bb;
 }
+body.theme-pink .time-container {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.theme-pink .refresh-btn {
+  background: #28a745;
+  color: white;
+}
+body.theme-pink .refresh-btn:hover {
+  background: #218838;
+}
+body.theme-pink .dark-toggle {
+  background: #17a2b8;
+  color: white;
+}
+body.theme-pink .dark-toggle:hover {
+  background: #138496;
+}
+body.theme-pink .reset-btn {
+  background: #dc3545;
+  color: white;
+}
+body.theme-pink .reset-btn:hover {
+  background: #c82333;
+}
 
-/* 10. NAVY BLUE THEME - Modern */
+/* 10. NAVY BLUE THEME */
 body.theme-navy {
   background: linear-gradient(135deg, #141e30, #243b55);
   color: #e8f0ff;
@@ -508,14 +732,16 @@ body.theme-navy textarea {
   color: #e8f0ff;
   border: 1px solid #4a6aaa;
 }
-body.theme-navy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-navy button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #2b5876, #4e4376);
+  color: white;
 }
-body.theme-navy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-navy button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #3b6886, #5e5386);
 }
 body.theme-navy .back {
   background: #3a4a6a;
+  color: white;
 }
 body.theme-navy .back:hover {
   background: #4a5a7a;
@@ -532,8 +758,32 @@ body.theme-navy #ahtResult {
   background: #2a3a5a;
   border-left-color: #6a8acc;
 }
+body.theme-navy .time-container {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.theme-navy .refresh-btn {
+  background: #34ce57;
+  color: white;
+}
+body.theme-navy .refresh-btn:hover {
+  background: #28a745;
+}
+body.theme-navy .dark-toggle {
+  background: #1dd4ec;
+  color: white;
+}
+body.theme-navy .dark-toggle:hover {
+  background: #17a2b8;
+}
+body.theme-navy .reset-btn {
+  background: #f54555;
+  color: white;
+}
+body.theme-navy .reset-btn:hover {
+  background: #dc3545;
+}
 
-/* 11. OLIVE GREEN THEME - Modern */
+/* 11. OLIVE GREEN THEME */
 body.theme-olive {
   background: linear-gradient(135deg, #3a7b5a, #2a5a4a);
   color: #f0f8e8;
@@ -549,14 +799,16 @@ body.theme-olive textarea {
   color: #f0f8e8;
   border: 1px solid #6aaa6a;
 }
-body.theme-olive button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-olive button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #6b8a5a, #4a6a3a);
+  color: white;
 }
-body.theme-olive button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-olive button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #7b9a6a, #5a7a4a);
 }
 body.theme-olive .back {
   background: #5a7a4a;
+  color: white;
 }
 body.theme-olive .back:hover {
   background: #6a8a5a;
@@ -573,8 +825,32 @@ body.theme-olive #ahtResult {
   background: #4a7a4a;
   border-left-color: #8acc6a;
 }
+body.theme-olive .time-container {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.theme-olive .refresh-btn {
+  background: #28a745;
+  color: white;
+}
+body.theme-olive .refresh-btn:hover {
+  background: #218838;
+}
+body.theme-olive .dark-toggle {
+  background: #17a2b8;
+  color: white;
+}
+body.theme-olive .dark-toggle:hover {
+  background: #138496;
+}
+body.theme-olive .reset-btn {
+  background: #dc3545;
+  color: white;
+}
+body.theme-olive .reset-btn:hover {
+  background: #c82333;
+}
 
-/* 12. SLATE GRAY THEME - Modern */
+/* 12. SLATE GRAY THEME */
 body.theme-slate {
   background: linear-gradient(135deg, #4a5568, #2d3748);
   color: #e2e8f0;
@@ -590,14 +866,16 @@ body.theme-slate textarea {
   color: #e2e8f0;
   border: 1px solid #7a8aaa;
 }
-body.theme-slate button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-slate button:not(.theme-option-btn):not(.modal-close) {
   background: linear-gradient(135deg, #6b7a8a, #5a6a7a);
+  color: white;
 }
-body.theme-slate button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-slate button:not(.theme-option-btn):not(.modal-close):hover {
   background: linear-gradient(135deg, #7b8a9a, #6a7a8a);
 }
 body.theme-slate .back {
   background: #5a6a7a;
+  color: white;
 }
 body.theme-slate .back:hover {
   background: #6a7a8a;
@@ -613,6 +891,30 @@ body.theme-slate #timeframeResult,
 body.theme-slate #ahtResult {
   background: #4a5a6a;
   border-left-color: #9ab0c0;
+}
+body.theme-slate .time-container {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.theme-slate .refresh-btn {
+  background: #34ce57;
+  color: white;
+}
+body.theme-slate .refresh-btn:hover {
+  background: #28a745;
+}
+body.theme-slate .dark-toggle {
+  background: #1dd4ec;
+  color: white;
+}
+body.theme-slate .dark-toggle:hover {
+  background: #17a2b8;
+}
+body.theme-slate .reset-btn {
+  background: #f54555;
+  color: white;
+}
+body.theme-slate .reset-btn:hover {
+  background: #dc3545;
 }
 
 /* ==================== */
@@ -643,7 +945,7 @@ body.theme-slate #ahtResult {
   font-weight: bold;
 }
 
-/* TOP RIGHT BUTTONS - IMPROVED COLORS */
+/* TOP RIGHT BUTTONS */
 .toggle-container {
   position: fixed;
   top: 15px;
@@ -653,7 +955,7 @@ body.theme-slate #ahtResult {
   gap: 10px;
 }
 
-.refresh-btn {
+.refresh-btn, .dark-toggle {
   width: auto;
   padding: 8px 16px;
   border-radius: 25px;
@@ -662,34 +964,9 @@ body.theme-slate #ahtResult {
   cursor: pointer;
   border: none;
   transition: all 0.2s ease;
-  background: #28a745;
-  color: white;
 }
 
-.refresh-btn:hover {
-  background: #218838;
-  transform: scale(1.05);
-}
-
-.dark-toggle {
-  width: auto;
-  padding: 8px 16px;
-  border-radius: 25px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
-  background: #17a2b8;
-  color: white;
-}
-
-.dark-toggle:hover {
-  background: #138496;
-  transform: scale(1.05);
-}
-
-/* BOTTOM LEFT RESET BUTTON - IMPROVED COLOR */
+/* BOTTOM LEFT RESET BUTTON */
 .reset-container {
   position: fixed;
   bottom: 15px;
@@ -706,38 +983,6 @@ body.theme-slate #ahtResult {
   cursor: pointer;
   border: none;
   transition: all 0.2s ease;
-  background: #dc3545;
-  color: white;
-}
-
-.reset-btn:hover {
-  background: #c82333;
-  transform: scale(1.05);
-}
-
-/* Dark theme overrides for top buttons */
-body.theme-dark .refresh-btn {
-  background: #28a745;
-}
-
-body.theme-dark .refresh-btn:hover {
-  background: #218838;
-}
-
-body.theme-dark .dark-toggle {
-  background: #17a2b8;
-}
-
-body.theme-dark .dark-toggle:hover {
-  background: #138496;
-}
-
-body.theme-dark .reset-btn {
-  background: #dc3545;
-}
-
-body.theme-dark .reset-btn:hover {
-  background: #c82333;
 }
 
 .hidden {
@@ -839,7 +1084,7 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(26,115,232,0.2);
 }
 
-/* Buttons */
+/* General Buttons */
 button {
   width: 100%;
   padding: 12px;
@@ -859,15 +1104,6 @@ button:hover {
 
 button:active {
   transform: translateY(0);
-}
-
-.back {
-  background: #6c757d;
-  color: white;
-}
-
-.back:hover {
-  background: #5a6268;
 }
 
 /* Results Box */
