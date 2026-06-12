@@ -15,6 +15,218 @@ body {
   transition: all 0.3s ease;
   position: relative;
   background: transparent;
+  overflow-x: hidden;
+}
+
+/* ==================== */
+/* COMET EFFECTS */
+/* ==================== */
+.comet {
+  position: fixed;
+  top: -50px;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  animation: cometShoot linear infinite;
+  opacity: 0;
+}
+
+.comet::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.4));
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.comet::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 5px;
+  width: 30px;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  border-radius: 50%;
+}
+
+@keyframes cometShoot {
+  0% {
+    transform: translateX(-100px) translateY(0) rotate(25deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 200px)) translateY(300px) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+/* Theme-specific comet colors */
+body.theme-light .comet {
+  background: linear-gradient(90deg, rgba(102, 126, 234, 0.8), rgba(102, 126, 234, 0));
+}
+body.theme-light .comet::before {
+  background: radial-gradient(circle, rgba(102, 126, 234, 1), rgba(102, 126, 234, 0.4));
+  box-shadow: 0 0 15px rgba(102, 126, 234, 0.8);
+}
+
+body.theme-dark .comet {
+  background: linear-gradient(90deg, rgba(100, 150, 255, 0.8), rgba(100, 150, 255, 0));
+}
+body.theme-dark .comet::before {
+  background: radial-gradient(circle, rgba(100, 150, 255, 1), rgba(100, 150, 255, 0.4));
+  box-shadow: 0 0 15px rgba(100, 150, 255, 0.8);
+}
+
+body.theme-crimson .comet {
+  background: linear-gradient(90deg, rgba(255, 100, 100, 0.8), rgba(255, 100, 100, 0));
+}
+body.theme-crimson .comet::before {
+  background: radial-gradient(circle, rgba(255, 100, 100, 1), rgba(255, 100, 100, 0.4));
+  box-shadow: 0 0 15px rgba(255, 100, 100, 0.8);
+}
+
+body.theme-royalblue .comet {
+  background: linear-gradient(90deg, rgba(59, 141, 255, 0.8), rgba(59, 141, 255, 0));
+}
+body.theme-royalblue .comet::before {
+  background: radial-gradient(circle, rgba(59, 141, 255, 1), rgba(59, 141, 255, 0.4));
+  box-shadow: 0 0 15px rgba(59, 141, 255, 0.8);
+}
+
+body.theme-emerald .comet {
+  background: linear-gradient(90deg, rgba(0, 180, 219, 0.8), rgba(0, 180, 219, 0));
+}
+body.theme-emerald .comet::before {
+  background: radial-gradient(circle, rgba(0, 180, 219, 1), rgba(0, 180, 219, 0.4));
+  box-shadow: 0 0 15px rgba(0, 180, 219, 0.8);
+}
+
+body.theme-amber .comet {
+  background: linear-gradient(90deg, rgba(255, 180, 50, 0.8), rgba(255, 180, 50, 0));
+}
+body.theme-amber .comet::before {
+  background: radial-gradient(circle, rgba(255, 180, 50, 1), rgba(255, 180, 50, 0.4));
+  box-shadow: 0 0 15px rgba(255, 180, 50, 0.8);
+}
+
+body.theme-purple .comet {
+  background: linear-gradient(90deg, rgba(150, 80, 255, 0.8), rgba(150, 80, 255, 0));
+}
+body.theme-purple .comet::before {
+  background: radial-gradient(circle, rgba(150, 80, 255, 1), rgba(150, 80, 255, 0.4));
+  box-shadow: 0 0 15px rgba(150, 80, 255, 0.8);
+}
+
+body.theme-teal .comet {
+  background: linear-gradient(90deg, rgba(0, 210, 255, 0.8), rgba(0, 210, 255, 0));
+}
+body.theme-teal .comet::before {
+  background: radial-gradient(circle, rgba(0, 210, 255, 1), rgba(0, 210, 255, 0.4));
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
+}
+
+body.theme-pink .comet {
+  background: linear-gradient(90deg, rgba(255, 120, 150, 0.8), rgba(255, 120, 150, 0));
+}
+body.theme-pink .comet::before {
+  background: radial-gradient(circle, rgba(255, 120, 150, 1), rgba(255, 120, 150, 0.4));
+  box-shadow: 0 0 15px rgba(255, 120, 150, 0.8);
+}
+
+body.theme-navy .comet {
+  background: linear-gradient(90deg, rgba(50, 100, 180, 0.8), rgba(50, 100, 180, 0));
+}
+body.theme-navy .comet::before {
+  background: radial-gradient(circle, rgba(50, 100, 180, 1), rgba(50, 100, 180, 0.4));
+  box-shadow: 0 0 15px rgba(50, 100, 180, 0.8);
+}
+
+body.theme-olive .comet {
+  background: linear-gradient(90deg, rgba(80, 140, 80, 0.8), rgba(80, 140, 80, 0));
+}
+body.theme-olive .comet::before {
+  background: radial-gradient(circle, rgba(80, 140, 80, 1), rgba(80, 140, 80, 0.4));
+  box-shadow: 0 0 15px rgba(80, 140, 80, 0.8);
+}
+
+body.theme-slate .comet {
+  background: linear-gradient(90deg, rgba(100, 130, 160, 0.8), rgba(100, 130, 160, 0));
+}
+body.theme-slate .comet::before {
+  background: radial-gradient(circle, rgba(100, 130, 160, 1), rgba(100, 130, 160, 0.4));
+  box-shadow: 0 0 15px rgba(100, 130, 160, 0.8);
+}
+
+/* ==================== */
+/* STARS, RAIN, PARTICLES - Background containers */
+/* ==================== */
+.stars, .rain, .particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Twinkling Stars */
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.3); }
+}
+
+/* Gentle Rain Drops */
+.drop {
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  width: 2px;
+  border-radius: 2px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-100px); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Floating Particles */
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+  border-radius: 50%;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.5; }
+  80% { opacity: 0.5; }
+  100% { transform: translate(200px, -200px) rotate(360deg); opacity: 0; }
 }
 
 /* ==================== */
@@ -38,182 +250,19 @@ body::before {
   100% { background-position: 0% 50%; }
 }
 
-/* ==================== */
-/* TWINKLING STARS */
-/* ==================== */
-.stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.star {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 3s infinite alternate;
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.2; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.3); }
-}
-
-/* ==================== */
-/* GENTLE RAIN */
-/* ==================== */
-.rain {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.drop {
-  position: absolute;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
-  width: 2px;
-  height: 60px;
-  border-radius: 2px;
-  animation: fall linear infinite;
-}
-
-@keyframes fall {
-  0% { transform: translateY(-100px); opacity: 0; }
-  10% { opacity: 0.6; }
-  90% { opacity: 0.6; }
-  100% { transform: translateY(100vh); opacity: 0; }
-}
-
-/* ==================== */
-/* FLOATING PARTICLES */
-/* ==================== */
-.particle {
-  position: fixed;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: -1;
-  animation: float linear infinite;
-}
-
-@keyframes float {
-  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-  20% { opacity: 0.5; }
-  80% { opacity: 0.5; }
-  100% { transform: translate(200px, -200px) rotate(360deg); opacity: 0; }
-}
-
-/* ==================== */
-/* THEME-SPECIFIC GRADIENTS */
-/* ==================== */
-
-/* 1. LIGHT THEME */
-body.theme-light::before {
-  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
-}
-body.theme-light {
-  background: transparent;
-}
-body.theme-light .star { background: #fff; box-shadow: 0 0 6px rgba(102, 126, 234, 0.5); }
-body.theme-light .drop { background: linear-gradient(to bottom, rgba(102, 126, 234, 0.5), transparent); }
-body.theme-light .particle { background: radial-gradient(circle, rgba(102, 126, 234, 0.3), transparent); }
-
-/* 2. DARK THEME */
-body.theme-dark::before {
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e, #1a1a2e);
-}
-body.theme-dark .star { background: #e0e0ff; box-shadow: 0 0 8px rgba(100, 100, 255, 0.6); }
-body.theme-dark .drop { background: linear-gradient(to bottom, rgba(100, 100, 255, 0.4), transparent); }
-body.theme-dark .particle { background: radial-gradient(circle, rgba(100, 100, 255, 0.3), transparent); }
-
-/* 3. CRIMSON THEME */
-body.theme-crimson::before {
-  background: linear-gradient(135deg, #ff0844, #ffb199, #ff6a6a, #cc3333);
-}
-body.theme-crimson .star { background: #ffcccc; box-shadow: 0 0 8px rgba(255, 80, 80, 0.6); }
-body.theme-crimson .drop { background: linear-gradient(to bottom, rgba(255, 80, 80, 0.4), transparent); }
-body.theme-crimson .particle { background: radial-gradient(circle, rgba(255, 80, 80, 0.3), transparent); }
-
-/* 4. ROYAL BLUE THEME */
-body.theme-royalblue::before {
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #4a7aaa, #6a9acc);
-}
-body.theme-royalblue .star { background: #cce0ff; box-shadow: 0 0 8px rgba(50, 100, 200, 0.6); }
-body.theme-royalblue .drop { background: linear-gradient(to bottom, rgba(50, 100, 200, 0.4), transparent); }
-body.theme-royalblue .particle { background: radial-gradient(circle, rgba(50, 100, 200, 0.3), transparent); }
-
-/* 5. EMERALD GREEN THEME */
-body.theme-emerald::before {
-  background: linear-gradient(135deg, #11998e, #38ef7d, #4aff9a, #2a8a6a);
-}
-body.theme-emerald .star { background: #ccffdd; box-shadow: 0 0 8px rgba(50, 200, 100, 0.6); }
-body.theme-emerald .drop { background: linear-gradient(to bottom, rgba(50, 200, 100, 0.4), transparent); }
-body.theme-emerald .particle { background: radial-gradient(circle, rgba(50, 200, 100, 0.3), transparent); }
-
-/* 6. AMBER THEME */
-body.theme-amber::before {
-  background: linear-gradient(135deg, #f2994a, #f2c94c, #ffcc66, #ffaa44);
-}
-body.theme-amber .star { background: #ffeecc; box-shadow: 0 0 8px rgba(255, 180, 50, 0.6); }
-body.theme-amber .drop { background: linear-gradient(to bottom, rgba(255, 180, 50, 0.4), transparent); }
-body.theme-amber .particle { background: radial-gradient(circle, rgba(255, 180, 50, 0.3), transparent); }
-
-/* 7. PURPLE THEME */
-body.theme-purple::before {
-  background: linear-gradient(135deg, #8e2de2, #4a00e0, #a855f7, #7c3aed);
-}
-body.theme-purple .star { background: #e0ccff; box-shadow: 0 0 8px rgba(150, 80, 255, 0.6); }
-body.theme-purple .drop { background: linear-gradient(to bottom, rgba(150, 80, 255, 0.4), transparent); }
-body.theme-purple .particle { background: radial-gradient(circle, rgba(150, 80, 255, 0.3), transparent); }
-
-/* 8. TEAL THEME */
-body.theme-teal::before {
-  background: linear-gradient(135deg, #00c6fb, #005bea, #00d2ff, #3a7bd5);
-}
-body.theme-teal .star { background: #ccffff; box-shadow: 0 0 8px rgba(0, 180, 220, 0.6); }
-body.theme-teal .drop { background: linear-gradient(to bottom, rgba(0, 180, 220, 0.4), transparent); }
-body.theme-teal .particle { background: radial-gradient(circle, rgba(0, 180, 220, 0.3), transparent); }
-
-/* 9. PINK THEME */
-body.theme-pink::before {
-  background: linear-gradient(135deg, #ff9a9e, #fecfef, #ffb6c1, #ff88bb);
-}
-body.theme-pink .star { background: #ffddee; box-shadow: 0 0 8px rgba(255, 120, 150, 0.6); }
-body.theme-pink .drop { background: linear-gradient(to bottom, rgba(255, 120, 150, 0.4), transparent); }
-body.theme-pink .particle { background: radial-gradient(circle, rgba(255, 120, 150, 0.3), transparent); }
-
-/* 10. NAVY BLUE THEME */
-body.theme-navy::before {
-  background: linear-gradient(135deg, #141e30, #243b55, #2a4a6a, #3a6a8a);
-}
-body.theme-navy .star { background: #bbddff; box-shadow: 0 0 8px rgba(50, 100, 180, 0.6); }
-body.theme-navy .drop { background: linear-gradient(to bottom, rgba(50, 100, 180, 0.4), transparent); }
-body.theme-navy .particle { background: radial-gradient(circle, rgba(50, 100, 180, 0.3), transparent); }
-
-/* 11. OLIVE GREEN THEME */
-body.theme-olive::before {
-  background: linear-gradient(135deg, #3a7b5a, #2a5a4a, #5a8a6a, #4a7a5a);
-}
-body.theme-olive .star { background: #ccffcc; box-shadow: 0 0 8px rgba(80, 140, 80, 0.6); }
-body.theme-olive .drop { background: linear-gradient(to bottom, rgba(80, 140, 80, 0.4), transparent); }
-body.theme-olive .particle { background: radial-gradient(circle, rgba(80, 140, 80, 0.3), transparent); }
-
-/* 12. SLATE GRAY THEME */
-body.theme-slate::before {
-  background: linear-gradient(135deg, #4a5568, #2d3748, #6b7a8a, #5a6a7a);
-}
-body.theme-slate .star { background: #cce0ee; box-shadow: 0 0 8px rgba(100, 130, 160, 0.6); }
-body.theme-slate .drop { background: linear-gradient(to bottom, rgba(100, 130, 160, 0.4), transparent); }
-body.theme-slate .particle { background: radial-gradient(circle, rgba(100, 130, 160, 0.3), transparent); }
+/* Theme-specific gradients */
+body.theme-light::before { background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c); }
+body.theme-dark::before { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e, #1a1a2e); }
+body.theme-crimson::before { background: linear-gradient(135deg, #ff0844, #ffb199, #ff6a6a, #cc3333); }
+body.theme-royalblue::before { background: linear-gradient(135deg, #1e3c72, #2a5298, #4a7aaa, #6a9acc); }
+body.theme-emerald::before { background: linear-gradient(135deg, #11998e, #38ef7d, #4aff9a, #2a8a6a); }
+body.theme-amber::before { background: linear-gradient(135deg, #f2994a, #f2c94c, #ffcc66, #ffaa44); }
+body.theme-purple::before { background: linear-gradient(135deg, #8e2de2, #4a00e0, #a855f7, #7c3aed); }
+body.theme-teal::before { background: linear-gradient(135deg, #00c6fb, #005bea, #00d2ff, #3a7bd5); }
+body.theme-pink::before { background: linear-gradient(135deg, #ff9a9e, #fecfef, #ffb6c1, #ff88bb); }
+body.theme-navy::before { background: linear-gradient(135deg, #141e30, #243b55, #2a4a6a, #3a6a8a); }
+body.theme-olive::before { background: linear-gradient(135deg, #3a7b5a, #2a5a4a, #5a8a6a, #4a7a5a); }
+body.theme-slate::before { background: linear-gradient(135deg, #4a5568, #2d3748, #6b7a8a, #5a6a7a); }
 
 /* ==================== */
 /* MODAL / POPUP STYLES */
@@ -249,14 +298,8 @@ body.theme-slate .particle { background: radial-gradient(circle, rgba(100, 130, 
 }
 
 @keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .modal-content h2 {
