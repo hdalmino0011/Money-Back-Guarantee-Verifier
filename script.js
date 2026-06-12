@@ -18,7 +18,7 @@ function resetSession() {
 }
 
 // ===================
-// THEME MODAL FUNCTIONS (NEW)
+// THEME MODAL FUNCTIONS
 // ===================
 const themes = [
   "light",
@@ -383,13 +383,17 @@ function convertAHT() {
 }
 
 // ===================
-// NOTES TEMPLATES (EXACT)
+// NOTES TEMPLATES (UPDATED WITH ORDER DATE)
 // ===================
 function loadNotes(num) {
+  // Get today's date in a readable format
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+  
   if (num === 1) {
-    document.getElementById("notesBox").value = "Agent Name: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
+    document.getElementById("notesBox").value = `Agent Name: \nOrder Date: ${formattedDate}\nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: `;
   } else if (num === 2) {
-    document.getElementById("notesBox").value = "AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\nname: \nphone number: \nemail address: \norder id: \nproduct name:";
+    document.getElementById("notesBox").value = `AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\norder date: ${formattedDate}\nname: \nphone number: \nemail address: \norder id: \nproduct name:`;
   } else if (num === 3) {
     document.getElementById("notesBox").value = "FOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
   }
