@@ -513,3 +513,60 @@ function filterCurrencies() {
   );
   renderCurrencies(filtered);
 }
+
+// ===================
+// ANIMATED BACKGROUND ELEMENTS (Stars, Rain, Particles)
+// ===================
+function createStars() {
+  const starsContainer = document.getElementById('stars');
+  if (!starsContainer) return;
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.width = Math.random() * 4 + 2 + 'px';
+    star.style.height = star.style.width;
+    star.style.animationDelay = Math.random() * 5 + 's';
+    star.style.animationDuration = Math.random() * 3 + 2 + 's';
+    starsContainer.appendChild(star);
+  }
+}
+
+function createRain() {
+  const rainContainer = document.getElementById('rain');
+  if (!rainContainer) return;
+  for (let i = 0; i < 60; i++) {
+    const drop = document.createElement('div');
+    drop.classList.add('drop');
+    drop.style.left = Math.random() * 100 + '%';
+    drop.style.width = Math.random() * 2 + 1 + 'px';
+    drop.style.height = Math.random() * 40 + 30 + 'px';
+    drop.style.animationDelay = Math.random() * 10 + 's';
+    drop.style.animationDuration = Math.random() * 1.5 + 1 + 's';
+    rainContainer.appendChild(drop);
+  }
+}
+
+function createParticles() {
+  const particlesContainer = document.getElementById('particles');
+  if (!particlesContainer) return;
+  for (let i = 0; i < 40; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.width = Math.random() * 8 + 4 + 'px';
+    particle.style.height = particle.style.width;
+    particle.style.animationDelay = Math.random() * 15 + 's';
+    particle.style.animationDuration = Math.random() * 20 + 15 + 's';
+    particlesContainer.appendChild(particle);
+  }
+}
+
+// Call these functions when page loads
+window.addEventListener('load', function() {
+  createStars();
+  createRain();
+  createParticles();
+});
