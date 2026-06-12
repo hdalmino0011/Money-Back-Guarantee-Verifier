@@ -154,7 +154,9 @@ function updatePhilippineTime() {
 setInterval(updatePhilippineTime, 1000);
 updatePhilippineTime();
 
-// Set today's date automatically on page load
+// ===================
+// WINDOW ONLOAD - COMBINED (sets date, loads theme, starts timezone updates, creates animations)
+// ===================
 window.onload = () => {
   const today = new Date();
   const yyyy = today.getFullYear();
@@ -176,6 +178,11 @@ window.onload = () => {
       updateAllTimezones();
     }
   }, 1000);
+  
+  // Create animated background elements
+  createStars();
+  createRain();
+  createParticles();
 };
 
 // Close modal when clicking outside of it
@@ -563,10 +570,3 @@ function createParticles() {
     particlesContainer.appendChild(particle);
   }
 }
-
-// Call these functions when page loads
-window.addEventListener('load', function() {
-  createStars();
-  createRain();
-  createParticles();
-});
