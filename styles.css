@@ -18,7 +18,7 @@ body {
 }
 
 /* ==================== */
-/* FLOWING WAVE BACKGROUND */
+/* BASE GRADIENT BACKGROUND */
 /* ==================== */
 body::before {
   content: "";
@@ -28,149 +28,192 @@ body::before {
   width: 100%;
   height: 100%;
   z-index: -2;
-  animation: waveFlow 8s ease-in-out infinite;
+  animation: slowDrift 20s ease infinite;
   background-size: 200% 200%;
 }
 
-@keyframes waveFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+@keyframes slowDrift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* Floating particles animation */
-body::after {
-  content: "";
+/* ==================== */
+/* TWINKLING STARS */
+/* ==================== */
+.stars {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  background-image: radial-gradient(circle at 20% 40%, rgba(255, 255, 255, 0.15) 2px, transparent 2px),
-                    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px),
-                    radial-gradient(circle at 40% 90%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                    radial-gradient(circle at 60% 20%, rgba(255, 255, 255, 0.08) 2.5px, transparent 2.5px);
-  background-size: 300px 300px, 250px 250px, 200px 200px, 350px 350px;
-  background-position: 0 0, 50px 100px, 100px 50px, 200px 150px;
-  animation: floatParticles 20s linear infinite;
   pointer-events: none;
+  z-index: -1;
 }
 
-@keyframes floatParticles {
-  0% {
-    background-position: 0 0, 50px 100px, 100px 50px, 200px 150px;
-  }
-  100% {
-    background-position: 300px 300px, 350px 400px, 400px 350px, 500px 450px;
-  }
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.3); }
 }
 
 /* ==================== */
-/* THEME-SPECIFIC WAVE GRADIENTS */
+/* GENTLE RAIN */
+/* ==================== */
+.rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.drop {
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  width: 2px;
+  height: 60px;
+  border-radius: 2px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-100px); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* ==================== */
+/* FLOATING PARTICLES */
+/* ==================== */
+.particle {
+  position: fixed;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.5; }
+  80% { opacity: 0.5; }
+  100% { transform: translate(200px, -200px) rotate(360deg); opacity: 0; }
+}
+
+/* ==================== */
+/* THEME-SPECIFIC GRADIENTS */
 /* ==================== */
 
 /* 1. LIGHT THEME */
 body.theme-light::before {
-  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c, #667eea);
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
 }
 body.theme-light {
   background: transparent;
 }
+body.theme-light .star { background: #fff; box-shadow: 0 0 6px rgba(102, 126, 234, 0.5); }
+body.theme-light .drop { background: linear-gradient(to bottom, rgba(102, 126, 234, 0.5), transparent); }
+body.theme-light .particle { background: radial-gradient(circle, rgba(102, 126, 234, 0.3), transparent); }
 
 /* 2. DARK THEME */
 body.theme-dark::before {
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e, #1a1a2e, #0f0c29);
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e, #1a1a2e);
 }
-body.theme-dark {
-  background: transparent;
-}
+body.theme-dark .star { background: #e0e0ff; box-shadow: 0 0 8px rgba(100, 100, 255, 0.6); }
+body.theme-dark .drop { background: linear-gradient(to bottom, rgba(100, 100, 255, 0.4), transparent); }
+body.theme-dark .particle { background: radial-gradient(circle, rgba(100, 100, 255, 0.3), transparent); }
 
 /* 3. CRIMSON THEME */
 body.theme-crimson::before {
-  background: linear-gradient(135deg, #ff0844, #ffb199, #ff6a6a, #cc3333, #ff0844);
+  background: linear-gradient(135deg, #ff0844, #ffb199, #ff6a6a, #cc3333);
 }
-body.theme-crimson {
-  background: transparent;
-}
+body.theme-crimson .star { background: #ffcccc; box-shadow: 0 0 8px rgba(255, 80, 80, 0.6); }
+body.theme-crimson .drop { background: linear-gradient(to bottom, rgba(255, 80, 80, 0.4), transparent); }
+body.theme-crimson .particle { background: radial-gradient(circle, rgba(255, 80, 80, 0.3), transparent); }
 
 /* 4. ROYAL BLUE THEME */
 body.theme-royalblue::before {
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #4a7aaa, #6a9acc, #1e3c72);
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #4a7aaa, #6a9acc);
 }
-body.theme-royalblue {
-  background: transparent;
-}
+body.theme-royalblue .star { background: #cce0ff; box-shadow: 0 0 8px rgba(50, 100, 200, 0.6); }
+body.theme-royalblue .drop { background: linear-gradient(to bottom, rgba(50, 100, 200, 0.4), transparent); }
+body.theme-royalblue .particle { background: radial-gradient(circle, rgba(50, 100, 200, 0.3), transparent); }
 
 /* 5. EMERALD GREEN THEME */
 body.theme-emerald::before {
-  background: linear-gradient(135deg, #11998e, #38ef7d, #4aff9a, #2a8a6a, #11998e);
+  background: linear-gradient(135deg, #11998e, #38ef7d, #4aff9a, #2a8a6a);
 }
-body.theme-emerald {
-  background: transparent;
-}
+body.theme-emerald .star { background: #ccffdd; box-shadow: 0 0 8px rgba(50, 200, 100, 0.6); }
+body.theme-emerald .drop { background: linear-gradient(to bottom, rgba(50, 200, 100, 0.4), transparent); }
+body.theme-emerald .particle { background: radial-gradient(circle, rgba(50, 200, 100, 0.3), transparent); }
 
 /* 6. AMBER THEME */
 body.theme-amber::before {
-  background: linear-gradient(135deg, #f2994a, #f2c94c, #ffcc66, #ffaa44, #f2994a);
+  background: linear-gradient(135deg, #f2994a, #f2c94c, #ffcc66, #ffaa44);
 }
-body.theme-amber {
-  background: transparent;
-}
+body.theme-amber .star { background: #ffeecc; box-shadow: 0 0 8px rgba(255, 180, 50, 0.6); }
+body.theme-amber .drop { background: linear-gradient(to bottom, rgba(255, 180, 50, 0.4), transparent); }
+body.theme-amber .particle { background: radial-gradient(circle, rgba(255, 180, 50, 0.3), transparent); }
 
 /* 7. PURPLE THEME */
 body.theme-purple::before {
-  background: linear-gradient(135deg, #8e2de2, #4a00e0, #a855f7, #7c3aed, #8e2de2);
+  background: linear-gradient(135deg, #8e2de2, #4a00e0, #a855f7, #7c3aed);
 }
-body.theme-purple {
-  background: transparent;
-}
+body.theme-purple .star { background: #e0ccff; box-shadow: 0 0 8px rgba(150, 80, 255, 0.6); }
+body.theme-purple .drop { background: linear-gradient(to bottom, rgba(150, 80, 255, 0.4), transparent); }
+body.theme-purple .particle { background: radial-gradient(circle, rgba(150, 80, 255, 0.3), transparent); }
 
 /* 8. TEAL THEME */
 body.theme-teal::before {
-  background: linear-gradient(135deg, #00c6fb, #005bea, #00d2ff, #3a7bd5, #00c6fb);
+  background: linear-gradient(135deg, #00c6fb, #005bea, #00d2ff, #3a7bd5);
 }
-body.theme-teal {
-  background: transparent;
-}
+body.theme-teal .star { background: #ccffff; box-shadow: 0 0 8px rgba(0, 180, 220, 0.6); }
+body.theme-teal .drop { background: linear-gradient(to bottom, rgba(0, 180, 220, 0.4), transparent); }
+body.theme-teal .particle { background: radial-gradient(circle, rgba(0, 180, 220, 0.3), transparent); }
 
 /* 9. PINK THEME */
 body.theme-pink::before {
-  background: linear-gradient(135deg, #ff9a9e, #fecfef, #ffb6c1, #ff88bb, #ff9a9e);
+  background: linear-gradient(135deg, #ff9a9e, #fecfef, #ffb6c1, #ff88bb);
 }
-body.theme-pink {
-  background: transparent;
-}
+body.theme-pink .star { background: #ffddee; box-shadow: 0 0 8px rgba(255, 120, 150, 0.6); }
+body.theme-pink .drop { background: linear-gradient(to bottom, rgba(255, 120, 150, 0.4), transparent); }
+body.theme-pink .particle { background: radial-gradient(circle, rgba(255, 120, 150, 0.3), transparent); }
 
 /* 10. NAVY BLUE THEME */
 body.theme-navy::before {
-  background: linear-gradient(135deg, #141e30, #243b55, #2a4a6a, #3a6a8a, #141e30);
+  background: linear-gradient(135deg, #141e30, #243b55, #2a4a6a, #3a6a8a);
 }
-body.theme-navy {
-  background: transparent;
-}
+body.theme-navy .star { background: #bbddff; box-shadow: 0 0 8px rgba(50, 100, 180, 0.6); }
+body.theme-navy .drop { background: linear-gradient(to bottom, rgba(50, 100, 180, 0.4), transparent); }
+body.theme-navy .particle { background: radial-gradient(circle, rgba(50, 100, 180, 0.3), transparent); }
 
 /* 11. OLIVE GREEN THEME */
 body.theme-olive::before {
-  background: linear-gradient(135deg, #3a7b5a, #2a5a4a, #5a8a6a, #4a7a5a, #3a7b5a);
+  background: linear-gradient(135deg, #3a7b5a, #2a5a4a, #5a8a6a, #4a7a5a);
 }
-body.theme-olive {
-  background: transparent;
-}
+body.theme-olive .star { background: #ccffcc; box-shadow: 0 0 8px rgba(80, 140, 80, 0.6); }
+body.theme-olive .drop { background: linear-gradient(to bottom, rgba(80, 140, 80, 0.4), transparent); }
+body.theme-olive .particle { background: radial-gradient(circle, rgba(80, 140, 80, 0.3), transparent); }
 
 /* 12. SLATE GRAY THEME */
 body.theme-slate::before {
-  background: linear-gradient(135deg, #4a5568, #2d3748, #6b7a8a, #5a6a7a, #4a5568);
+  background: linear-gradient(135deg, #4a5568, #2d3748, #6b7a8a, #5a6a7a);
 }
-body.theme-slate {
-  background: transparent;
-}
+body.theme-slate .star { background: #cce0ee; box-shadow: 0 0 8px rgba(100, 130, 160, 0.6); }
+body.theme-slate .drop { background: linear-gradient(to bottom, rgba(100, 130, 160, 0.4), transparent); }
+body.theme-slate .particle { background: radial-gradient(circle, rgba(100, 130, 160, 0.3), transparent); }
 
 /* ==================== */
 /* MODAL / POPUP STYLES */
@@ -272,7 +315,7 @@ body.theme-light {
   color: #1a1a2e;
 }
 body.theme-light .container {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.94);
   color: #1a1a2e;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2px);
@@ -300,14 +343,14 @@ body.theme-light .back:hover {
 }
 body.theme-light .timezone-item,
 body.theme-light .currency-item {
-  background: rgba(240, 240, 240, 0.9);
+  background: rgba(240, 240, 240, 0.92);
   color: #1a1a2e;
 }
 body.theme-light #refundResult,
 body.theme-light #discountResult,
 body.theme-light #timeframeResult,
 body.theme-light #ahtResult {
-  background: rgba(248, 249, 250, 0.9);
+  background: rgba(248, 249, 250, 0.92);
   border-left-color: #667eea;
 }
 body.theme-light .time-container {
@@ -343,7 +386,7 @@ body.theme-dark {
   color: #e0e0e0;
 }
 body.theme-dark .container {
-  background: rgba(30, 30, 46, 0.95);
+  background: rgba(30, 30, 46, 0.94);
   color: #e0e0e0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(2px);
@@ -371,14 +414,14 @@ body.theme-dark .back:hover {
 }
 body.theme-dark .timezone-item,
 body.theme-dark .currency-item {
-  background: rgba(42, 42, 58, 0.9);
+  background: rgba(42, 42, 58, 0.92);
   color: #e0e0e0;
 }
 body.theme-dark #refundResult,
 body.theme-dark #discountResult,
 body.theme-dark #timeframeResult,
 body.theme-dark #ahtResult {
-  background: rgba(42, 42, 58, 0.9);
+  background: rgba(42, 42, 58, 0.92);
   border-left-color: #6b46e6;
 }
 body.theme-dark .time-container {
@@ -442,14 +485,14 @@ body.theme-crimson .back:hover {
 }
 body.theme-crimson .timezone-item,
 body.theme-crimson .currency-item {
-  background: rgba(90, 32, 48, 0.9);
+  background: rgba(90, 32, 48, 0.92);
   color: #ffe0e0;
 }
 body.theme-crimson #refundResult,
 body.theme-crimson #discountResult,
 body.theme-crimson #timeframeResult,
 body.theme-crimson #ahtResult {
-  background: rgba(90, 32, 48, 0.9);
+  background: rgba(90, 32, 48, 0.92);
   border-left-color: #ff6b6b;
 }
 body.theme-crimson .time-container {
@@ -485,7 +528,7 @@ body.theme-royalblue {
   color: #e8f0fe;
 }
 body.theme-royalblue .container {
-  background: rgba(20, 40, 70, 0.95);
+  background: rgba(20, 40, 70, 0.94);
   color: #e8f0fe;
   backdrop-filter: blur(2px);
 }
@@ -512,14 +555,14 @@ body.theme-royalblue .back:hover {
 }
 body.theme-royalblue .timezone-item,
 body.theme-royalblue .currency-item {
-  background: rgba(42, 74, 112, 0.9);
+  background: rgba(42, 74, 112, 0.92);
   color: #e8f0fe;
 }
 body.theme-royalblue #refundResult,
 body.theme-royalblue #discountResult,
 body.theme-royalblue #timeframeResult,
 body.theme-royalblue #ahtResult {
-  background: rgba(42, 74, 112, 0.9);
+  background: rgba(42, 74, 112, 0.92);
   border-left-color: #5a9aff;
 }
 body.theme-royalblue .time-container {
@@ -555,7 +598,7 @@ body.theme-emerald {
   color: #e8fff0;
 }
 body.theme-emerald .container {
-  background: rgba(10, 50, 40, 0.95);
+  background: rgba(10, 50, 40, 0.94);
   color: #e8fff0;
   backdrop-filter: blur(2px);
 }
@@ -582,14 +625,14 @@ body.theme-emerald .back:hover {
 }
 body.theme-emerald .timezone-item,
 body.theme-emerald .currency-item {
-  background: rgba(42, 106, 80, 0.9);
+  background: rgba(42, 106, 80, 0.92);
   color: #e8fff0;
 }
 body.theme-emerald #refundResult,
 body.theme-emerald #discountResult,
 body.theme-emerald #timeframeResult,
 body.theme-emerald #ahtResult {
-  background: rgba(42, 106, 80, 0.9);
+  background: rgba(42, 106, 80, 0.92);
   border-left-color: #4aff9a;
 }
 body.theme-emerald .time-container {
@@ -625,7 +668,7 @@ body.theme-amber {
   color: #2a1e0a;
 }
 body.theme-amber .container {
-  background: rgba(240, 220, 180, 0.95);
+  background: rgba(240, 220, 180, 0.94);
   color: #2a1e0a;
   backdrop-filter: blur(2px);
 }
@@ -652,14 +695,14 @@ body.theme-amber .back:hover {
 }
 body.theme-amber .timezone-item,
 body.theme-amber .currency-item {
-  background: rgba(240, 216, 160, 0.9);
+  background: rgba(240, 216, 160, 0.92);
   color: #2a1e0a;
 }
 body.theme-amber #refundResult,
 body.theme-amber #discountResult,
 body.theme-amber #timeframeResult,
 body.theme-amber #ahtResult {
-  background: rgba(240, 216, 160, 0.9);
+  background: rgba(240, 216, 160, 0.92);
   border-left-color: #ffaa44;
 }
 body.theme-amber .time-container {
@@ -695,7 +738,7 @@ body.theme-purple {
   color: #f0e8ff;
 }
 body.theme-purple .container {
-  background: rgba(40, 20, 70, 0.95);
+  background: rgba(40, 20, 70, 0.94);
   color: #f0e8ff;
   backdrop-filter: blur(2px);
 }
@@ -722,14 +765,14 @@ body.theme-purple .back:hover {
 }
 body.theme-purple .timezone-item,
 body.theme-purple .currency-item {
-  background: rgba(74, 58, 122, 0.9);
+  background: rgba(74, 58, 122, 0.92);
   color: #f0e8ff;
 }
 body.theme-purple #refundResult,
 body.theme-purple #discountResult,
 body.theme-purple #timeframeResult,
 body.theme-purple #ahtResult {
-  background: rgba(74, 58, 122, 0.9);
+  background: rgba(74, 58, 122, 0.92);
   border-left-color: #aa77ff;
 }
 body.theme-purple .time-container {
@@ -765,7 +808,7 @@ body.theme-teal {
   color: #e8faff;
 }
 body.theme-teal .container {
-  background: rgba(10, 50, 70, 0.95);
+  background: rgba(10, 50, 70, 0.94);
   color: #e8faff;
   backdrop-filter: blur(2px);
 }
@@ -792,14 +835,14 @@ body.theme-teal .back:hover {
 }
 body.theme-teal .timezone-item,
 body.theme-teal .currency-item {
-  background: rgba(42, 106, 138, 0.9);
+  background: rgba(42, 106, 138, 0.92);
   color: #e8faff;
 }
 body.theme-teal #refundResult,
 body.theme-teal #discountResult,
 body.theme-teal #timeframeResult,
 body.theme-teal #ahtResult {
-  background: rgba(42, 106, 138, 0.9);
+  background: rgba(42, 106, 138, 0.92);
   border-left-color: #55ddff;
 }
 body.theme-teal .time-container {
@@ -835,7 +878,7 @@ body.theme-pink {
   color: #4a1a2e;
 }
 body.theme-pink .container {
-  background: rgba(255, 240, 245, 0.95);
+  background: rgba(255, 240, 245, 0.94);
   color: #4a1a2e;
   backdrop-filter: blur(2px);
 }
@@ -862,14 +905,14 @@ body.theme-pink .back:hover {
 }
 body.theme-pink .timezone-item,
 body.theme-pink .currency-item {
-  background: rgba(240, 208, 224, 0.9);
+  background: rgba(240, 208, 224, 0.92);
   color: #4a1a2e;
 }
 body.theme-pink #refundResult,
 body.theme-pink #discountResult,
 body.theme-pink #timeframeResult,
 body.theme-pink #ahtResult {
-  background: rgba(240, 208, 224, 0.9);
+  background: rgba(240, 208, 224, 0.92);
   border-left-color: #ff88bb;
 }
 body.theme-pink .time-container {
@@ -905,7 +948,7 @@ body.theme-navy {
   color: #e8f0ff;
 }
 body.theme-navy .container {
-  background: rgba(20, 30, 50, 0.95);
+  background: rgba(20, 30, 50, 0.94);
   color: #e8f0ff;
   backdrop-filter: blur(2px);
 }
@@ -932,14 +975,14 @@ body.theme-navy .back:hover {
 }
 body.theme-navy .timezone-item,
 body.theme-navy .currency-item {
-  background: rgba(42, 58, 90, 0.9);
+  background: rgba(42, 58, 90, 0.92);
   color: #e8f0ff;
 }
 body.theme-navy #refundResult,
 body.theme-navy #discountResult,
 body.theme-navy #timeframeResult,
 body.theme-navy #ahtResult {
-  background: rgba(42, 58, 90, 0.9);
+  background: rgba(42, 58, 90, 0.92);
   border-left-color: #6a8acc;
 }
 body.theme-navy .time-container {
@@ -975,7 +1018,7 @@ body.theme-olive {
   color: #f0f8e8;
 }
 body.theme-olive .container {
-  background: rgba(40, 60, 35, 0.95);
+  background: rgba(40, 60, 35, 0.94);
   color: #f0f8e8;
   backdrop-filter: blur(2px);
 }
@@ -1002,14 +1045,14 @@ body.theme-olive .back:hover {
 }
 body.theme-olive .timezone-item,
 body.theme-olive .currency-item {
-  background: rgba(74, 122, 74, 0.9);
+  background: rgba(74, 122, 74, 0.92);
   color: #f0f8e8;
 }
 body.theme-olive #refundResult,
 body.theme-olive #discountResult,
 body.theme-olive #timeframeResult,
 body.theme-olive #ahtResult {
-  background: rgba(74, 122, 74, 0.9);
+  background: rgba(74, 122, 74, 0.92);
   border-left-color: #8acc6a;
 }
 body.theme-olive .time-container {
@@ -1045,7 +1088,7 @@ body.theme-slate {
   color: #e2e8f0;
 }
 body.theme-slate .container {
-  background: rgba(45, 55, 72, 0.95);
+  background: rgba(45, 55, 72, 0.94);
   color: #e2e8f0;
   backdrop-filter: blur(2px);
 }
@@ -1072,14 +1115,14 @@ body.theme-slate .back:hover {
 }
 body.theme-slate .timezone-item,
 body.theme-slate .currency-item {
-  background: rgba(74, 90, 106, 0.9);
+  background: rgba(74, 90, 106, 0.92);
   color: #e2e8f0;
 }
 body.theme-slate #refundResult,
 body.theme-slate #discountResult,
 body.theme-slate #timeframeResult,
 body.theme-slate #ahtResult {
-  background: rgba(74, 90, 106, 0.9);
+  background: rgba(74, 90, 106, 0.92);
   border-left-color: #9ab0c0;
 }
 body.theme-slate .time-container {
