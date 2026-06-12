@@ -3,18 +3,64 @@ function refreshPage() {
   location.reload();
 }
 
-// RESET SESSION FUNCTION (clears cache, storage, then hard reload)
+// RESET SESSION FUNCTION - ENHANCED (clears ALL cache and forces fresh load)
 function resetSession() {
   // Clear localStorage
   localStorage.clear();
   // Clear sessionStorage
   sessionStorage.clear();
-  // Clear all cookies
+  
+  // Clear all cookies (multiple paths/domains for thoroughness)
   document.cookie.split(";").forEach(function(c) {
     document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/;domain=" + window.location.hostname);
+    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/;domain=." + window.location.hostname);
   });
-  // Force hard reload (bypass cache)
-  location.reload(true);
+  
+  // Clear any cached data in Cache API if available
+  if ('caches' in window) {
+    caches.keys().then(function(names) {
+      for (let name of names) {
+        caches.delete(name);
+      }
+    }).catch(function() {
+      console.log("Cache API clear attempted");
+    });
+  }
+  
+  // Clear IndexedDB if any
+  if ('indexedDB' in window) {
+    try {
+      // Some browsers support indexedDB.databases()
+      if (indexedDB.databases) {
+        indexedDB.databases().then(function(dbs) {
+          dbs.forEach(function(db) {
+            indexedDB.deleteDatabase(db.name);
+          });
+        }).catch(function() {
+          console.log("IndexedDB clear attempted");
+        });
+      }
+    } catch(e) {
+      console.log("IndexedDB clear fallback");
+    }
+  }
+  
+  // Clear service worker caches if any
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    }).catch(function() {
+      console.log("Service worker unregister attempted");
+    });
+  }
+  
+  // Force hard reload with cache-busting parameter
+  const url = new URL(window.location.href);
+  url.searchParams.set('_reset', Date.now());
+  window.location.href = url.toString();
 }
 
 // ===================
@@ -383,17 +429,13 @@ function convertAHT() {
 }
 
 // ===================
-// NOTES TEMPLATES (UPDATED WITH ORDER DATE)
+// NOTES TEMPLATES (UPDATED WITH ORDER DATE FIELD - NO AUTO-FILL)
 // ===================
 function loadNotes(num) {
-  // Get today's date in a readable format
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
-  
   if (num === 1) {
-    document.getElementById("notesBox").value = `Agent Name: \nOrder Date: ${formattedDate}\nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: `;
+    document.getElementById("notesBox").value = "Agent Name: \nOrder Date: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
   } else if (num === 2) {
-    document.getElementById("notesBox").value = `AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\norder date: ${formattedDate}\nname: \nphone number: \nemail address: \norder id: \nproduct name:`;
+    document.getElementById("notesBox").value = "AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\norder date: \nname: \nphone number: \nemail address: \norder id: \nproduct name:";
   } else if (num === 3) {
     document.getElementById("notesBox").value = "FOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
   }
