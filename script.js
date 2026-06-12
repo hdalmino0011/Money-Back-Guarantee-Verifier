@@ -183,7 +183,7 @@ window.onload = () => {
   createStars();
   createRain();
   createParticles();
-  createComets();
+  createGlowingStars();
 };
 
 // Close modal when clicking outside of it
@@ -573,20 +573,36 @@ function createParticles() {
 }
 
 // ===================
-// CREATE COMETS
+// CREATE GLOWING STARS (replaces comets)
 // ===================
-function createComets() {
-  const cometsContainer = document.getElementById('comets');
-  if (!cometsContainer) return;
+function createGlowingStars() {
+  const starsContainer = document.getElementById('comets');
+  if (!starsContainer) return;
   
-  // Create 8 comets that shoot at different intervals
-  for (let i = 0; i < 8; i++) {
-    const comet = document.createElement('div');
-    comet.classList.add('comet');
-    comet.style.top = Math.random() * 60 + 10 + '%';
-    comet.style.animationDelay = Math.random() * 20 + 's';
-    comet.style.animationDuration = Math.random() * 4 + 3 + 's';
-    comet.style.width = Math.random() * 80 + 60 + 'px';
-    cometsContainer.appendChild(comet);
+  // Clear any existing content
+  starsContainer.innerHTML = '';
+  
+  // Create 60 glowing stars of different sizes
+  for (let i = 0; i < 60; i++) {
+    const star = document.createElement('div');
+    star.classList.add('glowing-star');
+    
+    // Random size class
+    const sizeRand = Math.random();
+    if (sizeRand < 0.2) {
+      star.classList.add('large');
+    } else if (sizeRand > 0.8) {
+      star.classList.add('small');
+    }
+    
+    // Random position
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    
+    // Random animation delay and duration
+    star.style.animationDelay = Math.random() * 5 + 's';
+    star.style.animationDuration = Math.random() * 3 + 2 + 's';
+    
+    starsContainer.appendChild(star);
   }
 }
