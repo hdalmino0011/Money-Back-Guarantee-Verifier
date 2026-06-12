@@ -17,15 +17,56 @@ function resetSession() {
   location.reload(true);
 }
 
-// DARK MODE TOGGLE
-function toggleDark() {
-  document.body.classList.toggle("dark");
+// ===================
+// THEME CYCLE (12 THEMES)
+// ===================
+const themes = [
+  "light",
+  "dark",
+  "crimson",
+  "royalblue",
+  "emerald",
+  "amber",
+  "purple",
+  "teal",
+  "pink",
+  "navy",
+  "olive",
+  "slate"
+];
+
+let currentThemeIndex = 0;
+
+function toggleTheme() {
+  // Remove all theme classes from body
+  themes.forEach(theme => {
+    document.body.classList.remove(`theme-${theme}`);
+  });
+  
+  // Move to next theme
+  currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+  const newTheme = themes[currentThemeIndex];
+  document.body.classList.add(`theme-${newTheme}`);
+  
+  // Update button text to show current theme
   const btn = document.querySelector(".dark-toggle");
-  if (document.body.classList.contains("dark")) {
-    btn.textContent = "Light Mode";
-  } else {
-    btn.textContent = "Dark Mode";
+  let themeDisplayName = "";
+  switch(newTheme) {
+    case "light": themeDisplayName = "Light"; break;
+    case "dark": themeDisplayName = "Dark"; break;
+    case "crimson": themeDisplayName = "Crimson"; break;
+    case "royalblue": themeDisplayName = "Royal Blue"; break;
+    case "emerald": themeDisplayName = "Emerald"; break;
+    case "amber": themeDisplayName = "Amber"; break;
+    case "purple": themeDisplayName = "Purple"; break;
+    case "teal": themeDisplayName = "Teal"; break;
+    case "pink": themeDisplayName = "Pink"; break;
+    case "navy": themeDisplayName = "Navy"; break;
+    case "olive": themeDisplayName = "Olive"; break;
+    case "slate": themeDisplayName = "Slate"; break;
+    default: themeDisplayName = "Theme";
   }
+  btn.textContent = `${themeDisplayName}`;
 }
 
 // NAVIGATION
@@ -51,10 +92,10 @@ function goHome() {
 }
 
 // ===================
-// LIVE PHILIPPINE TIME (UPDATES EVERY SECOND)
+// LIVE PHILIPPINE TIME (12-HOUR FORMAT WITH AM/PM - UPDATES EVERY SECOND)
 // ===================
 function updatePhilippineTime() {
-  const options = { timeZone: 'Asia/Manila', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  const options = { timeZone: 'Asia/Manila', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
   const timeString = new Date().toLocaleTimeString('en-PH', options);
   document.getElementById('phTime').innerText = timeString;
 }
@@ -71,6 +112,34 @@ window.onload = () => {
   
   document.getElementById("todayDate").value = todayFormatted;
   
+  // Set default theme to light (or load saved theme from localStorage)
+  const savedTheme = localStorage.getItem("selectedTheme");
+  if (savedTheme && themes.includes(savedTheme)) {
+    const themeIndex = themes.indexOf(savedTheme);
+    currentThemeIndex = themeIndex;
+    document.body.classList.add(`theme-${savedTheme}`);
+    const btn = document.querySelector(".dark-toggle");
+    let themeDisplayName = "";
+    switch(savedTheme) {
+      case "light": themeDisplayName = "Light"; break;
+      case "dark": themeDisplayName = "Dark"; break;
+      case "crimson": themeDisplayName = "Crimson"; break;
+      case "royalblue": themeDisplayName = "Royal Blue"; break;
+      case "emerald": themeDisplayName = "Emerald"; break;
+      case "amber": themeDisplayName = "Amber"; break;
+      case "purple": themeDisplayName = "Purple"; break;
+      case "teal": themeDisplayName = "Teal"; break;
+      case "pink": themeDisplayName = "Pink"; break;
+      case "navy": themeDisplayName = "Navy"; break;
+      case "olive": themeDisplayName = "Olive"; break;
+      case "slate": themeDisplayName = "Slate"; break;
+      default: themeDisplayName = "Theme";
+    }
+    btn.textContent = themeDisplayName;
+  } else {
+    document.body.classList.add("theme-light");
+  }
+  
   // Start real-time updates for US/Canada times (only when section is visible)
   setInterval(() => {
     const tzSection = document.getElementById('timezone');
@@ -79,6 +148,42 @@ window.onload = () => {
     }
   }, 1000);
 };
+
+// Save theme preference when changing
+function toggleTheme() {
+  // Remove all theme classes from body
+  themes.forEach(theme => {
+    document.body.classList.remove(`theme-${theme}`);
+  });
+  
+  // Move to next theme
+  currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+  const newTheme = themes[currentThemeIndex];
+  document.body.classList.add(`theme-${newTheme}`);
+  
+  // Save to localStorage
+  localStorage.setItem("selectedTheme", newTheme);
+  
+  // Update button text to show current theme
+  const btn = document.querySelector(".dark-toggle");
+  let themeDisplayName = "";
+  switch(newTheme) {
+    case "light": themeDisplayName = "Light"; break;
+    case "dark": themeDisplayName = "Dark"; break;
+    case "crimson": themeDisplayName = "Crimson"; break;
+    case "royalblue": themeDisplayName = "Royal Blue"; break;
+    case "emerald": themeDisplayName = "Emerald"; break;
+    case "amber": themeDisplayName = "Amber"; break;
+    case "purple": themeDisplayName = "Purple"; break;
+    case "teal": themeDisplayName = "Teal"; break;
+    case "pink": themeDisplayName = "Pink"; break;
+    case "navy": themeDisplayName = "Navy"; break;
+    case "olive": themeDisplayName = "Olive"; break;
+    case "slate": themeDisplayName = "Slate"; break;
+    default: themeDisplayName = "Theme";
+  }
+  btn.textContent = themeDisplayName;
+}
 
 // ===================
 // COMPLETE US STATES & CANADIAN PROVINCES/TERRITORIES WITH TIME ZONES
