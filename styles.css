@@ -1390,19 +1390,22 @@ body.theme-slate .glowing-star::before {
 }
 
 /* ==================== */
-/* 8 NEW ADVANCED THEMES - COMPLETE STYLES */
+/* 9 NEW ADVANCED THEMES (REDESIGNED + 1 BONUS) */
 /* ==================== */
 
-/* 13. COSMOS THEME */
+/* 13. COSMOS THEME - Deep space with glowing planets and twinkling stars */
 @keyframes cosmosDrift {
   0% {
     background-position: 0% 0%;
+    background-size: 200% 200%;
   }
   50% {
     background-position: 100% 100%;
+    background-size: 250% 250%;
   }
   100% {
     background-position: 0% 0%;
+    background-size: 200% 200%;
   }
 }
 
@@ -1413,27 +1416,30 @@ body.theme-cosmos::before {
 }
 
 body.theme-cosmos {
-  color: #e8e0ff;
+  color: #d8d0ff;
 }
 
 body.theme-cosmos .container {
   background: rgba(10, 10, 30, 0.85);
-  color: #e8e0ff;
+  color: #d8d0ff;
   backdrop-filter: blur(3px);
   border: 1px solid rgba(100, 80, 200, 0.3);
+  box-shadow: 0 0 30px rgba(100, 80, 200, 0.2);
 }
 
 body.theme-cosmos input,
 body.theme-cosmos select,
 body.theme-cosmos textarea {
   background: #1a1a3a;
-  color: #e8e0ff;
-  border: 1px solid #4a3a8a;
+  color: #d8d0ff;
+  border: 1px solid #6a4aff;
+  box-shadow: 0 0 10px rgba(106, 74, 255, 0.2);
 }
 
 body.theme-cosmos button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #6b4eff, #9b6eff);
   color: white;
+  box-shadow: 0 4px 15px rgba(107, 78, 255, 0.4);
 }
 
 body.theme-cosmos button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
@@ -1441,19 +1447,20 @@ body.theme-cosmos button:not(.theme-option-btn):not(.modal-close):not(.refresh-b
 }
 
 body.theme-cosmos .back {
-  background: #3a2a6a;
+  background: #4a3a8a;
   color: white;
 }
 
 body.theme-cosmos .back:hover {
-  background: #4a3a7a;
+  background: #5a4a9a;
   transform: translateY(-2px);
 }
 
 body.theme-cosmos .timezone-item,
 body.theme-cosmos .currency-item {
   background: rgba(30, 20, 60, 0.9);
-  color: #e8e0ff;
+  color: #d8d0ff;
+  border: 1px solid #6a4aff;
 }
 
 body.theme-cosmos #refundResult,
@@ -1466,6 +1473,7 @@ body.theme-cosmos #ahtResult {
 
 body.theme-cosmos .time-container {
   background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #6a4aff;
 }
 
 body.theme-cosmos .refresh-btn {
@@ -1508,50 +1516,53 @@ body.theme-cosmos .glowing-star::before {
   background: radial-gradient(circle, rgba(192, 138, 255, 0.6), transparent);
 }
 
-/* 14. GALAXY THEME */
+/* 14. GALAXY THEME - Spiral galaxy with rotating nebula effect */
 @keyframes galaxyRotate {
   0% {
+    transform: rotate(0deg);
     background-position: 0% 0%;
-    background-size: 200% 200%;
   }
   50% {
+    transform: rotate(5deg);
     background-position: 100% 100%;
-    background-size: 250% 250%;
   }
   100% {
+    transform: rotate(0deg);
     background-position: 0% 0%;
-    background-size: 200% 200%;
   }
 }
 
 body.theme-galaxy::before {
-  background: radial-gradient(circle at 20% 30%, #1a0033, #2d1b4e, #1a0033, #0d0020);
+  background: radial-gradient(circle at 50% 50%, #1a0033, #2d1b4e, #4a2a7a, #6a4aaa, #2d1b4e, #1a0033);
   background-size: 200% 200%;
   animation: galaxyRotate 30s ease infinite;
 }
 
 body.theme-galaxy {
-  color: #f0e8ff;
+  color: #e8d0ff;
 }
 
 body.theme-galaxy .container {
   background: rgba(20, 10, 40, 0.88);
-  color: #f0e8ff;
+  color: #e8d0ff;
   backdrop-filter: blur(3px);
-  border: 1px solid rgba(150, 100, 255, 0.3);
+  border: 1px solid rgba(150, 100, 255, 0.4);
+  box-shadow: 0 0 30px rgba(150, 100, 255, 0.2);
 }
 
 body.theme-galaxy input,
 body.theme-galaxy select,
 body.theme-galaxy textarea {
   background: #2a1a4a;
-  color: #f0e8ff;
-  border: 1px solid #6a4aaa;
+  color: #e8d0ff;
+  border: 1px solid #9b6eff;
+  box-shadow: 0 0 10px rgba(155, 110, 255, 0.2);
 }
 
 body.theme-galaxy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #8b5cf6, #6d28d9);
   color: white;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
 }
 
 body.theme-galaxy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
@@ -1559,19 +1570,20 @@ body.theme-galaxy button:not(.theme-option-btn):not(.modal-close):not(.refresh-b
 }
 
 body.theme-galaxy .back {
-  background: #4a2a8a;
+  background: #5a3a9a;
   color: white;
 }
 
 body.theme-galaxy .back:hover {
-  background: #5a3a9a;
+  background: #6a4aaa;
   transform: translateY(-2px);
 }
 
 body.theme-galaxy .timezone-item,
 body.theme-galaxy .currency-item {
   background: rgba(40, 25, 70, 0.9);
-  color: #f0e8ff;
+  color: #e8d0ff;
+  border: 1px solid #9b6eff;
 }
 
 body.theme-galaxy #refundResult,
@@ -1584,6 +1596,7 @@ body.theme-galaxy #ahtResult {
 
 body.theme-galaxy .time-container {
   background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #9b6eff;
 }
 
 body.theme-galaxy .refresh-btn {
@@ -1626,21 +1639,27 @@ body.theme-galaxy .glowing-star::before {
   background: radial-gradient(circle, rgba(167, 139, 250, 0.6), transparent);
 }
 
-/* 15. AURORA THEME */
+/* 15. AURORA THEME - Northern lights with flowing waves */
 @keyframes auroraWave {
   0% {
-    background-position: 0% 50%;
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 50% 100%;
   }
   50% {
     background-position: 100% 50%;
   }
+  75% {
+    background-position: 50% 0%;
+  }
   100% {
-    background-position: 0% 50%;
+    background-position: 0% 0%;
   }
 }
 
 body.theme-aurora::before {
-  background: linear-gradient(125deg, #0a2a2a, #1a5a4a, #2a8a6a, #4aff9a, #2a8a6a, #1a5a4a);
+  background: linear-gradient(125deg, #0a2a2a, #1a5a4a, #2a8a6a, #4aff9a, #2a8a6a, #1a5a4a, #0a2a2a);
   background-size: 300% 300%;
   animation: auroraWave 12s ease infinite;
 }
@@ -1653,7 +1672,7 @@ body.theme-aurora .container {
   background: rgba(10, 40, 35, 0.88);
   color: #e0f8f0;
   backdrop-filter: blur(2px);
-  border: 1px solid rgba(74, 255, 154, 0.3);
+  border: 1px solid rgba(74, 255, 154, 0.4);
 }
 
 body.theme-aurora input,
@@ -1661,7 +1680,7 @@ body.theme-aurora select,
 body.theme-aurora textarea {
   background: #1a4a3a;
   color: #e0f8f0;
-  border: 1px solid #4aaa7a;
+  border: 1px solid #4aff9a;
 }
 
 body.theme-aurora button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
@@ -1740,21 +1759,24 @@ body.theme-aurora .glowing-star::before {
   background: radial-gradient(circle, rgba(110, 231, 183, 0.5), transparent);
 }
 
-/* 16. SUNSET THEME */
+/* 16. SUNSET THEME - Warm sunset with glowing horizon */
 @keyframes sunsetGlow {
   0% {
     background-position: 0% 0%;
+    opacity: 0.8;
   }
   50% {
     background-position: 100% 100%;
+    opacity: 1;
   }
   100% {
     background-position: 0% 0%;
+    opacity: 0.8;
   }
 }
 
 body.theme-sunset::before {
-  background: linear-gradient(135deg, #ff6b35, #f7931e, #ff4d6d, #c9184a);
+  background: linear-gradient(135deg, #ff6b35, #f7931e, #ff4d6d, #c9184a, #ff6b35);
   background-size: 300% 300%;
   animation: sunsetGlow 15s ease infinite;
 }
@@ -1767,7 +1789,7 @@ body.theme-sunset .container {
   background: rgba(40, 20, 15, 0.88);
   color: #fff0e0;
   backdrop-filter: blur(2px);
-  border: 1px solid rgba(255, 100, 50, 0.3);
+  border: 1px solid rgba(255, 100, 50, 0.4);
 }
 
 body.theme-sunset input,
@@ -1855,13 +1877,19 @@ body.theme-sunset .glowing-star::before {
   background: radial-gradient(circle, rgba(255, 170, 102, 0.6), transparent);
 }
 
-/* 17. OCEAN THEME */
+/* 17. OCEAN THEME - Deep ocean with floating bubbles */
 @keyframes oceanWaves {
   0% {
     background-position: 0% 50%;
   }
+  25% {
+    background-position: 50% 100%;
+  }
   50% {
     background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
   }
   100% {
     background-position: 0% 50%;
@@ -1869,8 +1897,8 @@ body.theme-sunset .glowing-star::before {
 }
 
 body.theme-ocean::before {
-  background: linear-gradient(135deg, #005f73, #0a9396, #94d2bd, #e9d8a6);
-  background-size: 300% 300%;
+  background: linear-gradient(135deg, #005f73, #0a9396, #94d2bd, #e9d8a6, #005f73);
+  background-size: 400% 400%;
   animation: oceanWaves 18s ease infinite;
 }
 
@@ -1882,7 +1910,7 @@ body.theme-ocean .container {
   background: rgba(0, 50, 60, 0.88);
   color: #e0f0ff;
   backdrop-filter: blur(2px);
-  border: 1px solid rgba(0, 150, 180, 0.3);
+  border: 1px solid rgba(0, 200, 220, 0.4);
 }
 
 body.theme-ocean input,
@@ -1969,21 +1997,24 @@ body.theme-ocean .glowing-star::before {
   background: radial-gradient(circle, rgba(103, 232, 249, 0.5), transparent);
 }
 
-/* 18. FOREST THEME */
+/* 18. FOREST THEME - Enchanted forest with falling leaves */
 @keyframes forestBreeze {
   0% {
     background-position: 0% 0%;
+    background-size: 200% 200%;
   }
   50% {
     background-position: 100% 100%;
+    background-size: 250% 250%;
   }
   100% {
     background-position: 0% 0%;
+    background-size: 200% 200%;
   }
 }
 
 body.theme-forest::before {
-  background: linear-gradient(135deg, #1a4a2a, #2d6a4f, #40916c, #74c69d);
+  background: linear-gradient(135deg, #1a4a2a, #2d6a4f, #40916c, #74c69d, #1a4a2a);
   background-size: 300% 300%;
   animation: forestBreeze 20s ease infinite;
 }
@@ -1996,7 +2027,7 @@ body.theme-forest .container {
   background: rgba(20, 50, 30, 0.88);
   color: #e0f0e0;
   backdrop-filter: blur(2px);
-  border: 1px solid rgba(80, 180, 100, 0.3);
+  border: 1px solid rgba(80, 180, 100, 0.4);
 }
 
 body.theme-forest input,
@@ -2083,23 +2114,26 @@ body.theme-forest .glowing-star::before {
   background: radial-gradient(circle, rgba(163, 230, 53, 0.5), transparent);
 }
 
-/* 19. NEON THEME */
-@keyframes neonPulse {
+/* 19. NEON THEME - Cyberpunk neon glow with pulsating lights */
+@keyframes neonPulseBG {
   0% {
     background-position: 0% 0%;
+    filter: brightness(1);
   }
   50% {
     background-position: 100% 100%;
+    filter: brightness(1.2);
   }
   100% {
     background-position: 0% 0%;
+    filter: brightness(1);
   }
 }
 
 body.theme-neon::before {
-  background: linear-gradient(135deg, #0a0a0a, #1a0033, #0a0a0a, #33001a);
+  background: linear-gradient(135deg, #0a0a0a, #1a0033, #0a0a0a, #33001a, #0a0a0a);
   background-size: 200% 200%;
-  animation: neonPulse 8s ease infinite;
+  animation: neonPulseBG 8s ease infinite;
 }
 
 body.theme-neon {
@@ -2108,10 +2142,10 @@ body.theme-neon {
 
 body.theme-neon .container {
   background: rgba(10, 10, 20, 0.88);
-  color: #f0f0ff;
+  color: #0ff;
   backdrop-filter: blur(2px);
   border: 2px solid #0ff;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
 }
 
 body.theme-neon input,
@@ -2120,13 +2154,14 @@ body.theme-neon textarea {
   background: #1a1a2a;
   color: #0ff;
   border: 1px solid #f0f;
-  box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
 }
 
 body.theme-neon button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
   background: linear-gradient(135deg, #ff00ff, #00ffff);
   color: #0a0a0a;
   font-weight: bold;
+  box-shadow: 0 0 15px #ff00ff;
 }
 
 body.theme-neon button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
@@ -2163,6 +2198,7 @@ body.theme-neon #ahtResult {
 body.theme-neon .time-container {
   background: rgba(0, 0, 0, 0.7);
   border: 1px solid #0ff;
+  box-shadow: 0 0 10px #0ff;
 }
 
 body.theme-neon .refresh-btn {
@@ -2201,20 +2237,23 @@ body.theme-neon .reset-btn:hover {
 body.theme-neon .glowing-star {
   background: #ff00ff;
   box-shadow: 0 0 15px #ff00ff;
-  animation: glowPulse 2s ease-in-out infinite;
+  animation: glowPulse 1.5s ease-in-out infinite;
 }
 
 body.theme-neon .glowing-star::before {
   background: radial-gradient(circle, rgba(255, 0, 255, 0.7), transparent);
 }
 
-/* 20. DREAMSCAPE THEME */
+/* 20. DREAMSCAPE THEME - Soft pastel with floating clouds */
 @keyframes dreamFlow {
   0% {
     background-position: 0% 0%;
   }
-  50% {
-    background-position: 100% 100%;
+  33% {
+    background-position: 50% 100%;
+  }
+  66% {
+    background-position: 100% 50%;
   }
   100% {
     background-position: 0% 0%;
@@ -2222,7 +2261,7 @@ body.theme-neon .glowing-star::before {
 }
 
 body.theme-dreamscape::before {
-  background: linear-gradient(135deg, #fbc2eb, #a6c1ee, #fbc2eb, #c2e9fb);
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee, #fbc2eb, #c2e9fb, #fbc2eb);
   background-size: 300% 300%;
   animation: dreamFlow 16s ease infinite;
 }
@@ -2323,6 +2362,121 @@ body.theme-dreamscape .glowing-star::before {
   background: radial-gradient(circle, rgba(240, 160, 208, 0.5), transparent);
 }
 
+/* 21. CHERRY BLOSSOM THEME - Soft pink with falling petals */
+@keyframes blossomFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+body.theme-cherryblossom::before {
+  background: linear-gradient(135deg, #ffb7c5, #ff9eb5, #ffc0cb, #ffe4e1, #ffb7c5);
+  background-size: 300% 300%;
+  animation: blossomFlow 14s ease infinite;
+}
+
+body.theme-cherryblossom {
+  color: #5a2a3a;
+}
+
+body.theme-cherryblossom .container {
+  background: rgba(255, 240, 245, 0.92);
+  color: #5a2a3a;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 150, 180, 0.5);
+}
+
+body.theme-cherryblossom input,
+body.theme-cherryblossom select,
+body.theme-cherryblossom textarea {
+  background: #fff0f5;
+  color: #5a2a3a;
+  border: 1px solid #ffb7c5;
+}
+
+body.theme-cherryblossom button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+  background: linear-gradient(135deg, #ff9eb5, #ffb7c5);
+  color: #5a2a3a;
+}
+
+body.theme-cherryblossom button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+  background: linear-gradient(135deg, #ffaec5, #ffc7d5);
+}
+
+body.theme-cherryblossom .back {
+  background: #ffb7c5;
+  color: #5a2a3a;
+}
+
+body.theme-cherryblossom .back:hover {
+  background: #ffc7d5;
+  transform: translateY(-2px);
+}
+
+body.theme-cherryblossom .timezone-item,
+body.theme-cherryblossom .currency-item {
+  background: rgba(255, 235, 240, 0.9);
+  color: #5a2a3a;
+}
+
+body.theme-cherryblossom #refundResult,
+body.theme-cherryblossom #discountResult,
+body.theme-cherryblossom #timeframeResult,
+body.theme-cherryblossom #ahtResult {
+  background: rgba(255, 235, 240, 0.9);
+  border-left-color: #ffb7c5;
+}
+
+body.theme-cherryblossom .time-container {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+body.theme-cherryblossom .refresh-btn {
+  background: #28a745;
+  color: white;
+}
+
+body.theme-cherryblossom .refresh-btn:hover {
+  background: #218838;
+  transform: scale(1.05);
+}
+
+body.theme-cherryblossom .dark-toggle {
+  background: #17a2b8;
+  color: white;
+}
+
+body.theme-cherryblossom .dark-toggle:hover {
+  background: #138496;
+  transform: scale(1.05);
+}
+
+body.theme-cherryblossom .reset-btn {
+  background: #dc3545;
+  color: white;
+}
+
+body.theme-cherryblossom .reset-btn:hover {
+  background: #c82333;
+  transform: scale(1.05);
+}
+
+body.theme-cherryblossom .glowing-star {
+  background: #ff99bb;
+  box-shadow: 0 0 8px #ff99bb;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+body.theme-cherryblossom .glowing-star::before {
+  background: radial-gradient(circle, rgba(255, 153, 187, 0.5), transparent);
+}
+
 /* ==================== */
 /* MODAL / POPUP STYLES */
 /* ==================== */
@@ -2348,7 +2502,7 @@ body.theme-dreamscape .glowing-star::before {
   border-radius: 25px;
   padding: 30px 25px;
   width: 90%;
-  max-width: 600px;
+  max-width: 650px;
   max-height: 80vh;
   overflow-y: auto;
   text-align: center;
