@@ -1,143 +1,60 @@
-// ===================
-// VERSION CHECK - FORCE USERS TO UPDATE
-// ===================
-const CURRENT_VERSION = "2.0.0";
-
-function checkVersionAndShowPopup() {
-  const savedVersion = localStorage.getItem("appVersion");
-  
-  // If no saved version or version mismatch, show popup
-  if (!savedVersion || savedVersion !== CURRENT_VERSION) {
-    showUpdatePopup();
-  }
+// REFRESH PAGE FUNCTION
+function refreshPage() {
+  location.reload();
 }
 
-function showUpdatePopup() {
-  // Create modal overlay
-  const overlay = document.createElement('div');
-  overlay.id = 'updatePopup';
-  overlay.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    z-index: 30000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Times New Roman', Times, serif;
-  `;
-  
-  // Create popup content
-  const popup = document.createElement('div');
-  popup.style.cssText = `
-    background: white;
-    border-radius: 25px;
-    padding: 35px 30px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    animation: popupFadeIn 0.3s ease;
-  `;
-  
-  // Add animation style if not exists
-  if (!document.querySelector('#popupAnimationStyle')) {
-    const style = document.createElement('style');
-    style.id = 'popupAnimationStyle';
-    style.textContent = `
-      @keyframes popupFadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-  
-  // Popup content
-  popup.innerHTML = `
-    <div style="font-size: 48px; margin-bottom: 15px;">🔄</div>
-    <h2 style="color: #dc3545; margin-bottom: 15px; font-size: 24px;">Update Required</h2>
-    <p style="color: #333; margin-bottom: 20px; line-height: 1.5; font-size: 16px;">
-      You are using an old version of this tool.<br><br>
-      Please click the button below to update to the latest version.
-    </p>
-    <button id="updateResetBtn" style="
-      background: #dc3545;
-      color: white;
-      border: none;
-      padding: 14px 25px;
-      border-radius: 50px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.2s ease;
-    ">Reset Session & Update</button>
-  `;
-  
-  overlay.appendChild(popup);
-  document.body.appendChild(overlay);
-  
-  // Add event listener to the reset button
-  const updateBtn = document.getElementById('updateResetBtn');
-  if (updateBtn) {
-    updateBtn.addEventListener('click', function() {
-      // Save current version before reset
-      localStorage.setItem("appVersion", CURRENT_VERSION);
-      // Call the enhanced reset function
-      performHardReset();
-    });
-  }
-}
-
-function performHardReset() {
+// RESET SESSION FUNCTION - ENHANCED (clears ALL cache and forces fresh load)
+function resetSession() {
   // Clear localStorage
   localStorage.clear();
   // Clear sessionStorage
   sessionStorage.clear();
   
-  // Clear all cookies
+  // Clear all cookies (multiple paths/domains for thoroughness)
   document.cookie.split(";").forEach(function(c) {
     document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/;domain=" + window.location.hostname);
     document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/;domain=." + window.location.hostname);
   });
   
-  // Set the new version before reload
-  localStorage.setItem("appVersion", CURRENT_VERSION);
-  
-  // Clear Cache API if available
+  // Clear any cached data in Cache API if available
   if ('caches' in window) {
     caches.keys().then(function(names) {
       for (let name of names) {
         caches.delete(name);
       }
-    }).catch(function() {});
+    }).catch(function() {
+      console.log("Cache API clear attempted");
+    });
   }
   
   // Clear IndexedDB if any
   if ('indexedDB' in window) {
     try {
+      // Some browsers support indexedDB.databases()
       if (indexedDB.databases) {
         indexedDB.databases().then(function(dbs) {
           dbs.forEach(function(db) {
             indexedDB.deleteDatabase(db.name);
           });
-        }).catch(function() {});
+        }).catch(function() {
+          console.log("IndexedDB clear attempted");
+        });
       }
-    } catch(e) {}
+    } catch(e) {
+      console.log("IndexedDB clear fallback");
+    }
   }
   
-  // Clear service workers if any
+  // Clear service worker caches if any
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(function(registrations) {
       for (let registration of registrations) {
         registration.unregister();
       }
-    }).catch(function() {});
+    }).catch(function() {
+      console.log("Service worker unregister attempted");
+    });
   }
   
   // Force hard reload with cache-busting parameter
@@ -146,18 +63,8 @@ function performHardReset() {
   window.location.href = url.toString();
 }
 
-// REFRESH PAGE FUNCTION
-function refreshPage() {
-  location.reload();
-}
-
-// RESET SESSION FUNCTION - ENHANCED (clears ALL cache and forces fresh load)
-function resetSession() {
-  performHardReset();
-}
-
 // ===================
-// THEME MODAL FUNCTIONS (20 THEMES)
+// THEME MODAL FUNCTIONS (21 THEMES)
 // ===================
 const themes = [
   // Original 12 themes
@@ -173,7 +80,7 @@ const themes = [
   "navy",
   "olive",
   "slate",
-  // New 8 advanced themes
+  // 9 Advanced themes
   "cosmos",
   "galaxy",
   "aurora",
@@ -181,7 +88,8 @@ const themes = [
   "ocean",
   "forest",
   "neon",
-  "dreamscape"
+  "dreamscape",
+  "cherryblossom"
 ];
 
 function openThemeModal() {
@@ -711,4 +619,152 @@ function createGlowingStars() {
     
     starsContainer.appendChild(star);
   }
+}
+
+// ===================
+// VERSION CHECK - FORCE USERS TO UPDATE
+// ===================
+const CURRENT_VERSION = "3.0.0";
+
+function checkVersionAndShowPopup() {
+  const savedVersion = localStorage.getItem("appVersion");
+  
+  // If no saved version or version mismatch, show popup
+  if (!savedVersion || savedVersion !== CURRENT_VERSION) {
+    showUpdatePopup();
+  }
+}
+
+function showUpdatePopup() {
+  // Create modal overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'updatePopup';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 30000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+  `;
+  
+  // Create popup content
+  const popup = document.createElement('div');
+  popup.style.cssText = `
+    background: white;
+    border-radius: 25px;
+    padding: 35px 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: popupFadeIn 0.3s ease;
+  `;
+  
+  // Add animation style if not exists
+  if (!document.querySelector('#popupAnimationStyle')) {
+    const style = document.createElement('style');
+    style.id = 'popupAnimationStyle';
+    style.textContent = `
+      @keyframes popupFadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  
+  // Popup content
+  popup.innerHTML = `
+    <div style="font-size: 48px; margin-bottom: 15px;">🔄</div>
+    <h2 style="color: #dc3545; margin-bottom: 15px; font-size: 24px;">Update Required</h2>
+    <p style="color: #333; margin-bottom: 20px; line-height: 1.5; font-size: 16px;">
+      You are using an old version of this tool.<br><br>
+      Please click the button below to update to the latest version.
+    </p>
+    <button id="updateResetBtn" style="
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease;
+    ">Reset Session & Update</button>
+  `;
+  
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+  
+  // Add event listener to the reset button
+  const updateBtn = document.getElementById('updateResetBtn');
+  if (updateBtn) {
+    updateBtn.addEventListener('click', function() {
+      // Save current version before reset
+      localStorage.setItem("appVersion", CURRENT_VERSION);
+      // Call the enhanced reset function
+      performHardReset();
+    });
+  }
+}
+
+function performHardReset() {
+  // Clear localStorage
+  localStorage.clear();
+  // Clear sessionStorage
+  sessionStorage.clear();
+  
+  // Clear all cookies
+  document.cookie.split(";").forEach(function(c) {
+    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/;domain=" + window.location.hostname);
+    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/;domain=." + window.location.hostname);
+  });
+  
+  // Set the new version before reload
+  localStorage.setItem("appVersion", CURRENT_VERSION);
+  
+  // Clear Cache API if available
+  if ('caches' in window) {
+    caches.keys().then(function(names) {
+      for (let name of names) {
+        caches.delete(name);
+      }
+    }).catch(function() {});
+  }
+  
+  // Clear IndexedDB if any
+  if ('indexedDB' in window) {
+    try {
+      if (indexedDB.databases) {
+        indexedDB.databases().then(function(dbs) {
+          dbs.forEach(function(db) {
+            indexedDB.deleteDatabase(db.name);
+          });
+        }).catch(function() {});
+      }
+    } catch(e) {}
+  }
+  
+  // Clear service workers if any
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    }).catch(function() {});
+  }
+  
+  // Force hard reload with cache-busting parameter
+  const url = new URL(window.location.href);
+  url.searchParams.set('_reset', Date.now());
+  window.location.href = url.toString();
 }
