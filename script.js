@@ -157,9 +157,10 @@ function resetSession() {
 }
 
 // ===================
-// THEME MODAL FUNCTIONS
+// THEME MODAL FUNCTIONS (20 THEMES)
 // ===================
 const themes = [
+  // Original 12 themes
   "light",
   "dark",
   "crimson",
@@ -171,7 +172,16 @@ const themes = [
   "pink",
   "navy",
   "olive",
-  "slate"
+  "slate",
+  // New 8 advanced themes
+  "cosmos",
+  "galaxy",
+  "aurora",
+  "sunset",
+  "ocean",
+  "forest",
+  "neon",
+  "dreamscape"
 ];
 
 function openThemeModal() {
