@@ -2502,7 +2502,7 @@ body.theme-cherryblossom .glowing-star::before {
   border-radius: 25px;
   padding: 30px 25px;
   width: 90%;
-  max-width: 650px;
+  max-width: 550px;
   max-height: 80vh;
   overflow-y: auto;
   text-align: center;
@@ -2527,9 +2527,10 @@ body.theme-cherryblossom .glowing-star::before {
   font-size: 24px;
 }
 
+/* THEME GRID - 3 COLUMNS ON DESKTOP, 2 COLUMNS ON MOBILE */
 .theme-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin: 20px 0;
 }
@@ -2709,12 +2710,13 @@ body.theme-cherryblossom .glowing-star::before {
     min-width: 70px;
   }
 
+  /* THEME GRID - 2 COLUMNS ON MOBILE */
   .theme-grid {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .theme-option-btn {
-    padding: 8px;
+    padding: 10px;
     font-size: 12px;
   }
 }
