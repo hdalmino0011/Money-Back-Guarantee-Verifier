@@ -138,14 +138,6 @@ function showSection(id) {
   document.querySelectorAll('.container').forEach(el => el.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
   
-  // Show/hide timer container based on section
-  const timerContainer = document.getElementById('timerContainer');
-  if (id === 'home') {
-    timerContainer.classList.remove('hidden');
-  } else {
-    timerContainer.classList.add('hidden');
-  }
-  
   // When timezone section is shown, ensure display is updated immediately
   if (id === 'timezone') {
     updateAllTimezones();
@@ -210,12 +202,6 @@ window.onload = () => {
   
   // Initialize timers
   initTimers();
-  
-  // Ensure timer is visible on home page
-  const timerContainer = document.getElementById('timerContainer');
-  if (timerContainer) {
-    timerContainer.classList.remove('hidden');
-  }
 };
 
 // Close modal when clicking outside of it
