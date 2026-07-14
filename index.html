@@ -21,21 +21,26 @@
 
   <!-- THEMES BUTTON + REFRESH BUTTON (TOP RIGHT) -->
   <div class="toggle-container">
-    <button class="refresh-btn" onclick="refreshPage()">Refresh</button>
-    <button class="dark-toggle" onclick="openThemeModal()">Themes</button>
+    <button class="refresh-btn" onclick="refreshPage()">
+      <span class="btn-icon refresh-icon"></span>Refresh
+    </button>
+    <button class="dark-toggle" onclick="openThemeModal()">
+      <span class="btn-icon theme-icon"></span>Themes
+    </button>
   </div>
 
   <!-- RESET SESSION BUTTON (BOTTOM LEFT) -->
   <div class="reset-container">
-    <button class="reset-btn" onclick="resetSession()">Reset Session</button>
+    <button class="reset-btn" onclick="resetSession()">
+      <span class="btn-icon reset-icon"></span>Reset Session
+    </button>
   </div>
 
-  <!-- THEME SELECTION MODAL (POPUP) - 21 THEMES -->
+  <!-- THEME SELECTION MODAL -->
   <div id="themeModal" class="modal">
     <div class="modal-content">
       <h2>Select Theme</h2>
       <div class="theme-grid">
-        <!-- Original 12 Themes -->
         <button class="theme-option-btn" style="background: linear-gradient(135deg, #667eea, #764ba2);" onclick="setTheme('light')">Light</button>
         <button class="theme-option-btn" style="background: linear-gradient(135deg, #0f0c29, #302b63);" onclick="setTheme('dark')">Dark</button>
         <button class="theme-option-btn" style="background: linear-gradient(135deg, #ff0844, #ffb199);" onclick="setTheme('crimson')">Crimson</button>
@@ -48,8 +53,6 @@
         <button class="theme-option-btn" style="background: linear-gradient(135deg, #141e30, #243b55);" onclick="setTheme('navy')">Navy</button>
         <button class="theme-option-btn" style="background: linear-gradient(135deg, #3a7b5a, #2a5a4a);" onclick="setTheme('olive')">Olive</button>
         <button class="theme-option-btn" style="background: linear-gradient(135deg, #4a5568, #2d3748);" onclick="setTheme('slate')">Slate</button>
-        
-        <!-- 9 New Advanced Themes -->
         <button class="theme-option-btn" style="background: radial-gradient(ellipse at 30% 40%, #0a0a2a, #1a0a3a, #2a1040);" onclick="setTheme('cosmos')">Cosmos</button>
         <button class="theme-option-btn" style="background: radial-gradient(circle at 50% 50%, #1a0033, #2d1b4e, #4a2a7a, #6a4aaa);" onclick="setTheme('galaxy')">Galaxy</button>
         <button class="theme-option-btn" style="background: linear-gradient(125deg, #0a2a2a, #1a5a4a, #2a8a6a, #4aff9a);" onclick="setTheme('aurora')">Aurora</button>
@@ -64,170 +67,246 @@
     </div>
   </div>
 
-  <!-- HOME + TIMER SIDE BY SIDE -->
-  <div class="home-timer-wrapper">
+  <!-- FIXED TIMER PANEL (RIGHT SIDE - ALWAYS VISIBLE) -->
+  <div class="timer-panel" id="timerContainer">
+    <div class="timer-panel-header">
+      <span class="timer-panel-icon"></span>
+      <h2>Break Timer</h2>
+    </div>
+
+    <!-- Break 1 -->
+    <div class="timer-card">
+      <div class="timer-card-top">
+        <h3>Break 1</h3>
+        <span class="timer-badge">15 min</span>
+      </div>
+      <div class="timer-display" id="break1Display">15:00</div>
+      <div class="timer-info">
+        <div class="timer-info-item">
+          <span class="timer-info-label">Started</span>
+          <span class="timer-info-value" id="break1StartTime">--:--</span>
+        </div>
+        <div class="timer-info-divider"></div>
+        <div class="timer-info-item">
+          <span class="timer-info-label">Return</span>
+          <span class="timer-info-value" id="break1ReturnTime">--:--</span>
+        </div>
+      </div>
+      <div class="timer-btn-row">
+        <button class="timer-start-btn" data-timer="break1" data-duration="15" onclick="startTimer('break1', 15)">
+          <span class="play-icon"></span>Start
+        </button>
+        <button class="timer-reset-btn" onclick="resetTimer('break1')">
+          <span class="reset-small-icon"></span>Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- Lunch -->
+    <div class="timer-card">
+      <div class="timer-card-top">
+        <h3>Lunch</h3>
+        <span class="timer-badge">60 min</span>
+      </div>
+      <div class="timer-display" id="lunchDisplay">60:00</div>
+      <div class="timer-info">
+        <div class="timer-info-item">
+          <span class="timer-info-label">Started</span>
+          <span class="timer-info-value" id="lunchStartTime">--:--</span>
+        </div>
+        <div class="timer-info-divider"></div>
+        <div class="timer-info-item">
+          <span class="timer-info-label">Return</span>
+          <span class="timer-info-value" id="lunchReturnTime">--:--</span>
+        </div>
+      </div>
+      <div class="timer-btn-row">
+        <button class="timer-start-btn" data-timer="lunch" data-duration="60" onclick="startTimer('lunch', 60)">
+          <span class="play-icon"></span>Start
+        </button>
+        <button class="timer-reset-btn" onclick="resetTimer('lunch')">
+          <span class="reset-small-icon"></span>Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- Break 2 -->
+    <div class="timer-card">
+      <div class="timer-card-top">
+        <h3>Break 2</h3>
+        <span class="timer-badge">15 min</span>
+      </div>
+      <div class="timer-display" id="break2Display">15:00</div>
+      <div class="timer-info">
+        <div class="timer-info-item">
+          <span class="timer-info-label">Started</span>
+          <span class="timer-info-value" id="break2StartTime">--:--</span>
+        </div>
+        <div class="timer-info-divider"></div>
+        <div class="timer-info-item">
+          <span class="timer-info-label">Return</span>
+          <span class="timer-info-value" id="break2ReturnTime">--:--</span>
+        </div>
+      </div>
+      <div class="timer-btn-row">
+        <button class="timer-start-btn" data-timer="break2" data-duration="15" onclick="startTimer('break2', 15)">
+          <span class="play-icon"></span>Start
+        </button>
+        <button class="timer-reset-btn" onclick="resetTimer('break2')">
+          <span class="reset-small-icon"></span>Reset
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="main-content">
+
     <!-- HOME -->
     <div class="container" id="home">
-      <h1>Utility Tool</h1>
-
-      <button onclick="showSection('guarantee')">Money Back Guarantee Checker</button>
-      <button onclick="showSection('discount')">Discount Calculator</button>
-      <button onclick="showSection('timeframe')">Refund Timeframe Tracker</button>
-      <button onclick="showSection('aht')">AHT Time Converter</button>
-      <button onclick="showSection('notes')">Notations Format</button>
-      <button onclick="showSection('timezone')">US & Canada Time Zones</button>
-      <button onclick="showSection('currency')">Currency Abbreviations</button>
-
+      <div class="page-header">
+        <span class="header-icon home-icon"></span>
+        <h1>Utility Tool</h1>
+      </div>
+      <div class="menu-grid">
+        <button class="menu-btn" onclick="showSection('guarantee')">
+          <span class="menu-btn-icon mbg-icon"></span>
+          <span class="menu-btn-label">Money Back Guarantee Checker</span>
+        </button>
+        <button class="menu-btn" onclick="showSection('discount')">
+          <span class="menu-btn-icon disc-icon"></span>
+          <span class="menu-btn-label">Discount Calculator</span>
+        </button>
+        <button class="menu-btn" onclick="showSection('timeframe')">
+          <span class="menu-btn-icon tf-icon"></span>
+          <span class="menu-btn-label">Refund Timeframe Tracker</span>
+        </button>
+        <button class="menu-btn" onclick="showSection('aht')">
+          <span class="menu-btn-icon aht-icon"></span>
+          <span class="menu-btn-label">AHT Time Converter</span>
+        </button>
+        <button class="menu-btn" onclick="showSection('notes')">
+          <span class="menu-btn-icon notes-icon"></span>
+          <span class="menu-btn-label">Notations Format</span>
+        </button>
+        <button class="menu-btn" onclick="showSection('timezone')">
+          <span class="menu-btn-icon tz-icon"></span>
+          <span class="menu-btn-label">US &amp; Canada Time Zones</span>
+        </button>
+        <button class="menu-btn" onclick="showSection('currency')">
+          <span class="menu-btn-icon curr-icon"></span>
+          <span class="menu-btn-label">Currency Abbreviations</span>
+        </button>
+      </div>
       <footer>All Rights Reserved 2026</footer>
     </div>
 
-    <!-- TAP TIMER FOR AGENTS (RIGHT SIDE) - COMPACT VERSION -->
-    <div class="timer-container" id="timerContainer">
-      <h2>Break Timer</h2>
-      
-      <!-- Break 1 - 15 Minutes -->
-      <div class="timer-card">
-        <h3>Break 1</h3>
-        <p class="timer-duration">15 Minutes</p>
-        <div class="timer-display" id="break1Display">00:00</div>
-        <div class="timer-info">
-          <span>Started: <span id="break1StartTime">--:--</span></span>
-          <span>Return: <span id="break1ReturnTime">--:--</span></span>
-        </div>
-        <button class="timer-start-btn" data-timer="break1" data-duration="15" onclick="startTimer('break1', 15)">Start Break 1</button>
-        <button class="timer-reset-btn" onclick="resetTimer('break1')">Reset</button>
+    <!-- MBG -->
+    <div class="container hidden" id="guarantee">
+      <div class="page-header">
+        <span class="header-icon mbg-icon"></span>
+        <h1>Refund Checker</h1>
       </div>
-
-      <!-- Lunch - 1 Hour (60 Minutes) -->
-      <div class="timer-card">
-        <h3>Lunch</h3>
-        <p class="timer-duration">1 Hour</p>
-        <div class="timer-display" id="lunchDisplay">00:00</div>
-        <div class="timer-info">
-          <span>Started: <span id="lunchStartTime">--:--</span></span>
-          <span>Return: <span id="lunchReturnTime">--:--</span></span>
-        </div>
-        <button class="timer-start-btn" data-timer="lunch" data-duration="60" onclick="startTimer('lunch', 60)">Start Lunch</button>
-        <button class="timer-reset-btn" onclick="resetTimer('lunch')">Reset</button>
-      </div>
-
-      <!-- Break 2 - 15 Minutes -->
-      <div class="timer-card">
-        <h3>Break 2</h3>
-        <p class="timer-duration">15 Minutes</p>
-        <div class="timer-display" id="break2Display">00:00</div>
-        <div class="timer-info">
-          <span>Started: <span id="break2StartTime">--:--</span></span>
-          <span>Return: <span id="break2ReturnTime">--:--</span></span>
-        </div>
-        <button class="timer-start-btn" data-timer="break2" data-duration="15" onclick="startTimer('break2', 15)">Start Break 2</button>
-        <button class="timer-reset-btn" onclick="resetTimer('break2')">Reset</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MBG -->
-  <div class="container hidden" id="guarantee">
-    <h1>Refund Checker</h1>
-
-    <label>Order Date:</label>
-    <input type="date" id="orderDate">
-
-    <label>Guarantee Days:</label>
-    <input type="number" id="guaranteeDays" placeholder="e.g., 30, 60, 90" min="0">
-
-    <label>Today's Date:</label>
-    <input type="date" id="todayDate">
-
-    <button onclick="calculateRefund()">Calculate</button>
-    <button class="back" onclick="goHome()">Back to Home</button>
-
-    <div id="refundResult"></div>
-    <footer>All Rights Reserved 2026</footer>
-  </div>
-
-  <!-- DISCOUNT -->
-  <div class="container hidden" id="discount">
-    <h1>Discount Calculator</h1>
-
-    <label>Enter Amount:</label>
-    <input type="number" id="amount" placeholder="Enter amount" step="0.01">
-
-    <button onclick="calculateDiscount()">Calculate</button>
-    <button class="back" onclick="goHome()">Back to Home</button>
-
-    <div id="discountResult"></div>
-    <footer>All Rights Reserved 2026</footer>
-  </div>
-
-  <!-- TIMEFRAME -->
-  <div class="container hidden" id="timeframe">
-    <h1>Refund Timeframe</h1>
-
-    <label>Refund Request Date:</label>
-    <input type="date" id="refundDate">
-
-    <label>Expected Processing Range:</label>
-    <select id="range">
-      <option value="3-5">3-5 Business Days</option>
-      <option value="7-14">7-14 Business Days</option>
-    </select>
-
-    <button onclick="calculateTimeframe()">Calculate</button>
-    <button class="back" onclick="goHome()">Back to Home</button>
-
-    <div id="timeframeResult"></div>
-    <footer>All Rights Reserved 2026</footer>
-  </div>
-
-  <!-- AHT -->
-  <div class="container hidden" id="aht">
-    <h1>AHT Converter</h1>
-
-    <label>Enter Seconds:</label>
-    <input type="number" id="seconds" placeholder="Enter seconds" min="0">
-
-    <button onclick="convertAHT()">Convert</button>
-    <button class="back" onclick="goHome()">Back to Home</button>
-
-    <div id="ahtResult"></div>
-    <footer>All Rights Reserved 2026</footer>
-  </div>
-
-  <!-- NOTES -->
-  <div class="container hidden" id="notes">
-    <h1>Notations</h1>
-
-    <textarea id="notesBox" rows="12" placeholder="Your notes will appear here..."></textarea>
-
-    <div class="note-buttons">
-      <button onclick="loadNotes(1)">Type 1</button>
-      <button onclick="loadNotes(2)">Type 2</button>
-      <button onclick="loadNotes(3)">Type 3</button>
-      <button onclick="copyNotes()">Copy</button>
+      <label>Order Date:</label>
+      <input type="date" id="orderDate">
+      <label>Guarantee Days:</label>
+      <input type="number" id="guaranteeDays" placeholder="e.g., 30, 60, 90" min="0">
+      <label>Today's Date:</label>
+      <input type="date" id="todayDate">
+      <button onclick="calculateRefund()">Calculate</button>
+      <button class="back" onclick="goHome()">Back to Home</button>
+      <div id="refundResult"></div>
+      <footer>All Rights Reserved 2026</footer>
     </div>
 
-    <button class="back" onclick="goHome()">Back to Home</button>
+    <!-- DISCOUNT -->
+    <div class="container hidden" id="discount">
+      <div class="page-header">
+        <span class="header-icon disc-icon"></span>
+        <h1>Discount Calculator</h1>
+      </div>
+      <label>Enter Amount:</label>
+      <input type="number" id="amount" placeholder="Enter amount" step="0.01">
+      <button onclick="calculateDiscount()">Calculate</button>
+      <button class="back" onclick="goHome()">Back to Home</button>
+      <div id="discountResult"></div>
+      <footer>All Rights Reserved 2026</footer>
+    </div>
 
-    <footer>All Rights Reserved 2026</footer>
-  </div>
+    <!-- TIMEFRAME -->
+    <div class="container hidden" id="timeframe">
+      <div class="page-header">
+        <span class="header-icon tf-icon"></span>
+        <h1>Refund Timeframe</h1>
+      </div>
+      <label>Refund Request Date:</label>
+      <input type="date" id="refundDate">
+      <label>Expected Processing Range:</label>
+      <select id="range">
+        <option value="3-5">3-5 Business Days</option>
+        <option value="7-14">7-14 Business Days</option>
+      </select>
+      <button onclick="calculateTimeframe()">Calculate</button>
+      <button class="back" onclick="goHome()">Back to Home</button>
+      <div id="timeframeResult"></div>
+      <footer>All Rights Reserved 2026</footer>
+    </div>
 
-  <!-- US & CANADA TIME ZONES -->
-  <div class="container hidden" id="timezone">
-    <h1>US & Canada - Current Times</h1>
-    <div id="timezoneList" class="timezone-grid"></div>
-    <button class="back" onclick="goHome()">Back to Home</button>
-    <footer>All Rights Reserved 2026</footer>
-  </div>
+    <!-- AHT -->
+    <div class="container hidden" id="aht">
+      <div class="page-header">
+        <span class="header-icon aht-icon"></span>
+        <h1>AHT Converter</h1>
+      </div>
+      <label>Enter Seconds:</label>
+      <input type="number" id="seconds" placeholder="Enter seconds" min="0">
+      <button onclick="convertAHT()">Convert</button>
+      <button class="back" onclick="goHome()">Back to Home</button>
+      <div id="ahtResult"></div>
+      <footer>All Rights Reserved 2026</footer>
+    </div>
 
-  <!-- CURRENCY ABBREVIATIONS -->
-  <div class="container hidden" id="currency">
-    <h1>Currency Abbreviations</h1>
-    <input type="text" id="currencySearch" placeholder="Search (e.g., ZAR, USD, EUR)" onkeyup="filterCurrencies()">
-    <div id="currencyList" class="currency-grid"></div>
-    <button class="back" onclick="goHome()">Back to Home</button>
-    <footer>All Rights Reserved 2026</footer>
-  </div>
+    <!-- NOTES -->
+    <div class="container hidden" id="notes">
+      <div class="page-header">
+        <span class="header-icon notes-icon"></span>
+        <h1>Notations</h1>
+      </div>
+      <textarea id="notesBox" rows="12" placeholder="Your notes will appear here..."></textarea>
+      <div class="note-buttons">
+        <button onclick="loadNotes(1)">Type 1</button>
+        <button onclick="loadNotes(2)">Type 2</button>
+        <button onclick="loadNotes(3)">Type 3</button>
+        <button onclick="copyNotes()">Copy</button>
+      </div>
+      <button class="back" onclick="goHome()">Back to Home</button>
+      <footer>All Rights Reserved 2026</footer>
+    </div>
+
+    <!-- US & CANADA TIME ZONES -->
+    <div class="container hidden" id="timezone">
+      <div class="page-header">
+        <span class="header-icon tz-icon"></span>
+        <h1>US &amp; Canada — Current Times</h1>
+      </div>
+      <div id="timezoneList" class="timezone-grid"></div>
+      <button class="back" onclick="goHome()">Back to Home</button>
+      <footer>All Rights Reserved 2026</footer>
+    </div>
+
+    <!-- CURRENCY ABBREVIATIONS -->
+    <div class="container hidden" id="currency">
+      <div class="page-header">
+        <span class="header-icon curr-icon"></span>
+        <h1>Currency Abbreviations</h1>
+      </div>
+      <input type="text" id="currencySearch" placeholder="Search (e.g., ZAR, USD, EUR)" onkeyup="filterCurrencies()">
+      <div id="currencyList" class="currency-grid"></div>
+      <button class="back" onclick="goHome()">Back to Home</button>
+      <footer>All Rights Reserved 2026</footer>
+    </div>
+
+  </div><!-- end .main-content -->
 
   <script src="script.js"></script>
 </body>
