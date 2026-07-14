@@ -134,8 +134,17 @@ function loadSavedTheme() {
 
 // NAVIGATION
 function showSection(id) {
+  // Hide all containers
   document.querySelectorAll('.container').forEach(el => el.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
+  
+  // Show/hide timer container based on section
+  const timerContainer = document.getElementById('timerContainer');
+  if (id === 'home') {
+    timerContainer.classList.remove('hidden');
+  } else {
+    timerContainer.classList.add('hidden');
+  }
   
   // When timezone section is shown, ensure display is updated immediately
   if (id === 'timezone') {
@@ -201,6 +210,12 @@ window.onload = () => {
   
   // Initialize timers
   initTimers();
+  
+  // Ensure timer is visible on home page
+  const timerContainer = document.getElementById('timerContainer');
+  if (timerContainer) {
+    timerContainer.classList.remove('hidden');
+  }
 };
 
 // Close modal when clicking outside of it
@@ -684,7 +699,7 @@ function showUpdatePopup() {
   
   // Popup content
   popup.innerHTML = `
-    <div style="font-size: 48px; margin-bottom: 15px;">🔄</div>
+    <div style="font-size: 48px; margin-bottom: 15px;">O</div>
     <h2 style="color: #dc3545; margin-bottom: 15px; font-size: 24px;">Update Required</h2>
     <p style="color: #333; margin-bottom: 20px; line-height: 1.5; font-size: 16px;">
       You are using an old version of this tool.<br><br>
@@ -701,7 +716,7 @@ function showUpdatePopup() {
       cursor: pointer;
       width: 100%;
       transition: all 0.2s ease;
-    ">Reset Session & Update</button>
+    ">Reset Session and Update</button>
   `;
   
   overlay.appendChild(popup);
@@ -835,7 +850,7 @@ function startTimer(id, durationMinutes) {
   // Update button
   const startBtn = document.querySelector(`.timer-start-btn[data-timer="${id}"]`);
   if (startBtn) {
-    startBtn.textContent = '⏳ Running...';
+    startBtn.textContent = 'Running...';
     startBtn.disabled = true;
     startBtn.classList.add('running-btn');
   }
@@ -857,7 +872,7 @@ function startTimer(id, durationMinutes) {
       timer.running = false;
       // Update button
       if (startBtn) {
-        startBtn.textContent = '✅ Done';
+        startBtn.textContent = 'Done';
         startBtn.disabled = true;
         startBtn.classList.remove('running-btn');
       }
@@ -884,8 +899,11 @@ function resetTimer(id) {
   // Reset button
   const startBtn = document.querySelector(`.timer-start-btn[data-timer="${id}"]`);
   if (startBtn) {
-    const durationMinutes = timer.duration / 60;
-    startBtn.textContent = `▶ Start ${id === 'break1' ? 'Break 1' : id === 'lunch' ? 'Lunch' : 'Break 2'}`;
+    let label = '';
+    if (id === 'break1') label = 'Start Break 1';
+    else if (id === 'lunch') label = 'Start Lunch';
+    else if (id === 'break2') label = 'Start Break 2';
+    startBtn.textContent = label;
     startBtn.disabled = false;
     startBtn.classList.remove('running-btn');
   }
@@ -935,7 +953,7 @@ setInterval(() => {
         timer.running = false;
         const startBtn = document.querySelector(`.timer-start-btn[data-timer="${id}"]`);
         if (startBtn) {
-          startBtn.textContent = '✅ Done';
+          startBtn.textContent = 'Done';
           startBtn.disabled = true;
           startBtn.classList.remove('running-btn');
         }
