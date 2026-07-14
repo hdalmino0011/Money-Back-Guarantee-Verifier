@@ -37,15 +37,15 @@ body {
 }
 
 /* ==================== */
-/* TIMER CONTAINER (RIGHT SIDE) - COMPACT VERSION */
+/* TIMER CONTAINER - COMPACT VERSION */
 /* ==================== */
 .timer-container {
   background: rgba(255, 255, 255, 0.94);
   border-radius: 20px;
-  padding: 16px 18px;
+  padding: 14px 16px;
   flex: 1;
-  max-width: 360px;
-  min-width: 240px;
+  max-width: 320px;
+  min-width: 220px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(2px);
   transition: all 0.3s ease;
@@ -58,19 +58,25 @@ body {
 
 .timer-container h2 {
   text-align: center;
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 8px;
   color: #1a1a2e;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 8px;
+  padding-bottom: 6px;
+}
+
+/* CSS Icon for timer header */
+.timer-container h2::before {
+  content: "⏱";
+  margin-right: 6px;
 }
 
 /* Timer Cards - Compact */
 .timer-card {
   background: rgba(248, 249, 250, 0.92);
   border-radius: 12px;
-  padding: 10px 14px;
-  margin-bottom: 10px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
   border-left: 3px solid #667eea;
@@ -81,7 +87,7 @@ body {
 }
 
 .timer-card h3 {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
   color: #1a1a2e;
   display: flex;
@@ -90,18 +96,18 @@ body {
 }
 
 .timer-duration {
-  font-size: 11px;
+  font-size: 10px;
   color: #6c757d;
-  margin: 1px 0 4px 0;
+  margin: 1px 0 3px 0;
   font-weight: 500;
 }
 
 .timer-display {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   font-family: monospace;
   text-align: center;
-  padding: 4px 0;
+  padding: 3px 0;
   color: #1a1a2e;
   letter-spacing: 2px;
 }
@@ -117,10 +123,10 @@ body {
 .timer-info {
   display: flex;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: 10px;
   color: #6c757d;
-  margin: 4px 0 8px 0;
-  padding: 4px 0;
+  margin: 3px 0 6px 0;
+  padding: 3px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -134,21 +140,21 @@ body {
 .timer-info span span {
   font-weight: bold;
   color: #1a1a2e;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .timer-card .timer-start-btn {
   background: #28a745;
   color: white;
   border: none;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
   width: 100%;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .timer-card .timer-start-btn:hover {
@@ -175,9 +181,9 @@ body {
   background: #dc3545;
   color: white;
   border: none;
-  padding: 5px 14px;
+  padding: 4px 12px;
   border-radius: 8px;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -189,7 +195,7 @@ body {
   transform: scale(1.02);
 }
 
-/* Timer status indicator */
+/* Timer status indicator - pure CSS */
 .timer-status {
   display: inline-block;
   width: 8px;
@@ -209,12 +215,6 @@ body {
 
 .timer-status.completed {
   background: #dc3545;
-}
-
-@keyframes pulse {
-  0% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
-  100% { opacity: 0.4; transform: scale(1); }
 }
 
 /* ==================== */
@@ -1928,7 +1928,7 @@ body.theme-slate .glowing-star::before {
 }
 
 /* ==================== */
-/* 9 NEW ADVANCED THEMES (REDESIGNED + 1 BONUS) */
+/* 9 NEW ADVANCED THEMES */
 /* ==================== */
 
 /* 13. COSMOS THEME */
@@ -3454,7 +3454,7 @@ body.theme-cherryblossom .glowing-star::before {
   }
 
   .timer-card .timer-display {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .timer-info {
