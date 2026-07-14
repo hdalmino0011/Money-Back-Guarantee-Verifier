@@ -19,6 +19,201 @@ body {
 }
 
 /* ==================== */
+/* HOME - TIMER WRAPPER (SIDE BY SIDE) */
+/* ==================== */
+.home-timer-wrapper {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.home-timer-wrapper .container {
+  flex: 1;
+  max-width: 500px;
+  margin-top: 0;
+}
+
+/* ==================== */
+/* TIMER CONTAINER (RIGHT SIDE) */
+/* ==================== */
+.timer-container {
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 25px;
+  padding: 25px 20px;
+  flex: 1;
+  max-width: 420px;
+  min-width: 280px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2px);
+  transition: all 0.3s ease;
+  margin-top: 0;
+}
+
+.timer-container h2 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #1a1a2e;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
+}
+
+/* Timer Cards */
+.timer-card {
+  background: rgba(248, 249, 250, 0.92);
+  border-radius: 16px;
+  padding: 15px 18px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border-left: 4px solid #667eea;
+}
+
+.timer-card:last-child {
+  margin-bottom: 0;
+}
+
+.timer-card h3 {
+  font-size: 17px;
+  font-weight: bold;
+  color: #1a1a2e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timer-duration {
+  font-size: 13px;
+  color: #6c757d;
+  margin: 2px 0 8px 0;
+  font-weight: 500;
+}
+
+.timer-display {
+  font-size: 32px;
+  font-weight: bold;
+  font-family: monospace;
+  text-align: center;
+  padding: 8px 0;
+  color: #1a1a2e;
+  letter-spacing: 2px;
+}
+
+.timer-display.running {
+  color: #28a745;
+}
+
+.timer-display.completed {
+  color: #dc3545;
+}
+
+.timer-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #6c757d;
+  margin: 5px 0 10px 0;
+  padding: 6px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.timer-info span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-info span span {
+  font-weight: bold;
+  color: #1a1a2e;
+  font-size: 14px;
+}
+
+.timer-card .timer-start-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.timer-card .timer-start-btn:hover {
+  background: #218838;
+  transform: scale(1.02);
+}
+
+.timer-card .timer-start-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.timer-card .timer-start-btn.running-btn {
+  background: #ffc107;
+  color: #1a1a2e;
+}
+
+.timer-card .timer-start-btn.running-btn:hover {
+  background: #e0a800;
+}
+
+.timer-card .timer-reset-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.timer-card .timer-reset-btn:hover {
+  background: #c82333;
+  transform: scale(1.02);
+}
+
+/* Timer status indicator */
+.timer-status {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
+.timer-status.idle {
+  background: #6c757d;
+}
+
+.timer-status.running {
+  background: #28a745;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.timer-status.completed {
+  background: #dc3545;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.4; transform: scale(1); }
+}
+
+/* ==================== */
 /* GLOWING STARS EFFECTS */
 /* ==================== */
 .glowing-star {
@@ -226,6 +421,35 @@ body.theme-light .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-light .timer-container {
+  background: rgba(255, 255, 255, 0.94);
+  color: #1a1a2e;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+}
+
+body.theme-light .timer-card {
+  background: rgba(248, 249, 250, 0.92);
+  border-left-color: #667eea;
+}
+
+body.theme-light .timer-card h3 {
+  color: #1a1a2e;
+}
+
+body.theme-light .timer-display {
+  color: #1a1a2e;
+}
+
+body.theme-light .timer-info span span {
+  color: #1a1a2e;
+}
+
+body.theme-light .timer-container h2 {
+  color: #1a1a2e;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
 body.theme-light input,
 body.theme-light select,
 body.theme-light textarea {
@@ -234,12 +458,12 @@ body.theme-light textarea {
   border: 1px solid #dee2e6;
 }
 
-body.theme-light button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-light button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
 }
 
-body.theme-light button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-light button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #5a67d8, #6b46a0);
 }
 
@@ -325,6 +549,35 @@ body.theme-dark .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-dark .timer-container {
+  background: rgba(30, 30, 46, 0.94);
+  color: #e0e0e0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+}
+
+body.theme-dark .timer-card {
+  background: rgba(42, 42, 58, 0.92);
+  border-left-color: #6b46e6;
+}
+
+body.theme-dark .timer-card h3 {
+  color: #e0e0e0;
+}
+
+body.theme-dark .timer-display {
+  color: #e0e0e0;
+}
+
+body.theme-dark .timer-info span span {
+  color: #e0e0e0;
+}
+
+body.theme-dark .timer-container h2 {
+  color: #e0e0e0;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
 body.theme-dark input,
 body.theme-dark select,
 body.theme-dark textarea {
@@ -333,12 +586,12 @@ body.theme-dark textarea {
   border: 1px solid #3a3a4a;
 }
 
-body.theme-dark button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-dark button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #4a4ae6, #6b46e6);
   color: white;
 }
 
-body.theme-dark button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-dark button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #5a5af0, #7b56f0);
 }
 
@@ -424,6 +677,35 @@ body.theme-crimson .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-crimson .timer-container {
+  background: rgba(30, 10, 15, 0.92);
+  color: #fff0f0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+}
+
+body.theme-crimson .timer-card {
+  background: rgba(90, 32, 48, 0.92);
+  border-left-color: #ff6b6b;
+}
+
+body.theme-crimson .timer-card h3 {
+  color: #ffe0e0;
+}
+
+body.theme-crimson .timer-display {
+  color: #ffe0e0;
+}
+
+body.theme-crimson .timer-info span span {
+  color: #ffe0e0;
+}
+
+body.theme-crimson .timer-container h2 {
+  color: #ffe0e0;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
 body.theme-crimson input,
 body.theme-crimson select,
 body.theme-crimson textarea {
@@ -432,12 +714,12 @@ body.theme-crimson textarea {
   border: 1px solid #ff6b6b;
 }
 
-body.theme-crimson button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-crimson button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #ff416c, #ff4b2b);
   color: white;
 }
 
-body.theme-crimson button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-crimson button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #ff5a7a, #ff6040);
 }
 
@@ -522,6 +804,34 @@ body.theme-royalblue .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-royalblue .timer-container {
+  background: rgba(20, 40, 70, 0.94);
+  color: #e8f0fe;
+  backdrop-filter: blur(2px);
+}
+
+body.theme-royalblue .timer-card {
+  background: rgba(42, 74, 112, 0.92);
+  border-left-color: #5a9aff;
+}
+
+body.theme-royalblue .timer-card h3 {
+  color: #e8f0fe;
+}
+
+body.theme-royalblue .timer-display {
+  color: #e8f0fe;
+}
+
+body.theme-royalblue .timer-info span span {
+  color: #e8f0fe;
+}
+
+body.theme-royalblue .timer-container h2 {
+  color: #e8f0fe;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
 body.theme-royalblue input,
 body.theme-royalblue select,
 body.theme-royalblue textarea {
@@ -530,12 +840,12 @@ body.theme-royalblue textarea {
   border: 1px solid #4a7aaa;
 }
 
-body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #3b8dff, #2b6fff);
   color: white;
 }
 
-body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-royalblue button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #4a9aff, #3a7aff);
 }
 
@@ -620,6 +930,34 @@ body.theme-emerald .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-emerald .timer-container {
+  background: rgba(10, 50, 40, 0.94);
+  color: #e8fff0;
+  backdrop-filter: blur(2px);
+}
+
+body.theme-emerald .timer-card {
+  background: rgba(42, 106, 80, 0.92);
+  border-left-color: #4aff9a;
+}
+
+body.theme-emerald .timer-card h3 {
+  color: #e8fff0;
+}
+
+body.theme-emerald .timer-display {
+  color: #e8fff0;
+}
+
+body.theme-emerald .timer-info span span {
+  color: #e8fff0;
+}
+
+body.theme-emerald .timer-container h2 {
+  color: #e8fff0;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
 body.theme-emerald input,
 body.theme-emerald select,
 body.theme-emerald textarea {
@@ -628,12 +966,12 @@ body.theme-emerald textarea {
   border: 1px solid #4aaa7a;
 }
 
-body.theme-emerald button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-emerald button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #00b4db, #0083b0);
   color: white;
 }
 
-body.theme-emerald button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-emerald button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #10c4eb, #1093c0);
 }
 
@@ -718,6 +1056,34 @@ body.theme-amber .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-amber .timer-container {
+  background: rgba(240, 220, 180, 0.94);
+  color: #2a1e0a;
+  backdrop-filter: blur(2px);
+}
+
+body.theme-amber .timer-card {
+  background: rgba(240, 216, 160, 0.92);
+  border-left-color: #ffaa44;
+}
+
+body.theme-amber .timer-card h3 {
+  color: #2a1e0a;
+}
+
+body.theme-amber .timer-display {
+  color: #2a1e0a;
+}
+
+body.theme-amber .timer-info span span {
+  color: #2a1e0a;
+}
+
+body.theme-amber .timer-container h2 {
+  color: #2a1e0a;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
 body.theme-amber input,
 body.theme-amber select,
 body.theme-amber textarea {
@@ -726,12 +1092,12 @@ body.theme-amber textarea {
   border: 1px solid #ccaa60;
 }
 
-body.theme-amber button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-amber button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #ff7e5f, #feb47b);
   color: #2a1e0a;
 }
 
-body.theme-amber button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-amber button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #ff8e6f, #fec48b);
 }
 
@@ -816,6 +1182,34 @@ body.theme-purple .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-purple .timer-container {
+  background: rgba(40, 20, 70, 0.94);
+  color: #f0e8ff;
+  backdrop-filter: blur(2px);
+}
+
+body.theme-purple .timer-card {
+  background: rgba(74, 58, 122, 0.92);
+  border-left-color: #aa77ff;
+}
+
+body.theme-purple .timer-card h3 {
+  color: #f0e8ff;
+}
+
+body.theme-purple .timer-display {
+  color: #f0e8ff;
+}
+
+body.theme-purple .timer-info span span {
+  color: #f0e8ff;
+}
+
+body.theme-purple .timer-container h2 {
+  color: #f0e8ff;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
 body.theme-purple input,
 body.theme-purple select,
 body.theme-purple textarea {
@@ -824,12 +1218,12 @@ body.theme-purple textarea {
   border: 1px solid #7a5aaa;
 }
 
-body.theme-purple button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-purple button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #a855f7, #7c3aed);
   color: white;
 }
 
-body.theme-purple button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-purple button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #b865ff, #8c4afd);
 }
 
@@ -914,6 +1308,34 @@ body.theme-teal .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-teal .timer-container {
+  background: rgba(10, 50, 70, 0.94);
+  color: #e8faff;
+  backdrop-filter: blur(2px);
+}
+
+body.theme-teal .timer-card {
+  background: rgba(42, 106, 138, 0.92);
+  border-left-color: #55ddff;
+}
+
+body.theme-teal .timer-card h3 {
+  color: #e8faff;
+}
+
+body.theme-teal .timer-display {
+  color: #e8faff;
+}
+
+body.theme-teal .timer-info span span {
+  color: #e8faff;
+}
+
+body.theme-teal .timer-container h2 {
+  color: #e8faff;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
 body.theme-teal input,
 body.theme-teal select,
 body.theme-teal textarea {
@@ -922,12 +1344,12 @@ body.theme-teal textarea {
   border: 1px solid #4aaaaa;
 }
 
-body.theme-teal button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-teal button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #00d2ff, #3a7bd5);
   color: white;
 }
 
-body.theme-teal button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-teal button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #10e2ff, #4a8be5);
 }
 
@@ -1012,6 +1434,34 @@ body.theme-pink .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-pink .timer-container {
+  background: rgba(255, 240, 245, 0.94);
+  color: #4a1a2e;
+  backdrop-filter: blur(2px);
+}
+
+body.theme-pink .timer-card {
+  background: rgba(240, 208, 224, 0.92);
+  border-left-color: #ff88bb;
+}
+
+body.theme-pink .timer-card h3 {
+  color: #4a1a2e;
+}
+
+body.theme-pink .timer-display {
+  color: #4a1a2e;
+}
+
+body.theme-pink .timer-info span span {
+  color: #4a1a2e;
+}
+
+body.theme-pink .timer-container h2 {
+  color: #4a1a2e;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
 body.theme-pink input,
 body.theme-pink select,
 body.theme-pink textarea {
@@ -1020,12 +1470,12 @@ body.theme-pink textarea {
   border: 1px solid #ffaacc;
 }
 
-body.theme-pink button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-pink button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
   color: white;
 }
 
-body.theme-pink button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-pink button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #ff859c, #ff8ec3);
 }
 
@@ -1110,6 +1560,34 @@ body.theme-navy .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-navy .timer-container {
+  background: rgba(20, 30, 50, 0.94);
+  color: #e8f0ff;
+  backdrop-filter: blur(2px);
+}
+
+body.theme-navy .timer-card {
+  background: rgba(42, 58, 90, 0.92);
+  border-left-color: #6a8acc;
+}
+
+body.theme-navy .timer-card h3 {
+  color: #e8f0ff;
+}
+
+body.theme-navy .timer-display {
+  color: #e8f0ff;
+}
+
+body.theme-navy .timer-info span span {
+  color: #e8f0ff;
+}
+
+body.theme-navy .timer-container h2 {
+  color: #e8f0ff;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
 body.theme-navy input,
 body.theme-navy select,
 body.theme-navy textarea {
@@ -1118,12 +1596,12 @@ body.theme-navy textarea {
   border: 1px solid #4a6aaa;
 }
 
-body.theme-navy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-navy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #2b5876, #4e4376);
   color: white;
 }
 
-body.theme-navy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-navy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #3b6886, #5e5386);
 }
 
@@ -1208,6 +1686,34 @@ body.theme-olive .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-olive .timer-container {
+  background: rgba(40, 60, 35, 0.94);
+  color: #f0f8e8;
+  backdrop-filter: blur(2px);
+}
+
+body.theme-olive .timer-card {
+  background: rgba(74, 122, 74, 0.92);
+  border-left-color: #8acc6a;
+}
+
+body.theme-olive .timer-card h3 {
+  color: #f0f8e8;
+}
+
+body.theme-olive .timer-display {
+  color: #f0f8e8;
+}
+
+body.theme-olive .timer-info span span {
+  color: #f0f8e8;
+}
+
+body.theme-olive .timer-container h2 {
+  color: #f0f8e8;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
 body.theme-olive input,
 body.theme-olive select,
 body.theme-olive textarea {
@@ -1216,12 +1722,12 @@ body.theme-olive textarea {
   border: 1px solid #6aaa6a;
 }
 
-body.theme-olive button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-olive button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #6b8a5a, #4a6a3a);
   color: white;
 }
 
-body.theme-olive button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-olive button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #7b9a6a, #5a7a4a);
 }
 
@@ -1306,6 +1812,34 @@ body.theme-slate .container {
   backdrop-filter: blur(2px);
 }
 
+body.theme-slate .timer-container {
+  background: rgba(45, 55, 72, 0.94);
+  color: #e2e8f0;
+  backdrop-filter: blur(2px);
+}
+
+body.theme-slate .timer-card {
+  background: rgba(74, 90, 106, 0.92);
+  border-left-color: #9ab0c0;
+}
+
+body.theme-slate .timer-card h3 {
+  color: #e2e8f0;
+}
+
+body.theme-slate .timer-display {
+  color: #e2e8f0;
+}
+
+body.theme-slate .timer-info span span {
+  color: #e2e8f0;
+}
+
+body.theme-slate .timer-container h2 {
+  color: #e2e8f0;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
 body.theme-slate input,
 body.theme-slate select,
 body.theme-slate textarea {
@@ -1314,12 +1848,12 @@ body.theme-slate textarea {
   border: 1px solid #7a8aaa;
 }
 
-body.theme-slate button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-slate button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #6b7a8a, #5a6a7a);
   color: white;
 }
 
-body.theme-slate button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-slate button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #7b8a9a, #6a7a8a);
 }
 
@@ -1393,20 +1927,11 @@ body.theme-slate .glowing-star::before {
 /* 9 NEW ADVANCED THEMES (REDESIGNED + 1 BONUS) */
 /* ==================== */
 
-/* 13. COSMOS THEME - Deep space with glowing planets and twinkling stars */
+/* 13. COSMOS THEME */
 @keyframes cosmosDrift {
-  0% {
-    background-position: 0% 0%;
-    background-size: 200% 200%;
-  }
-  50% {
-    background-position: 100% 100%;
-    background-size: 250% 250%;
-  }
-  100% {
-    background-position: 0% 0%;
-    background-size: 200% 200%;
-  }
+  0% { background-position: 0% 0%; background-size: 200% 200%; }
+  50% { background-position: 100% 100%; background-size: 250% 250%; }
+  100% { background-position: 0% 0%; background-size: 200% 200%; }
 }
 
 body.theme-cosmos::before {
@@ -1427,6 +1952,36 @@ body.theme-cosmos .container {
   box-shadow: 0 0 30px rgba(100, 80, 200, 0.2);
 }
 
+body.theme-cosmos .timer-container {
+  background: rgba(10, 10, 30, 0.85);
+  color: #d8d0ff;
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(100, 80, 200, 0.3);
+  box-shadow: 0 0 30px rgba(100, 80, 200, 0.2);
+}
+
+body.theme-cosmos .timer-card {
+  background: rgba(30, 20, 60, 0.9);
+  border-left-color: #6b4eff;
+}
+
+body.theme-cosmos .timer-card h3 {
+  color: #d8d0ff;
+}
+
+body.theme-cosmos .timer-display {
+  color: #d8d0ff;
+}
+
+body.theme-cosmos .timer-info span span {
+  color: #d8d0ff;
+}
+
+body.theme-cosmos .timer-container h2 {
+  color: #d8d0ff;
+  border-bottom-color: rgba(100, 80, 200, 0.3);
+}
+
 body.theme-cosmos input,
 body.theme-cosmos select,
 body.theme-cosmos textarea {
@@ -1436,13 +1991,13 @@ body.theme-cosmos textarea {
   box-shadow: 0 0 10px rgba(106, 74, 255, 0.2);
 }
 
-body.theme-cosmos button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-cosmos button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #6b4eff, #9b6eff);
   color: white;
   box-shadow: 0 4px 15px rgba(107, 78, 255, 0.4);
 }
 
-body.theme-cosmos button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-cosmos button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #7b5eff, #ab7eff);
 }
 
@@ -1516,20 +2071,11 @@ body.theme-cosmos .glowing-star::before {
   background: radial-gradient(circle, rgba(192, 138, 255, 0.6), transparent);
 }
 
-/* 14. GALAXY THEME - Spiral galaxy with rotating nebula effect */
+/* 14. GALAXY THEME */
 @keyframes galaxyRotate {
-  0% {
-    transform: rotate(0deg);
-    background-position: 0% 0%;
-  }
-  50% {
-    transform: rotate(5deg);
-    background-position: 100% 100%;
-  }
-  100% {
-    transform: rotate(0deg);
-    background-position: 0% 0%;
-  }
+  0% { transform: rotate(0deg); background-position: 0% 0%; }
+  50% { transform: rotate(5deg); background-position: 100% 100%; }
+  100% { transform: rotate(0deg); background-position: 0% 0%; }
 }
 
 body.theme-galaxy::before {
@@ -1550,6 +2096,36 @@ body.theme-galaxy .container {
   box-shadow: 0 0 30px rgba(150, 100, 255, 0.2);
 }
 
+body.theme-galaxy .timer-container {
+  background: rgba(20, 10, 40, 0.88);
+  color: #e8d0ff;
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(150, 100, 255, 0.4);
+  box-shadow: 0 0 30px rgba(150, 100, 255, 0.2);
+}
+
+body.theme-galaxy .timer-card {
+  background: rgba(40, 25, 70, 0.9);
+  border-left-color: #8b5cf6;
+}
+
+body.theme-galaxy .timer-card h3 {
+  color: #e8d0ff;
+}
+
+body.theme-galaxy .timer-display {
+  color: #e8d0ff;
+}
+
+body.theme-galaxy .timer-info span span {
+  color: #e8d0ff;
+}
+
+body.theme-galaxy .timer-container h2 {
+  color: #e8d0ff;
+  border-bottom-color: rgba(150, 100, 255, 0.3);
+}
+
 body.theme-galaxy input,
 body.theme-galaxy select,
 body.theme-galaxy textarea {
@@ -1559,13 +2135,13 @@ body.theme-galaxy textarea {
   box-shadow: 0 0 10px rgba(155, 110, 255, 0.2);
 }
 
-body.theme-galaxy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-galaxy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #8b5cf6, #6d28d9);
   color: white;
   box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
 }
 
-body.theme-galaxy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-galaxy button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #9b6cff, #7d38e9);
 }
 
@@ -1639,23 +2215,13 @@ body.theme-galaxy .glowing-star::before {
   background: radial-gradient(circle, rgba(167, 139, 250, 0.6), transparent);
 }
 
-/* 15. AURORA THEME - Northern lights with flowing waves */
+/* 15. AURORA THEME */
 @keyframes auroraWave {
-  0% {
-    background-position: 0% 0%;
-  }
-  25% {
-    background-position: 50% 100%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  75% {
-    background-position: 50% 0%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
+  0% { background-position: 0% 0%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+  100% { background-position: 0% 0%; }
 }
 
 body.theme-aurora::before {
@@ -1675,6 +2241,35 @@ body.theme-aurora .container {
   border: 1px solid rgba(74, 255, 154, 0.4);
 }
 
+body.theme-aurora .timer-container {
+  background: rgba(10, 40, 35, 0.88);
+  color: #e0f8f0;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(74, 255, 154, 0.4);
+}
+
+body.theme-aurora .timer-card {
+  background: rgba(30, 70, 60, 0.9);
+  border-left-color: #10b981;
+}
+
+body.theme-aurora .timer-card h3 {
+  color: #e0f8f0;
+}
+
+body.theme-aurora .timer-display {
+  color: #e0f8f0;
+}
+
+body.theme-aurora .timer-info span span {
+  color: #e0f8f0;
+}
+
+body.theme-aurora .timer-container h2 {
+  color: #e0f8f0;
+  border-bottom-color: rgba(74, 255, 154, 0.3);
+}
+
 body.theme-aurora input,
 body.theme-aurora select,
 body.theme-aurora textarea {
@@ -1683,12 +2278,12 @@ body.theme-aurora textarea {
   border: 1px solid #4aff9a;
 }
 
-body.theme-aurora button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-aurora button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #10b981, #059669);
   color: white;
 }
 
-body.theme-aurora button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-aurora button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #20c991, #15a679);
 }
 
@@ -1759,20 +2354,11 @@ body.theme-aurora .glowing-star::before {
   background: radial-gradient(circle, rgba(110, 231, 183, 0.5), transparent);
 }
 
-/* 16. SUNSET THEME - Warm sunset with glowing horizon */
+/* 16. SUNSET THEME */
 @keyframes sunsetGlow {
-  0% {
-    background-position: 0% 0%;
-    opacity: 0.8;
-  }
-  50% {
-    background-position: 100% 100%;
-    opacity: 1;
-  }
-  100% {
-    background-position: 0% 0%;
-    opacity: 0.8;
-  }
+  0% { background-position: 0% 0%; opacity: 0.8; }
+  50% { background-position: 100% 100%; opacity: 1; }
+  100% { background-position: 0% 0%; opacity: 0.8; }
 }
 
 body.theme-sunset::before {
@@ -1792,6 +2378,35 @@ body.theme-sunset .container {
   border: 1px solid rgba(255, 100, 50, 0.4);
 }
 
+body.theme-sunset .timer-container {
+  background: rgba(40, 20, 15, 0.88);
+  color: #fff0e0;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 100, 50, 0.4);
+}
+
+body.theme-sunset .timer-card {
+  background: rgba(70, 40, 25, 0.9);
+  border-left-color: #ff8c42;
+}
+
+body.theme-sunset .timer-card h3 {
+  color: #fff0e0;
+}
+
+body.theme-sunset .timer-display {
+  color: #fff0e0;
+}
+
+body.theme-sunset .timer-info span span {
+  color: #fff0e0;
+}
+
+body.theme-sunset .timer-container h2 {
+  color: #fff0e0;
+  border-bottom-color: rgba(255, 100, 50, 0.3);
+}
+
 body.theme-sunset input,
 body.theme-sunset select,
 body.theme-sunset textarea {
@@ -1800,12 +2415,12 @@ body.theme-sunset textarea {
   border: 1px solid #ff8a5a;
 }
 
-body.theme-sunset button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-sunset button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #ff8c42, #ff6b35);
   color: white;
 }
 
-body.theme-sunset button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-sunset button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #ff9c52, #ff7b45);
 }
 
@@ -1877,23 +2492,13 @@ body.theme-sunset .glowing-star::before {
   background: radial-gradient(circle, rgba(255, 170, 102, 0.6), transparent);
 }
 
-/* 17. OCEAN THEME - Deep ocean with floating bubbles */
+/* 17. OCEAN THEME */
 @keyframes oceanWaves {
-  0% {
-    background-position: 0% 50%;
-  }
-  25% {
-    background-position: 50% 100%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  75% {
-    background-position: 50% 0%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
 }
 
 body.theme-ocean::before {
@@ -1913,6 +2518,35 @@ body.theme-ocean .container {
   border: 1px solid rgba(0, 200, 220, 0.4);
 }
 
+body.theme-ocean .timer-container {
+  background: rgba(0, 50, 60, 0.88);
+  color: #e0f0ff;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(0, 200, 220, 0.4);
+}
+
+body.theme-ocean .timer-card {
+  background: rgba(20, 80, 90, 0.9);
+  border-left-color: #0891b2;
+}
+
+body.theme-ocean .timer-card h3 {
+  color: #e0f0ff;
+}
+
+body.theme-ocean .timer-display {
+  color: #e0f0ff;
+}
+
+body.theme-ocean .timer-info span span {
+  color: #e0f0ff;
+}
+
+body.theme-ocean .timer-container h2 {
+  color: #e0f0ff;
+  border-bottom-color: rgba(0, 200, 220, 0.3);
+}
+
 body.theme-ocean input,
 body.theme-ocean select,
 body.theme-ocean textarea {
@@ -1921,12 +2555,12 @@ body.theme-ocean textarea {
   border: 1px solid #2a9aaa;
 }
 
-body.theme-ocean button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-ocean button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #0891b2, #06b6d4);
   color: white;
 }
 
-body.theme-ocean button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-ocean button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #18a1c2, #16c6e4);
 }
 
@@ -1997,20 +2631,11 @@ body.theme-ocean .glowing-star::before {
   background: radial-gradient(circle, rgba(103, 232, 249, 0.5), transparent);
 }
 
-/* 18. FOREST THEME - Enchanted forest with falling leaves */
+/* 18. FOREST THEME */
 @keyframes forestBreeze {
-  0% {
-    background-position: 0% 0%;
-    background-size: 200% 200%;
-  }
-  50% {
-    background-position: 100% 100%;
-    background-size: 250% 250%;
-  }
-  100% {
-    background-position: 0% 0%;
-    background-size: 200% 200%;
-  }
+  0% { background-position: 0% 0%; background-size: 200% 200%; }
+  50% { background-position: 100% 100%; background-size: 250% 250%; }
+  100% { background-position: 0% 0%; background-size: 200% 200%; }
 }
 
 body.theme-forest::before {
@@ -2030,6 +2655,35 @@ body.theme-forest .container {
   border: 1px solid rgba(80, 180, 100, 0.4);
 }
 
+body.theme-forest .timer-container {
+  background: rgba(20, 50, 30, 0.88);
+  color: #e0f0e0;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(80, 180, 100, 0.4);
+}
+
+body.theme-forest .timer-card {
+  background: rgba(40, 80, 50, 0.9);
+  border-left-color: #2d6a4f;
+}
+
+body.theme-forest .timer-card h3 {
+  color: #e0f0e0;
+}
+
+body.theme-forest .timer-display {
+  color: #e0f0e0;
+}
+
+body.theme-forest .timer-info span span {
+  color: #e0f0e0;
+}
+
+body.theme-forest .timer-container h2 {
+  color: #e0f0e0;
+  border-bottom-color: rgba(80, 180, 100, 0.3);
+}
+
 body.theme-forest input,
 body.theme-forest select,
 body.theme-forest textarea {
@@ -2038,12 +2692,12 @@ body.theme-forest textarea {
   border: 1px solid #5aaa6a;
 }
 
-body.theme-forest button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-forest button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #2d6a4f, #40916c);
   color: white;
 }
 
-body.theme-forest button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-forest button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #3d7a5f, #50a17c);
 }
 
@@ -2114,20 +2768,11 @@ body.theme-forest .glowing-star::before {
   background: radial-gradient(circle, rgba(163, 230, 53, 0.5), transparent);
 }
 
-/* 19. NEON THEME - Cyberpunk neon glow with pulsating lights */
+/* 19. NEON THEME */
 @keyframes neonPulseBG {
-  0% {
-    background-position: 0% 0%;
-    filter: brightness(1);
-  }
-  50% {
-    background-position: 100% 100%;
-    filter: brightness(1.2);
-  }
-  100% {
-    background-position: 0% 0%;
-    filter: brightness(1);
-  }
+  0% { background-position: 0% 0%; filter: brightness(1); }
+  50% { background-position: 100% 100%; filter: brightness(1.2); }
+  100% { background-position: 0% 0%; filter: brightness(1); }
 }
 
 body.theme-neon::before {
@@ -2148,6 +2793,36 @@ body.theme-neon .container {
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
 }
 
+body.theme-neon .timer-container {
+  background: rgba(10, 10, 20, 0.88);
+  color: #0ff;
+  backdrop-filter: blur(2px);
+  border: 2px solid #0ff;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+}
+
+body.theme-neon .timer-card {
+  background: rgba(30, 30, 50, 0.9);
+  border-left-color: #ff00ff;
+}
+
+body.theme-neon .timer-card h3 {
+  color: #0ff;
+}
+
+body.theme-neon .timer-display {
+  color: #0ff;
+}
+
+body.theme-neon .timer-info span span {
+  color: #0ff;
+}
+
+body.theme-neon .timer-container h2 {
+  color: #0ff;
+  border-bottom-color: rgba(0, 255, 255, 0.3);
+}
+
 body.theme-neon input,
 body.theme-neon select,
 body.theme-neon textarea {
@@ -2157,14 +2832,14 @@ body.theme-neon textarea {
   box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
 }
 
-body.theme-neon button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-neon button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #ff00ff, #00ffff);
   color: #0a0a0a;
   font-weight: bold;
   box-shadow: 0 0 15px #ff00ff;
 }
 
-body.theme-neon button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-neon button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #ff22ff, #22ffff);
 }
 
@@ -2244,20 +2919,12 @@ body.theme-neon .glowing-star::before {
   background: radial-gradient(circle, rgba(255, 0, 255, 0.7), transparent);
 }
 
-/* 20. DREAMSCAPE THEME - Soft pastel with floating clouds */
+/* 20. DREAMSCAPE THEME */
 @keyframes dreamFlow {
-  0% {
-    background-position: 0% 0%;
-  }
-  33% {
-    background-position: 50% 100%;
-  }
-  66% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
+  0% { background-position: 0% 0%; }
+  33% { background-position: 50% 100%; }
+  66% { background-position: 100% 50%; }
+  100% { background-position: 0% 0%; }
 }
 
 body.theme-dreamscape::before {
@@ -2277,6 +2944,35 @@ body.theme-dreamscape .container {
   border: 1px solid rgba(200, 150, 200, 0.5);
 }
 
+body.theme-dreamscape .timer-container {
+  background: rgba(255, 245, 250, 0.88);
+  color: #4a3a5a;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(200, 150, 200, 0.5);
+}
+
+body.theme-dreamscape .timer-card {
+  background: rgba(240, 230, 250, 0.9);
+  border-left-color: #fbc2eb;
+}
+
+body.theme-dreamscape .timer-card h3 {
+  color: #4a3a5a;
+}
+
+body.theme-dreamscape .timer-display {
+  color: #4a3a5a;
+}
+
+body.theme-dreamscape .timer-info span span {
+  color: #4a3a5a;
+}
+
+body.theme-dreamscape .timer-container h2 {
+  color: #4a3a5a;
+  border-bottom-color: rgba(200, 150, 200, 0.3);
+}
+
 body.theme-dreamscape input,
 body.theme-dreamscape select,
 body.theme-dreamscape textarea {
@@ -2285,12 +2981,12 @@ body.theme-dreamscape textarea {
   border: 1px solid #ddaacc;
 }
 
-body.theme-dreamscape button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-dreamscape button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #c2e9fb, #fbc2eb);
   color: #4a3a5a;
 }
 
-body.theme-dreamscape button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-dreamscape button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #d2f9ff, #ffd2fb);
 }
 
@@ -2362,17 +3058,11 @@ body.theme-dreamscape .glowing-star::before {
   background: radial-gradient(circle, rgba(240, 160, 208, 0.5), transparent);
 }
 
-/* 21. CHERRY BLOSSOM THEME - Soft pink with falling petals */
+/* 21. CHERRY BLOSSOM THEME */
 @keyframes blossomFlow {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
 body.theme-cherryblossom::before {
@@ -2392,6 +3082,35 @@ body.theme-cherryblossom .container {
   border: 1px solid rgba(255, 150, 180, 0.5);
 }
 
+body.theme-cherryblossom .timer-container {
+  background: rgba(255, 240, 245, 0.92);
+  color: #5a2a3a;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 150, 180, 0.5);
+}
+
+body.theme-cherryblossom .timer-card {
+  background: rgba(255, 235, 240, 0.9);
+  border-left-color: #ffb7c5;
+}
+
+body.theme-cherryblossom .timer-card h3 {
+  color: #5a2a3a;
+}
+
+body.theme-cherryblossom .timer-display {
+  color: #5a2a3a;
+}
+
+body.theme-cherryblossom .timer-info span span {
+  color: #5a2a3a;
+}
+
+body.theme-cherryblossom .timer-container h2 {
+  color: #5a2a3a;
+  border-bottom-color: rgba(255, 150, 180, 0.3);
+}
+
 body.theme-cherryblossom input,
 body.theme-cherryblossom select,
 body.theme-cherryblossom textarea {
@@ -2400,12 +3119,12 @@ body.theme-cherryblossom textarea {
   border: 1px solid #ffb7c5;
 }
 
-body.theme-cherryblossom button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn) {
+body.theme-cherryblossom button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn) {
   background: linear-gradient(135deg, #ff9eb5, #ffb7c5);
   color: #5a2a3a;
 }
 
-body.theme-cherryblossom button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):hover {
+body.theme-cherryblossom button:not(.theme-option-btn):not(.modal-close):not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.timer-start-btn):not(.timer-reset-btn):hover {
   background: linear-gradient(135deg, #ffaec5, #ffc7d5);
 }
 
@@ -2511,14 +3230,8 @@ body.theme-cherryblossom .glowing-star::before {
 }
 
 @keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .modal-content h2 {
@@ -2671,6 +3384,23 @@ body.theme-cherryblossom .glowing-star::before {
     padding: 10px;
   }
 
+  .home-timer-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-timer-wrapper .container {
+    max-width: 100%;
+    margin-top: 0;
+  }
+
+  .timer-container {
+    max-width: 100%;
+    min-width: unset;
+    width: 100%;
+    margin-top: 20px;
+  }
+
   .container {
     padding: 20px 15px;
     max-width: 100%;
@@ -2710,7 +3440,6 @@ body.theme-cherryblossom .glowing-star::before {
     min-width: 70px;
   }
 
-  /* THEME GRID - 2 COLUMNS ON MOBILE */
   .theme-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2718,6 +3447,21 @@ body.theme-cherryblossom .glowing-star::before {
   .theme-option-btn {
     padding: 10px;
     font-size: 12px;
+  }
+
+  .timer-card .timer-display {
+    font-size: 26px;
+  }
+
+  .timer-info {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .timer-info span {
+    flex: 1;
+    min-width: 80px;
   }
 }
 
@@ -2749,8 +3493,8 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
 }
 
-/* General Buttons - DOES NOT affect Refresh, Themes, Reset, Back */
-button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.back):not(.theme-option-btn):not(.modal-close) {
+/* General Buttons - DOES NOT affect Refresh, Themes, Reset, Back, Timer buttons */
+button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.back):not(.theme-option-btn):not(.modal-close):not(.timer-start-btn):not(.timer-reset-btn) {
   width: 100%;
   padding: 12px;
   margin-top: 12px;
@@ -2763,11 +3507,11 @@ button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.back):not(.theme
   color: white;
 }
 
-button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.back):not(.theme-option-btn):not(.modal-close):hover {
+button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.back):not(.theme-option-btn):not(.modal-close):not(.timer-start-btn):not(.timer-reset-btn):hover {
   transform: translateY(-2px);
 }
 
-button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.back):not(.theme-option-btn):not(.modal-close):active {
+button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.back):not(.theme-option-btn):not(.modal-close):not(.timer-start-btn):not(.timer-reset-btn):active {
   transform: translateY(0);
 }
 
