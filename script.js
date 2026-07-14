@@ -166,7 +166,7 @@ setInterval(updatePhilippineTime, 1000);
 updatePhilippineTime();
 
 // ===================
-// WINDOW ONLOAD - COMBINED (sets date, loads theme, starts timezone updates, creates animations, checks version)
+// WINDOW ONLOAD - COMBINED (sets date, loads theme, starts timezone updates, creates animations, checks version, init timers)
 // ===================
 window.onload = () => {
   const today = new Date();
@@ -198,6 +198,9 @@ window.onload = () => {
   
   // CHECK VERSION - Show popup if old version
   checkVersionAndShowPopup();
+  
+  // Initialize timers
+  initTimers();
 };
 
 // Close modal when clicking outside of it
@@ -768,3 +771,175 @@ function performHardReset() {
   url.searchParams.set('_reset', Date.now());
   window.location.href = url.toString();
 }
+
+// ===================
+// TAP TIMER FOR AGENTS
+// ===================
+const timerState = {
+  break1: {
+    duration: 15 * 60,        // 15 minutes in seconds
+    remaining: 15 * 60,
+    running: false,
+    startTime: null,
+    endTime: null,
+    interval: null
+  },
+  lunch: {
+    duration: 60 * 60,        // 1 hour in seconds
+    remaining: 60 * 60,
+    running: false,
+    startTime: null,
+    endTime: null,
+    interval: null
+  },
+  break2: {
+    duration: 15 * 60,
+    remaining: 15 * 60,
+    running: false,
+    startTime: null,
+    endTime: null,
+    interval: null
+  }
+};
+
+function initTimers() {
+  // Initialize all timer displays to 00:00
+  ['break1', 'lunch', 'break2'].forEach(id => {
+    updateTimerDisplay(id);
+    document.getElementById(`${id}StartTime`).textContent = '--:--';
+    document.getElementById(`${id}ReturnTime`).textContent = '--:--';
+  });
+}
+
+function startTimer(id, durationMinutes) {
+  const timer = timerState[id];
+  if (timer.running) return; // already running
+  
+  // Set duration from parameter (could be different if called from HTML)
+  timer.duration = durationMinutes * 60;
+  timer.remaining = timer.duration;
+  
+  // Record start time
+  const now = new Date();
+  timer.startTime = now;
+  timer.endTime = new Date(now.getTime() + timer.duration * 1000);
+  
+  // Update start and return times
+  const startTimeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const returnTimeStr = timer.endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  document.getElementById(`${id}StartTime`).textContent = startTimeStr;
+  document.getElementById(`${id}ReturnTime`).textContent = returnTimeStr;
+  
+  timer.running = true;
+  
+  // Update button
+  const startBtn = document.querySelector(`.timer-start-btn[data-timer="${id}"]`);
+  if (startBtn) {
+    startBtn.textContent = '⏳ Running...';
+    startBtn.disabled = true;
+    startBtn.classList.add('running-btn');
+  }
+  
+  // Start countdown
+  if (timer.interval) clearInterval(timer.interval);
+  timer.interval = setInterval(() => {
+    const now = Date.now();
+    const elapsed = (now - timer.startTime.getTime()) / 1000;
+    const remaining = Math.max(0, timer.duration - elapsed);
+    timer.remaining = remaining;
+    
+    updateTimerDisplay(id);
+    
+    if (remaining <= 0) {
+      // Timer completed
+      clearInterval(timer.interval);
+      timer.interval = null;
+      timer.running = false;
+      // Update button
+      if (startBtn) {
+        startBtn.textContent = '✅ Done';
+        startBtn.disabled = true;
+        startBtn.classList.remove('running-btn');
+      }
+    }
+  }, 1000);
+}
+
+function resetTimer(id) {
+  const timer = timerState[id];
+  if (timer.interval) {
+    clearInterval(timer.interval);
+    timer.interval = null;
+  }
+  timer.running = false;
+  timer.remaining = timer.duration; // reset to full duration
+  timer.startTime = null;
+  timer.endTime = null;
+  
+  // Reset display
+  updateTimerDisplay(id);
+  document.getElementById(`${id}StartTime`).textContent = '--:--';
+  document.getElementById(`${id}ReturnTime`).textContent = '--:--';
+  
+  // Reset button
+  const startBtn = document.querySelector(`.timer-start-btn[data-timer="${id}"]`);
+  if (startBtn) {
+    const durationMinutes = timer.duration / 60;
+    startBtn.textContent = `▶ Start ${id === 'break1' ? 'Break 1' : id === 'lunch' ? 'Lunch' : 'Break 2'}`;
+    startBtn.disabled = false;
+    startBtn.classList.remove('running-btn');
+  }
+}
+
+function updateTimerDisplay(id) {
+  const timer = timerState[id];
+  const display = document.getElementById(`${id}Display`);
+  if (!display) return;
+  
+  let remaining = timer.remaining;
+  if (timer.running && timer.startTime) {
+    // Compute remaining based on current time
+    const now = Date.now();
+    const elapsed = (now - timer.startTime.getTime()) / 1000;
+    remaining = Math.max(0, timer.duration - elapsed);
+  }
+  
+  const mins = Math.floor(remaining / 60);
+  const secs = Math.floor(remaining % 60);
+  display.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  
+  // Update color based on remaining
+  display.classList.remove('running', 'completed');
+  if (timer.running) {
+    if (remaining <= 0) {
+      display.classList.add('completed');
+    } else {
+      display.classList.add('running');
+    }
+  }
+}
+
+// ===================
+// ADD GLOBAL TIMER UPDATE LOOP (to keep displays current even when not on home)
+// ===================
+setInterval(() => {
+  // Update all timer displays if they exist and are running
+  ['break1', 'lunch', 'break2'].forEach(id => {
+    const timer = timerState[id];
+    if (timer.running) {
+      updateTimerDisplay(id);
+      // Check if timer completed and stop it
+      if (timer.remaining <= 0 && timer.interval) {
+        clearInterval(timer.interval);
+        timer.interval = null;
+        timer.running = false;
+        const startBtn = document.querySelector(`.timer-start-btn[data-timer="${id}"]`);
+        if (startBtn) {
+          startBtn.textContent = '✅ Done';
+          startBtn.disabled = true;
+          startBtn.classList.remove('running-btn');
+        }
+      }
+    }
+  });
+}, 1000);
