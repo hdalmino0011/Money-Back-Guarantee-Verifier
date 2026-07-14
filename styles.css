@@ -37,39 +37,43 @@ body {
 }
 
 /* ==================== */
-/* TIMER CONTAINER (RIGHT SIDE) */
+/* TIMER CONTAINER (RIGHT SIDE) - COMPACT VERSION */
 /* ==================== */
 .timer-container {
   background: rgba(255, 255, 255, 0.94);
-  border-radius: 25px;
-  padding: 25px 20px;
+  border-radius: 20px;
+  padding: 16px 18px;
   flex: 1;
-  max-width: 420px;
-  min-width: 280px;
+  max-width: 360px;
+  min-width: 240px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(2px);
   transition: all 0.3s ease;
   margin-top: 0;
 }
 
-.timer-container h2 {
-  text-align: center;
-  font-size: 22px;
-  margin-bottom: 15px;
-  color: #1a1a2e;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 10px;
+.timer-container.hidden {
+  display: none;
 }
 
-/* Timer Cards */
+.timer-container h2 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #1a1a2e;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 8px;
+}
+
+/* Timer Cards - Compact */
 .timer-card {
   background: rgba(248, 249, 250, 0.92);
-  border-radius: 16px;
-  padding: 15px 18px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
-  border-left: 4px solid #667eea;
+  border-left: 3px solid #667eea;
 }
 
 .timer-card:last-child {
@@ -77,7 +81,7 @@ body {
 }
 
 .timer-card h3 {
-  font-size: 17px;
+  font-size: 14px;
   font-weight: bold;
   color: #1a1a2e;
   display: flex;
@@ -86,18 +90,18 @@ body {
 }
 
 .timer-duration {
-  font-size: 13px;
+  font-size: 11px;
   color: #6c757d;
-  margin: 2px 0 8px 0;
+  margin: 1px 0 4px 0;
   font-weight: 500;
 }
 
 .timer-display {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: bold;
   font-family: monospace;
   text-align: center;
-  padding: 8px 0;
+  padding: 4px 0;
   color: #1a1a2e;
   letter-spacing: 2px;
 }
@@ -113,10 +117,10 @@ body {
 .timer-info {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 11px;
   color: #6c757d;
-  margin: 5px 0 10px 0;
-  padding: 6px 0;
+  margin: 4px 0 8px 0;
+  padding: 4px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -130,21 +134,21 @@ body {
 .timer-info span span {
   font-weight: bold;
   color: #1a1a2e;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .timer-card .timer-start-btn {
   background: #28a745;
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
   width: 100%;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .timer-card .timer-start-btn:hover {
@@ -171,9 +175,9 @@ body {
   background: #dc3545;
   color: white;
   border: none;
-  padding: 6px 16px;
-  border-radius: 10px;
-  font-size: 13px;
+  padding: 5px 14px;
+  border-radius: 8px;
+  font-size: 11px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -188,10 +192,10 @@ body {
 /* Timer status indicator */
 .timer-status {
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  margin-left: 8px;
+  margin-left: 6px;
 }
 
 .timer-status.idle {
@@ -3450,18 +3454,19 @@ body.theme-cherryblossom .glowing-star::before {
   }
 
   .timer-card .timer-display {
-    font-size: 26px;
+    font-size: 22px;
   }
 
   .timer-info {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 4px;
   }
 
   .timer-info span {
     flex: 1;
-    min-width: 80px;
+    min-width: 60px;
+    font-size: 10px;
   }
 }
 
