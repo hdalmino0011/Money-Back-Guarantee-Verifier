@@ -64,19 +64,66 @@
     </div>
   </div>
 
-  <!-- HOME -->
-  <div class="container" id="home">
-    <h1>Utility Tool</h1>
+  <!-- HOME + TIMER SIDEBY SIDE -->
+  <div class="home-timer-wrapper">
+    <!-- HOME -->
+    <div class="container" id="home">
+      <h1>Utility Tool</h1>
 
-    <button onclick="showSection('guarantee')">Money Back Guarantee Checker</button>
-    <button onclick="showSection('discount')">Discount Calculator</button>
-    <button onclick="showSection('timeframe')">Refund Timeframe Tracker</button>
-    <button onclick="showSection('aht')">AHT Time Converter</button>
-    <button onclick="showSection('notes')">Notations Format</button>
-    <button onclick="showSection('timezone')">US & Canada Time Zones</button>
-    <button onclick="showSection('currency')">Currency Abbreviations</button>
+      <button onclick="showSection('guarantee')">Money Back Guarantee Checker</button>
+      <button onclick="showSection('discount')">Discount Calculator</button>
+      <button onclick="showSection('timeframe')">Refund Timeframe Tracker</button>
+      <button onclick="showSection('aht')">AHT Time Converter</button>
+      <button onclick="showSection('notes')">Notations Format</button>
+      <button onclick="showSection('timezone')">US & Canada Time Zones</button>
+      <button onclick="showSection('currency')">Currency Abbreviations</button>
 
-    <footer>All Rights Reserved 2026</footer>
+      <footer>All Rights Reserved 2026</footer>
+    </div>
+
+    <!-- TAP TIMER FOR AGENTS (RIGHT SIDE) -->
+    <div class="timer-container" id="timerContainer">
+      <h2>⏱️ Break Timer</h2>
+      
+      <!-- Break 1 - 15 Minutes -->
+      <div class="timer-card">
+        <h3>Break 1</h3>
+        <p class="timer-duration">15 Minutes</p>
+        <div class="timer-display" id="break1Display">00:00</div>
+        <div class="timer-info">
+          <span>Started: <span id="break1StartTime">--:--</span></span>
+          <span>Return: <span id="break1ReturnTime">--:--</span></span>
+        </div>
+        <button class="timer-start-btn" data-timer="break1" data-duration="15" onclick="startTimer('break1', 15)">▶ Start Break 1</button>
+        <button class="timer-reset-btn" onclick="resetTimer('break1')">↺ Reset</button>
+      </div>
+
+      <!-- Lunch - 1 Hour (60 Minutes) -->
+      <div class="timer-card">
+        <h3>Lunch</h3>
+        <p class="timer-duration">1 Hour</p>
+        <div class="timer-display" id="lunchDisplay">00:00</div>
+        <div class="timer-info">
+          <span>Started: <span id="lunchStartTime">--:--</span></span>
+          <span>Return: <span id="lunchReturnTime">--:--</span></span>
+        </div>
+        <button class="timer-start-btn" data-timer="lunch" data-duration="60" onclick="startTimer('lunch', 60)">▶ Start Lunch</button>
+        <button class="timer-reset-btn" onclick="resetTimer('lunch')">↺ Reset</button>
+      </div>
+
+      <!-- Break 2 - 15 Minutes -->
+      <div class="timer-card">
+        <h3>Break 2</h3>
+        <p class="timer-duration">15 Minutes</p>
+        <div class="timer-display" id="break2Display">00:00</div>
+        <div class="timer-info">
+          <span>Started: <span id="break2StartTime">--:--</span></span>
+          <span>Return: <span id="break2ReturnTime">--:--</span></span>
+        </div>
+        <button class="timer-start-btn" data-timer="break2" data-duration="15" onclick="startTimer('break2', 15)">▶ Start Break 2</button>
+        <button class="timer-reset-btn" onclick="resetTimer('break2')">↺ Reset</button>
+      </div>
+    </div>
   </div>
 
   <!-- MBG -->
