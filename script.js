@@ -455,15 +455,23 @@ function convertAHT() {
 }
 
 // ===================
-// NOTES TEMPLATES (UPDATED WITH ORDER DATE FIELD - NO AUTO-FILL)
+// NOTES TEMPLATES - FIXED: WILL NOT DELETE YOUR TYPED CONTENT
 // ===================
 function loadNotes(num) {
+  const notesBox = document.getElementById("notesBox");
+  
+  // If there's already text in the box, do NOT overwrite it
+  if (notesBox.value.trim() !== "") {
+    alert("Notes already contain text. Please clear them manually if you want to load a template.");
+    return;
+  }
+  
   if (num === 1) {
-    document.getElementById("notesBox").value = "Agent Name: \nOrder Date: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
+    notesBox.value = "Agent Name: \nOrder Date: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
   } else if (num === 2) {
-    document.getElementById("notesBox").value = "AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\norder date: \nname: \nphone number: \nemail address: \norder id: \nproduct name:";
+    notesBox.value = "AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\norder date: \nname: \nphone number: \nemail address: \norder id: \nproduct name:";
   } else if (num === 3) {
-    document.getElementById("notesBox").value = "FOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
+    notesBox.value = "FOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
   }
 }
 
