@@ -19,25 +19,23 @@
     <div class="ph-time" id="phTime">--:--:--</div>
   </div>
 
-  <!-- ABOUT BUTTON + THEMES BUTTON + REFRESH BUTTON (TOP RIGHT) -->
-  <div class="toggle-container">
-    <button class="about-btn" onclick="openAboutModal()">
+  <!-- TOP RIGHT BUTTONS (About, Refresh, Themes) -->
+  <div class="top-buttons-container">
+    <button class="btn-about" onclick="openAboutModal()">
       <span class="btn-icon about-icon"></span>About
     </button>
-    <button class="refresh-btn" onclick="refreshPage()">
+    <button class="btn-refresh" onclick="refreshPage()">
       <span class="btn-icon refresh-icon"></span>Refresh
     </button>
-    <button class="dark-toggle" onclick="openThemeModal()">
+    <button class="btn-themes" onclick="openThemeModal()">
       <span class="btn-icon theme-icon"></span>Themes
     </button>
   </div>
 
-  <!-- RESET SESSION BUTTON (BOTTOM LEFT) -->
-  <div class="reset-container">
-    <button class="reset-btn" onclick="resetSession()">
-      <span class="btn-icon reset-icon"></span>Reset Session
-    </button>
-  </div>
+  <!-- BOTTOM LEFT RESET SESSION BUTTON -->
+  <button class="btn-reset-session" onclick="resetSession()">
+    <span class="btn-icon reset-icon"></span>Reset Session
+  </button>
 
   <!-- THEME SELECTION MODAL -->
   <div id="themeModal" class="modal">
@@ -133,12 +131,8 @@
         </div>
       </div>
       <div class="timer-btn-row">
-        <button class="timer-start-btn" data-timer="break1" data-duration="15" onclick="startTimer('break1', 15)">
-          <span class="play-icon"></span>Start
-        </button>
-        <button class="timer-reset-btn" onclick="resetTimer('break1')">
-          <span class="reset-small-icon"></span>Reset
-        </button>
+        <button class="timer-start-btn" data-timer="break1" onclick="startTimer('break1', 15)">Start</button>
+        <button class="timer-reset-btn" onclick="resetTimer('break1')">Reset</button>
       </div>
     </div>
 
@@ -161,12 +155,8 @@
         </div>
       </div>
       <div class="timer-btn-row">
-        <button class="timer-start-btn" data-timer="lunch" data-duration="60" onclick="startTimer('lunch', 60)">
-          <span class="play-icon"></span>Start
-        </button>
-        <button class="timer-reset-btn" onclick="resetTimer('lunch')">
-          <span class="reset-small-icon"></span>Reset
-        </button>
+        <button class="timer-start-btn" data-timer="lunch" onclick="startTimer('lunch', 60)">Start</button>
+        <button class="timer-reset-btn" onclick="resetTimer('lunch')">Reset</button>
       </div>
     </div>
 
@@ -189,12 +179,8 @@
         </div>
       </div>
       <div class="timer-btn-row">
-        <button class="timer-start-btn" data-timer="break2" data-duration="15" onclick="startTimer('break2', 15)">
-          <span class="play-icon"></span>Start
-        </button>
-        <button class="timer-reset-btn" onclick="resetTimer('break2')">
-          <span class="reset-small-icon"></span>Reset
-        </button>
+        <button class="timer-start-btn" data-timer="break2" onclick="startTimer('break2', 15)">Start</button>
+        <button class="timer-reset-btn" onclick="resetTimer('break2')">Reset</button>
       </div>
     </div>
 
