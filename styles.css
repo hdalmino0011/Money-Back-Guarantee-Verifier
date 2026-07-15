@@ -687,109 +687,6 @@ body {
   border-color: transparent transparent white transparent;
 }
 
-/* ==================== */
-/* TOP BUTTONS CONTAINER */
-/* ==================== */
-.top-buttons-container {
-  position: fixed;
-  top: 15px;
-  right: 265px;
-  z-index: 10000;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-/* ==================== */
-/* BUTTON STYLES */
-/* ==================== */
-.btn-about,
-.btn-refresh,
-.btn-themes,
-.btn-reset-session {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 25px;
-  font-size: 13px;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
-  position: relative;
-  z-index: 20;
-  color: white;
-}
-
-.btn-about {
-  background: #6c757d;
-}
-
-.btn-about:hover {
-  background: #5a6268;
-  transform: scale(1.05);
-}
-
-.btn-refresh {
-  background: #28a745;
-}
-
-.btn-refresh:hover {
-  background: #218838;
-  transform: scale(1.05);
-}
-
-.btn-themes {
-  background: #17a2b8;
-}
-
-.btn-themes:hover {
-  background: #138496;
-  transform: scale(1.05);
-}
-
-.btn-reset-session {
-  background: #dc3545;
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
-  z-index: 10000;
-}
-
-.btn-reset-session:hover {
-  background: #c82333;
-  transform: scale(1.05);
-}
-
-/* ==================== */
-/* ABOUT BUTTON (legacy support) */
-/* ==================== */
-.about-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  width: auto;
-  padding: 8px 16px;
-  border-radius: 25px;
-  font-size: 13px;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
-  position: relative;
-  z-index: 20;
-  background: #6c757d;
-  color: white;
-}
-
-.about-btn:hover {
-  transform: scale(1.05);
-  background: #5a6268;
-}
-
 /* About icon */
 .about-icon {
   display: inline-block;
@@ -826,6 +723,100 @@ body {
 }
 
 /* ==================== */
+/* TOP BUTTONS CONTAINER */
+/* ==================== */
+.top-buttons-container {
+  position: fixed;
+  top: 15px;
+  right: 265px;
+  z-index: 10000;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ==================== */
+/* BUTTON STYLES - UPDATED WITH PROPER POSITIONING */
+/* ==================== */
+.btn-about,
+.btn-refresh,
+.btn-themes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 20;
+  color: white;
+  width: auto !important;
+  margin-top: 0 !important;
+}
+
+.btn-about {
+  background: #6c757d;
+}
+
+.btn-about:hover {
+  background: #5a6268;
+  transform: scale(1.05);
+}
+
+.btn-refresh {
+  background: #28a745;
+}
+
+.btn-refresh:hover {
+  background: #218838;
+  transform: scale(1.05);
+}
+
+.btn-themes {
+  background: #17a2b8;
+}
+
+.btn-themes:hover {
+  background: #138496;
+  transform: scale(1.05);
+}
+
+/* ==================== */
+/* RESET SESSION BUTTON - FIXED BOTTOM LEFT */
+/* ==================== */
+.btn-reset-session {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  position: fixed !important;
+  bottom: 15px !important;
+  left: 15px !important;
+  z-index: 10000 !important;
+  color: white;
+  background: #dc3545;
+  width: auto !important;
+  margin-top: 0 !important;
+}
+
+.btn-reset-session:hover {
+  background: #c82333;
+  transform: scale(1.05);
+}
+
+/* ==================== */
 /* ABOUT MODAL */
 /* ==================== */
 .about-modal {
@@ -842,7 +833,7 @@ body {
 }
 
 .about-modal.show {
-  display: flex;
+  display: flex !important;
 }
 
 .about-modal-content {
@@ -881,6 +872,8 @@ body {
   color: white;
   font-family: inherit;
   transition: all 0.2s ease;
+  position: relative;
+  z-index: 20;
 }
 
 .about-modal-content .about-close:hover {
@@ -986,16 +979,6 @@ body {
 }
 
 /* ==================== */
-/* BOTTOM LEFT RESET - LEGACY SUPPORT */
-/* ==================== */
-.reset-container {
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
-  z-index: 10000;
-}
-
-/* ==================== */
 /* HIDDEN */
 /* ==================== */
 .hidden {
@@ -1035,9 +1018,9 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ==================== */
-/* GENERAL BUTTONS */
+/* GENERAL BUTTONS - EXCLUDING NEW BUTTON CLASSES */
 /* ==================== */
-button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.about-btn):not(.back):not(.theme-option-btn):not(.modal-close):not(.about-close):not(.timer-start-btn):not(.timer-reset-btn):not(.menu-btn) {
+button:not(.btn-about):not(.btn-refresh):not(.btn-themes):not(.btn-reset-session):not(.back):not(.theme-option-btn):not(.modal-close):not(.about-close):not(.timer-start-btn):not(.timer-reset-btn):not(.menu-btn) {
   width: 100%;
   padding: 12px;
   margin-top: 12px;
@@ -1053,7 +1036,7 @@ button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.about-btn):not(.
   z-index: 20;
 }
 
-button:not(.refresh-btn):not(.dark-toggle):not(.reset-btn):not(.about-btn):not(.back):not(.theme-option-btn):not(.modal-close):not(.about-close):not(.timer-start-btn):not(.timer-reset-btn):not(.menu-btn):hover {
+button:not(.btn-about):not(.btn-refresh):not(.btn-themes):not(.btn-reset-session):not(.back):not(.theme-option-btn):not(.modal-close):not(.about-close):not(.timer-start-btn):not(.timer-reset-btn):not(.menu-btn):hover {
   transform: translateY(-2px);
 }
 
@@ -1166,7 +1149,7 @@ footer {
 }
 
 .modal.show {
-  display: flex;
+  display: flex !important;
 }
 
 .modal-content {
@@ -2587,6 +2570,22 @@ body.theme-cherryblossom .glowing-star::before { background: radial-gradient(cir
 
   .top-buttons-container {
     right: 10px;
+    top: 10px;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .btn-about, .btn-refresh, .btn-themes {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .btn-reset-session {
+    bottom: 215px !important;
+    left: 10px !important;
+    padding: 6px 12px;
+    font-size: 11px;
   }
 
   .container {
@@ -2596,11 +2595,6 @@ body.theme-cherryblossom .glowing-star::before { background: radial-gradient(cir
   }
 
   h1 { font-size: 1.5rem; }
-
-  .btn-about, .btn-refresh, .btn-themes, .btn-reset-session {
-    padding: 6px 12px;
-    font-size: 11px;
-  }
 
   .ph-time { font-size: 18px; }
   .time-container { padding: 6px 12px; }
@@ -2618,4 +2612,21 @@ body.theme-cherryblossom .glowing-star::before { background: radial-gradient(cir
   .timer-card { min-width: 140px; }
   .timer-display { font-size: 22px; }
   .timer-card-top h3 { font-size: 12px; }
+
+  .top-buttons-container {
+    right: 8px;
+    gap: 4px;
+  }
+
+  .btn-about, .btn-refresh, .btn-themes {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  .btn-reset-session {
+    bottom: 215px !important;
+    left: 8px !important;
+    padding: 5px 10px;
+    font-size: 10px;
+  }
 }
