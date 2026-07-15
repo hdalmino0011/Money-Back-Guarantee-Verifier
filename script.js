@@ -401,7 +401,7 @@ function calculateDiscount() {
     return;
   }
   
-  const discounts = [10, 15, 20, 25, 30, 35, 50, 70, 75];
+  const discounts = [10, 15, 20, 25, 30, 35, 50, 65, 70, 75];
   let output = `<strong>Original Amount: $${amount.toFixed(2)}</strong><br><br>`;
   
   discounts.forEach(d => {
