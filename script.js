@@ -146,12 +146,12 @@ function showSection(id) {
 function goHome() {
   showSection('home');
   
-  // Clear all results
+  // Clear all results (but NOT notes - keep typed content)
   document.getElementById("refundResult").innerHTML = "";
   document.getElementById("discountResult").innerHTML = "";
   document.getElementById("timeframeResult").innerHTML = "";
   document.getElementById("ahtResult").innerHTML = "";
-  document.getElementById("notesBox").value = "";
+  // Notes are preserved - do NOT clear them
 }
 
 // ===================
@@ -183,7 +183,7 @@ setInterval(updatePhilippineTime, 1000);
 updatePhilippineTime();
 
 // ===================
-// WINDOW ONLOAD - COMBINED (sets date, loads theme, starts timezone updates, creates animations, checks version, init timers, quotes)
+// WINDOW ONLOAD - COMBINED (sets date, loads theme, starts timezone updates, creates animations, checks version, init timers, quotes, notes)
 // ===================
 window.onload = () => {
   const today = new Date();
@@ -221,6 +221,9 @@ window.onload = () => {
   
   // Initialize quotes
   initQuotes();
+  
+  // Initialize notes with separate tabs
+  initNotes();
 };
 
 // Close modal when clicking outside of it
@@ -229,7 +232,7 @@ document.addEventListener('click', function(event) {
   const modal = document.getElementById("themeModal");
   if (modal && modal.classList.contains('show')) {
     const modalContent = modal.querySelector('.modal-content');
-    if (modalContent && !modalContent.contains(event.target) && !event.target.classList.contains('dark-toggle')) {
+    if (modalContent && !modalContent.contains(event.target) && !event.target.classList.contains('btn-themes') && !event.target.classList.contains('dark-toggle')) {
       closeThemeModal();
     }
   }
@@ -238,7 +241,7 @@ document.addEventListener('click', function(event) {
   const aboutModal = document.getElementById("aboutModal");
   if (aboutModal && aboutModal.classList.contains('show')) {
     const aboutContent = aboutModal.querySelector('.about-modal-content');
-    if (aboutContent && !aboutContent.contains(event.target) && !event.target.classList.contains('about-btn')) {
+    if (aboutContent && !aboutContent.contains(event.target) && !event.target.classList.contains('btn-about') && !event.target.classList.contains('about-btn')) {
       closeAboutModal();
     }
   }
@@ -483,26 +486,45 @@ function convertAHT() {
   document.getElementById("ahtResult").innerHTML = result;
 }
 
-// ===================
-// NOTES TEMPLATES - FIXED WITH EXACT FORMATS AND SPACES AFTER COLONS
-// ===================
+// ============================================================
+// NOTES - EACH TYPE HAS ITS OWN ENTRY TAB (PRESERVES CONTENT)
+// ============================================================
+const notesData = { 1: "", 2: "", 3: "" };
+let currentNoteType = 1;
+
+function initNotes() {
+  // Pre-fill type 1 with template on first load
+  const template1 = "Agent Name: \nOrder Date: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
+  notesData[1] = template1;
+  document.getElementById("notesBox").value = template1;
+  currentNoteType = 1;
+}
+
 function loadNotes(num) {
-  const notesBox = document.getElementById("notesBox");
+  const textarea = document.getElementById("notesBox");
   
-  let template = "";
-  if (num === 1) {
-    template = "Agent Name: \nOrder Date: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
-  } else if (num === 2) {
-    template = "AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\norder date: \nname: \nphone number: \nemail address: \norder id: \nproduct name:";
-  } else if (num === 3) {
-    template = "FOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
+  // Save current content to the current type
+  if (currentNoteType !== null && currentNoteType !== undefined) {
+    notesData[currentNoteType] = textarea.value;
   }
   
-  // If there's existing text, append the template with a separator
-  if (notesBox.value.trim() !== "") {
-    notesBox.value = notesBox.value + "\n\n---\n\n" + template;
+  // Switch to the new type
+  currentNoteType = num;
+  
+  // If the new type has saved content, load it; otherwise load its template
+  if (notesData[num] && notesData[num].trim() !== "") {
+    textarea.value = notesData[num];
   } else {
-    notesBox.value = template;
+    let template = "";
+    if (num === 1) {
+      template = "Agent Name: \nOrder Date: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
+    } else if (num === 2) {
+      template = "AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\norder date: \nname: \nphone number: \nemail address: \norder id: \nproduct name:";
+    } else if (num === 3) {
+      template = "FOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
+    }
+    notesData[num] = template;
+    textarea.value = template;
   }
 }
 
