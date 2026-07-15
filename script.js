@@ -1060,7 +1060,7 @@ setInterval(() => {
 }, 1000);
 
 // ===================
-// TYPEWRITER QUOTES
+// TYPEWRITER QUOTES - FIXED VERSION
 // ===================
 const quotes = [
   "The only way to do great work is to love what you do.",
@@ -1115,37 +1115,9 @@ function initQuotes() {
   const firstQuote = getRandomQuote();
   quoteElement.textContent = firstQuote;
   
-  // Change quote every 15 seconds with typewriter effect
+  // Change quote every 15 seconds - FIXED: removed typewriter effect bug
   setInterval(() => {
     const newQuote = getRandomQuote();
-    typeWriterEffect(quoteElement, newQuote);
+    quoteElement.textContent = newQuote;
   }, 15000);
-}
-
-function typeWriterEffect(element, text) {
-  // Clear the element
-  element.textContent = '';
-  
-  let charIndex = 0;
-  const typingSpeed = 30; // milliseconds per character
-  
-  // Create cursor span
-  const cursorSpan = document.createElement('span');
-  cursorSpan.className = 'cursor';
-  cursorSpan.textContent = '|';
-  element.appendChild(cursorSpan);
-  
-  function typeCharacter() {
-    if (charIndex < text.length) {
-      // Insert character before the cursor
-      const cursor = element.querySelector('.cursor');
-      const charNode = document.createTextNode(text.charAt(charIndex));
-      element.insertBefore(charNode, cursor);
-      charIndex++;
-      setTimeout(typeCharacter, typingSpeed);
-    }
-  }
-  
-  // Start typing after a short delay
-  setTimeout(typeCharacter, 500);
 }
