@@ -19,8 +19,11 @@
     <div class="ph-time" id="phTime">--:--:--</div>
   </div>
 
-  <!-- THEMES BUTTON + REFRESH BUTTON (TOP RIGHT) -->
+  <!-- ABOUT BUTTON + THEMES BUTTON + REFRESH BUTTON (TOP RIGHT) -->
   <div class="toggle-container">
+    <button class="about-btn" onclick="openAboutModal()">
+      <span class="btn-icon about-icon"></span>About
+    </button>
     <button class="refresh-btn" onclick="refreshPage()">
       <span class="btn-icon refresh-icon"></span>Refresh
     </button>
@@ -64,6 +67,43 @@
         <button class="theme-option-btn" style="background: linear-gradient(135deg, #ffb7c5, #ff9eb5, #ffc0cb, #ffe4e1);" onclick="setTheme('cherryblossom')">Cherry Blossom</button>
       </div>
       <button class="modal-close" onclick="closeThemeModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- ABOUT MODAL -->
+  <div id="aboutModal" class="about-modal">
+    <div class="about-modal-content">
+      <h2>About This Tool</h2>
+      <div class="about-content">
+        <p><strong>Utility Tool</strong> is designed to help DIPH Customer Service Agents with daily tasks.</p>
+        
+        <h3>Timer</h3>
+        <ul>
+          <li><span class="about-tag about-tag-timer">Break 1</span> 15 minutes</li>
+          <li><span class="about-tag about-tag-timer">Lunch</span> 60 minutes</li>
+          <li><span class="about-tag about-tag-timer">Break 2</span> 15 minutes</li>
+        </ul>
+        <p style="font-size: 13px; color: #666; margin-top: 4px;">Tap Start to begin counting down. Timer shows started and return times.</p>
+
+        <h3>Tools</h3>
+        <ul>
+          <li><span class="about-tag about-tag-tools">MBG</span> Money Back Guarantee Checker</li>
+          <li><span class="about-tag about-tag-tools">Discount</span> Discount Calculator (10% - 75%)</li>
+          <li><span class="about-tag about-tag-tools">Timeframe</span> Refund Timeframe Tracker</li>
+          <li><span class="about-tag about-tag-tools">AHT</span> AHT Time Converter</li>
+          <li><span class="about-tag about-tag-tools">Notes</span> Notations Format (Type 1, 2, 3)</li>
+          <li><span class="about-tag about-tag-tools">Time Zones</span> US &amp; Canada Current Times</li>
+          <li><span class="about-tag about-tag-tools">Currency</span> Currency Abbreviations with Search</li>
+        </ul>
+
+        <h3>Themes</h3>
+        <ul>
+          <li><span class="about-tag about-tag-themes">21 Themes</span> Choose from 21 beautiful color themes</li>
+          <li><span class="about-tag about-tag-themes">Dark/Light</span> Switch between dark and light modes</li>
+          <li><span class="about-tag about-tag-themes">Advanced</span> Cosmos, Galaxy, Aurora, Neon and more</li>
+        </ul>
+      </div>
+      <button class="about-close" onclick="closeAboutModal()">Close</button>
     </div>
   </div>
 
@@ -156,6 +196,11 @@
           <span class="reset-small-icon"></span>Reset
         </button>
       </div>
+    </div>
+
+    <!-- QUOTES SECTION -->
+    <div class="quotes-section">
+      <div class="quote-text" id="quoteText"></div>
     </div>
   </div>
 
