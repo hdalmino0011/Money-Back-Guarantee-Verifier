@@ -500,7 +500,7 @@ function convertAHT() {
 // ============================================================
 // NOTES - EACH TYPE HAS ITS OWN ENTRY TAB (PRESERVES CONTENT)
 // ============================================================
-const notesData = { 1: "", 2: "", 3: "" };
+const notesData = { 1: "", 2: "", 3: "", 4: "" };
 let currentNoteType = 1;
 
 function initNotes() {
@@ -533,6 +533,8 @@ function loadNotes(num) {
       template = "AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\norder date: \nname: \nphone number: \nemail address: \norder id: \nproduct name:";
     } else if (num === 3) {
       template = "FOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
+    } else if (num === 4) {
+      template = "Agent:\nCustomer's Full Name:\nPhone #:\nEmail:\nAddress:\nOrder ID:\nOrder Date:\nName of the Product:\nOFFER:\nTHREAT:\nConcern:\nResolution:";
     }
     notesData[num] = template;
     textarea.value = template;
