@@ -226,6 +226,17 @@ window.onload = () => {
   initNotes();
 };
 
+// ===================
+// PERIODIC VERSION CHECK - FORCES UPDATE WITHOUT REFRESH
+// ===================
+// Check for version updates every 30 seconds while page is open
+setInterval(() => {
+  const savedVersion = localStorage.getItem("appVersion");
+  if (savedVersion && savedVersion !== CURRENT_VERSION) {
+    showUpdatePopup();
+  }
+}, 30000);
+
 // Close modal when clicking outside of it
 document.addEventListener('click', function(event) {
   // Theme modal
@@ -701,6 +712,11 @@ function checkVersionAndShowPopup() {
 }
 
 function showUpdatePopup() {
+  // Check if popup already exists to avoid duplicates
+  if (document.getElementById('updatePopup')) {
+    return;
+  }
+  
   // Create modal overlay
   const overlay = document.createElement('div');
   overlay.id = 'updatePopup';
