@@ -156,6 +156,23 @@ function goHome() {
 }
 
 // ===================
+// ABOUT MODAL FUNCTIONS
+// ===================
+function openAboutModal() {
+  const modal = document.getElementById("aboutModal");
+  if (modal) {
+    modal.classList.add("show");
+  }
+}
+
+function closeAboutModal() {
+  const modal = document.getElementById("aboutModal");
+  if (modal) {
+    modal.classList.remove("show");
+  }
+}
+
+// ===================
 // LIVE PHILIPPINE TIME (12-HOUR FORMAT WITH AM/PM - UPDATES EVERY SECOND)
 // ===================
 function updatePhilippineTime() {
@@ -167,7 +184,7 @@ setInterval(updatePhilippineTime, 1000);
 updatePhilippineTime();
 
 // ===================
-// WINDOW ONLOAD - COMBINED (sets date, loads theme, starts timezone updates, creates animations, checks version, init timers)
+// WINDOW ONLOAD - COMBINED (sets date, loads theme, starts timezone updates, creates animations, checks version, init timers, quotes)
 // ===================
 window.onload = () => {
   const today = new Date();
@@ -202,15 +219,28 @@ window.onload = () => {
   
   // Initialize timers
   initTimers();
+  
+  // Initialize quotes
+  initQuotes();
 };
 
 // Close modal when clicking outside of it
 document.addEventListener('click', function(event) {
+  // Theme modal
   const modal = document.getElementById("themeModal");
   if (modal && modal.classList.contains('show')) {
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent && !modalContent.contains(event.target) && !event.target.classList.contains('dark-toggle')) {
       closeThemeModal();
+    }
+  }
+  
+  // About modal
+  const aboutModal = document.getElementById("aboutModal");
+  if (aboutModal && aboutModal.classList.contains('show')) {
+    const aboutContent = aboutModal.querySelector('.about-modal-content');
+    if (aboutContent && !aboutContent.contains(event.target) && !event.target.classList.contains('about-btn')) {
+      closeAboutModal();
     }
   }
 });
@@ -455,23 +485,25 @@ function convertAHT() {
 }
 
 // ===================
-// NOTES TEMPLATES - FIXED: WILL NOT DELETE YOUR TYPED CONTENT
+// NOTES TEMPLATES - FIXED: APPENDS WITHOUT DELETING CONTENT
 // ===================
 function loadNotes(num) {
   const notesBox = document.getElementById("notesBox");
   
-  // If there's already text in the box, do NOT overwrite it
-  if (notesBox.value.trim() !== "") {
-    alert("Notes already contain text. Please clear them manually if you want to load a template.");
-    return;
+  let template = "";
+  if (num === 1) {
+    template = "Agent Name: \nOrder Date: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
+  } else if (num === 2) {
+    template = "AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\norder date: \nname: \nphone number: \nemail address: \norder id: \nproduct name:";
+  } else if (num === 3) {
+    template = "FOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
   }
   
-  if (num === 1) {
-    notesBox.value = "Agent Name: \nOrder Date: \nREASON FOR CALLING: \nOFFER SAVE: \nTHREAT: \nRESOLUTION: \nACCOUNT STATUS: ";
-  } else if (num === 2) {
-    notesBox.value = "AGENT:\nREASON FOR CALLING:\nTHREAT: \nSAVE OFFER:\nRESOLUTION:\nSTATUS: \n\ncampaign:\norder date: \nname: \nphone number: \nemail address: \norder id: \nproduct name:";
-  } else if (num === 3) {
-    notesBox.value = "FOR NO ACCOUNT FOUND\n \nCampaign: \nOrder Date: \nEmail: \nName: \nPhone Number: \nProduct Name: \nTracking Number: \nOrder ID:";
+  // If there's existing text, append the template with a separator
+  if (notesBox.value.trim() !== "") {
+    notesBox.value = notesBox.value + "\n\n---\n\n" + template;
+  } else {
+    notesBox.value = template;
   }
 }
 
@@ -691,9 +723,30 @@ function showUpdatePopup() {
     document.head.appendChild(style);
   }
   
-  // Popup content
+  // Popup content with pure CSS refresh icon (no emoji)
   popup.innerHTML = `
-    <div style="font-size: 48px; margin-bottom: 15px;">O</div>
+    <div style="margin: 0 auto 15px auto; width: 60px; height: 60px; position: relative; display: flex; align-items: center; justify-content: center;">
+      <div style="
+        width: 48px;
+        height: 48px;
+        border: 5px solid #dc3545;
+        border-radius: 50%;
+        border-top-color: transparent;
+        position: relative;
+        animation: spinUpdate 1.5s linear infinite;
+      "></div>
+      <div style="
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 6px 8px 6px;
+        border-color: transparent transparent #dc3545 transparent;
+        transform: rotate(45deg);
+      "></div>
+    </div>
     <h2 style="color: #dc3545; margin-bottom: 15px; font-size: 24px;">Update Required</h2>
     <p style="color: #333; margin-bottom: 20px; line-height: 1.5; font-size: 16px;">
       You are using an old version of this tool.<br><br>
@@ -712,6 +765,19 @@ function showUpdatePopup() {
       transition: all 0.2s ease;
     ">Reset Session and Update</button>
   `;
+  
+  // Add spin animation if not exists
+  if (!document.querySelector('#spinAnimationStyle')) {
+    const spinStyle = document.createElement('style');
+    spinStyle.id = 'spinAnimationStyle';
+    spinStyle.textContent = `
+      @keyframes spinUpdate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(spinStyle);
+  }
   
   overlay.appendChild(popup);
   document.body.appendChild(overlay);
@@ -775,8 +841,7 @@ function performHardReset() {
     }).catch(function() {});
   }
   
-  // Force hard reload with cache-busting parameter
-  const url = new URL(window.location.href);
+  // Force hard reload with cache-busting parameter  const url = new URL(window.location.href);
   url.searchParams.set('_reset', Date.now());
   window.location.href = url.toString();
 }
@@ -955,3 +1020,94 @@ setInterval(() => {
     }
   });
 }, 1000);
+
+// ===================
+// TYPEWRITER QUOTES
+// ===================
+const quotes = [
+  "The only way to do great work is to love what you do.",
+  "Believe you can and you're halfway there.",
+  "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+  "The best time to start was yesterday. The next best time is now.",
+  "It does not matter how slowly you go as long as you do not stop.",
+  "Keep your face always toward the sunshine—and shadows will fall behind you.",
+  "The secret of getting ahead is getting started.",
+  "Quality is not an act, it is a habit.",
+  "In the middle of difficulty lies opportunity.",
+  "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work.",
+  "The only place where success comes before work is in the dictionary.",
+  "Strive not to be a success, but rather to be of value.",
+  "Everything you've ever wanted is on the other side of fear.",
+  "The purpose of our lives is to be happy.",
+  "You are never too old to set another goal or to dream a new dream.",
+  "Don't watch the clock; do what it does. Keep going.",
+  "The only impossible journey is the one you never begin.",
+  "Small daily improvements over time lead to stunning results."
+];
+
+const usedQuotes = [];
+
+function getRandomQuote() {
+  // If all quotes have been used, reset the used list
+  if (usedQuotes.length >= quotes.length) {
+    usedQuotes.length = 0;
+  }
+  
+  // Find a quote that hasn't been used recently
+  let availableQuotes = quotes.filter((_, index) => !usedQuotes.includes(index));
+  if (availableQuotes.length === 0) {
+    usedQuotes.length = 0;
+    availableQuotes = quotes;
+  }
+  
+  const randomIndex = Math.floor(Math.random() * availableQuotes.length);
+  const quoteText = availableQuotes[randomIndex];
+  const originalIndex = quotes.indexOf(quoteText);
+  usedQuotes.push(originalIndex);
+  
+  return quoteText;
+}
+
+function initQuotes() {
+  // Check if quotes section exists
+  const quoteElement = document.getElementById('quoteText');
+  if (!quoteElement) return;
+  
+  // Start with a random quote
+  const firstQuote = getRandomQuote();
+  quoteElement.textContent = firstQuote;
+  
+  // Change quote every 15 seconds with typewriter effect
+  setInterval(() => {
+    const newQuote = getRandomQuote();
+    typeWriterEffect(quoteElement, newQuote);
+  }, 15000);
+}
+
+function typeWriterEffect(element, text) {
+  // Clear the element
+  element.textContent = '';
+  
+  let charIndex = 0;
+  const typingSpeed = 30; // milliseconds per character
+  
+  // Create cursor span
+  const cursorSpan = document.createElement('span');
+  cursorSpan.className = 'cursor';
+  cursorSpan.textContent = '|';
+  element.appendChild(cursorSpan);
+  
+  function typeCharacter() {
+    if (charIndex < text.length) {
+      // Insert character before the cursor
+      const cursor = element.querySelector('.cursor');
+      const charNode = document.createTextNode(text.charAt(charIndex));
+      element.insertBefore(charNode, cursor);
+      charIndex++;
+      setTimeout(typeCharacter, typingSpeed);
+    }
+  }
+  
+  // Start typing after a short delay
+  setTimeout(typeCharacter, 500);
+}
